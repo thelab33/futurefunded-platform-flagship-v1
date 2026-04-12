@@ -1,0 +1,31 @@
+<script lang="ts">
+  type ProofItem = { label: string };
+
+  type Props = {
+    title?: string;
+    items?: ProofItem[];
+    id?: string;
+  };
+
+  let {
+    title = '',
+    items = [],
+    id
+  }: Props = $props();
+</script>
+
+<div class="rounded-[28px] border border-white/10 bg-white/[0.035] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <h2 id={id} class="m-0 max-w-2xl text-lg font-bold tracking-[-0.03em] text-white">
+      {title}
+    </h2>
+
+    <div class="flex flex-wrap gap-2">
+      {#each items as item}
+        <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-white/78">
+          {item.label}
+        </span>
+      {/each}
+    </div>
+  </div>
+</div>

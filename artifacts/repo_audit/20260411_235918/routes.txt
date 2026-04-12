@@ -1,0 +1,8 @@
+src/routes/+layout.svelte
+src/routes/+page.server.ts
+src/routes/(platform)/+layout.svelte
+src/routes/(platform)/platform/dashboard/+page.svelte
+src/routes/(platform)/platform/demo/+page.svelte
+src/routes/(platform)/platform/onboarding/+page.svelte
+src/routes/(platform)/platform/+page.svelte
+src/routes/(platform)/platform/pricing/+page.svelte

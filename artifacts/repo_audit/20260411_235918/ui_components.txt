@@ -1,0 +1,4 @@
+src/lib/components/ui/Button.svelte
+src/lib/components/ui/Card.svelte
+src/lib/components/ui/ProofStrip.svelte
+src/lib/components/ui/SectionHeading.svelte

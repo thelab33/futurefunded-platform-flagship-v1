@@ -1,21 +1,39 @@
 <script lang="ts">
-  export let brand: { name: string; subline?: string };
-  export let nav: { label: string; href: string }[] = [];
-  export let secondaryCta: { label: string; href: string };
-  export let primaryCta: { label: string; href: string };
+  type Link = { label: string; href: string };
+  type CTA = { label: string; href: string };
+  type Brand = { name: string; subline?: string };
+
+  type Props = {
+    brand: Brand;
+    nav?: Link[];
+    secondaryCta: CTA;
+    primaryCta: CTA;
+  };
+
+  let {
+    brand,
+    nav = [],
+    secondaryCta,
+    primaryCta
+  }: Props = $props();
 </script>
 
-<header class="sticky top-0 z-40 border-b border-white/8 bg-[#04111f]/78 backdrop-blur">
+<header class="sticky top-0 z-40 border-b border-white/8 bg-[#03101d]/72 backdrop-blur-2xl supports-[backdrop-filter]:bg-[#03101d]/62">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
     <a href="/platform" class="min-w-0 no-underline">
       <div class="flex items-center gap-3">
-        <div class="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/[0.06] text-sm font-black tracking-[0.18em] text-white">
-          FF
+        <div class="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.06] shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
+          <span class="text-[11px] font-black uppercase tracking-[0.28em] text-white">FF</span>
         </div>
+
         <div class="min-w-0">
-          <p class="m-0 truncate text-sm font-bold text-white">{brand.name}</p>
+          <p class="m-0 truncate text-sm font-bold tracking-[-0.02em] text-white">
+            {brand.name}
+          </p>
           {#if brand.subline}
-            <p class="m-0 truncate text-xs text-white/56">{brand.subline}</p>
+            <p class="m-0 truncate text-[11px] text-white/52">
+              {brand.subline}
+            </p>
           {/if}
         </div>
       </div>
@@ -23,7 +41,10 @@
 
     <nav class="hidden items-center gap-6 lg:flex" aria-label="Platform">
       {#each nav as item}
-        <a href={item.href} class="text-sm font-medium text-white/72 no-underline transition hover:text-white">
+        <a
+          href={item.href}
+          class="text-sm font-medium text-white/68 no-underline transition duration-200 hover:text-white"
+        >
           {item.label}
         </a>
       {/each}
@@ -32,13 +53,14 @@
     <div class="flex items-center gap-2">
       <a
         href={secondaryCta.href}
-        class="hidden rounded-full border border-white/12 px-4 py-2 text-sm font-semibold text-white/82 no-underline transition hover:border-white/18 hover:bg-white/[0.04] sm:inline-flex"
+        class="hidden rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-white/84 no-underline transition duration-200 hover:border-white/18 hover:bg-white/[0.06] sm:inline-flex"
       >
         {secondaryCta.label}
       </a>
+
       <a
         href={primaryCta.href}
-        class="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 no-underline transition hover:-translate-y-px"
+        class="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 no-underline shadow-[0_12px_30px_rgba(255,255,255,0.12)] transition duration-200 hover:-translate-y-px"
       >
         {primaryCta.label}
       </a>

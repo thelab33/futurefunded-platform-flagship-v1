@@ -1,0 +1,23 @@
+=== src/routes/(platform)/platform/+page.svelte ===
+2:  import PlatformTopBar from '$lib/components/platform/PlatformTopBar.svelte';
+3:  import PlatformHero from '$lib/components/platform/PlatformHero.svelte';
+4:  import HowItWorksSection from '$lib/components/platform/HowItWorksSection.svelte';
+5:  import RevenueLanesSection from '$lib/components/platform/RevenueLanesSection.svelte';
+6:  import UseCasesSection from '$lib/components/platform/UseCasesSection.svelte';
+7:  import ProductPreviewSection from '$lib/components/platform/ProductPreviewSection.svelte';
+8:  import SponsorCommerceSection from '$lib/components/platform/SponsorCommerceSection.svelte';
+9:  import BrandControlSection from '$lib/components/platform/BrandControlSection.svelte';
+10:  import FaqSection from '$lib/components/platform/FaqSection.svelte';
+11:  import CloseBand from '$lib/components/platform/CloseBand.svelte';
+12:  import PlatformFooter from '$lib/components/platform/PlatformFooter.svelte';
+13:  import ProofStrip from '$lib/components/ui/ProofStrip.svelte';
+29:  } from '$lib/content/platform-home';
+
+=== src/routes/(platform)/platform/dashboard/+page.svelte ===
+
+=== src/routes/(platform)/platform/demo/+page.svelte ===
+
+=== src/routes/(platform)/platform/onboarding/+page.svelte ===
+
+=== src/routes/(platform)/platform/pricing/+page.svelte ===
+

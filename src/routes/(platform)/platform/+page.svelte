@@ -57,12 +57,18 @@
     railCards={platformHero.railCards}
   />
 
-  <section class="px-4 py-4 sm:px-6 lg:px-8" id="proof" aria-labelledby="platformProofTitle">
+  <!-- compact trust -->
+  <section class="px-4 py-2 sm:px-6 lg:px-8" id="proof" aria-labelledby="platformProofTitle">
     <div class="mx-auto max-w-7xl">
-      <ProofStrip id="platformProofTitle" title={platformProofStrip.title} items={platformProofStrip.items} />
+      <ProofStrip
+        id="platformProofTitle"
+        title={platformProofStrip.title}
+        items={platformProofStrip.items}
+      />
     </div>
   </section>
 
+  <!-- compact understanding -->
   <HowItWorksSection
     id="how-it-works"
     eyebrow={platformHowItWorks.eyebrow}
@@ -71,6 +77,7 @@
     steps={platformHowItWorks.steps}
   />
 
+  <!-- first strong monetization block -->
   <RevenueLanesSection
     id="revenue"
     eyebrow={platformRevenueLanes.eyebrow}
@@ -79,14 +86,7 @@
     items={platformRevenueLanes.items}
   />
 
-  <UseCasesSection
-    id="use-cases"
-    eyebrow={platformUseCases.eyebrow}
-    title={platformUseCases.title}
-    lead={platformUseCases.lead}
-    items={platformUseCases.items}
-  />
-
+  <!-- product proof early -->
   <ProductPreviewSection
     id="product-preview"
     eyebrow={platformProductPreview.eyebrow}
@@ -95,6 +95,7 @@
     items={platformProductPreview.items}
   />
 
+  <!-- sponsor commerce -->
   <SponsorCommerceSection
     id="sponsors"
     eyebrow={platformSponsorCommerce.eyebrow}
@@ -102,6 +103,15 @@
     lead={platformSponsorCommerce.lead}
     featuredBand={platformSponsorCommerce.featuredBand}
     tiers={platformSponsorCommerce.tiers}
+  />
+
+  <!-- qualification later -->
+  <UseCasesSection
+    id="use-cases"
+    eyebrow={platformUseCases.eyebrow}
+    title={platformUseCases.title}
+    lead={platformUseCases.lead}
+    items={platformUseCases.items}
   />
 
   <BrandControlSection

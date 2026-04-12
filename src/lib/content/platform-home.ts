@@ -96,10 +96,10 @@ export const platformTopBar = {
 };
 
 export const platformHero = {
-  eyebrow: 'Turnkey fundraising for teams, schools, nonprofits, and clubs',
+  eyebrow: 'Premium fundraising platform for teams, schools, nonprofits, and clubs',
   title: 'Launch a sponsor-ready fundraising experience that feels premium from day one.',
   body:
-    'FutureFunded helps organizations launch branded fundraising pages with secure donations, sponsor packages, memberships, and mobile-first trust — all from one operator-friendly workspace.',
+    'Brand your page, connect payments, publish faster, and give supporters and sponsors a cleaner way to say yes.',
   primaryCta: {
     label: 'View demo',
     href: '/platform/demo',
@@ -114,40 +114,53 @@ export const platformHero = {
   } satisfies Cta,
   trustPills: [
     'Secure payments',
-    'Sponsor-ready',
-    'Mobile-first',
+    'Sponsor commerce',
     'Branded launch',
-    'Operator-friendly'
+    'Mobile-first'
   ],
   railCards: [
     {
-      title: 'Brand your page',
-      items: ['Upload logo', 'Choose colors', 'Set fundraising goal', 'Preview before publish'],
+      title: 'Brand setup',
+      items: [
+        'Upload logo',
+        'Choose colors',
+        'Preview your page'
+      ],
       tone: 'feature'
     },
     {
-      title: 'Raise in more ways',
-      items: ['One-time donations', 'Recurring memberships', 'Sponsor packages', 'VIP recognition'],
+      title: 'Revenue lanes',
+      items: [
+        'Donations',
+        'Memberships',
+        'Sponsors'
+      ],
       tone: 'default'
     },
     {
-      title: 'Launch-ready workflow',
-      items: ['Stripe connected', 'PayPal optional', 'Mobile preview ready', 'Publish live'],
+      title: 'Launch state',
+      items: [
+        'Payments connected',
+        'Mobile preview ready',
+        'Publish live'
+      ],
       tone: 'success'
     }
   ] satisfies HeroRailCard[]
 };
 
 export const platformProofStrip = {
-  title: 'Built for real fundraising, real operators, and real sponsor support.',
+  title: 'Built for premium fundraising, sponsor trust, and cleaner operator launch.',
   items: [
-    { label: 'Secure checkout flows' },
+    { label: 'Secure payments' },
     { label: 'Sponsor-ready presentation' },
-    { label: 'Branded campaign pages' },
-    { label: 'Mobile-first donor experience' },
-    { label: 'Fast launch workflow' }
+    { label: 'Branded launch' },
+    { label: 'Mobile-first experience' },
+    { label: 'Operator-friendly workflow' }
   ] satisfies ProofItem[]
 };
+
+;
 
 export const platformHowItWorks = {
   eyebrow: 'How it works',

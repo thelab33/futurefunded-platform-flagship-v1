@@ -1,0 +1,72 @@
+{
+  "generated_at": "20260411_235918",
+  "repo_root": "/home/elCUCO/futurefunded-platform-flagship-v1",
+  "routes": [
+    "src/routes/+layout.svelte",
+    "src/routes/+page.server.ts",
+    "src/routes/(platform)/+layout.svelte",
+    "src/routes/(platform)/platform/dashboard/+page.svelte",
+    "src/routes/(platform)/platform/demo/+page.svelte",
+    "src/routes/(platform)/platform/onboarding/+page.svelte",
+    "src/routes/(platform)/platform/+page.svelte",
+    "src/routes/(platform)/platform/pricing/+page.svelte"
+  ],
+  "platform_components": [
+    "src/lib/components/platform/BrandControlSection.svelte",
+    "src/lib/components/platform/CloseBand.svelte",
+    "src/lib/components/platform/FaqSection.svelte",
+    "src/lib/components/platform/HowItWorksSection.svelte",
+    "src/lib/components/platform/PlatformChrome.svelte",
+    "src/lib/components/platform/PlatformFooter.svelte",
+    "src/lib/components/platform/PlatformHero.svelte",
+    "src/lib/components/platform/PlatformTopBar.svelte",
+    "src/lib/components/platform/ProductPreviewSection.svelte",
+    "src/lib/components/platform/RevenueLanesSection.svelte",
+    "src/lib/components/platform/SponsorCommerceSection.svelte",
+    "src/lib/components/platform/UseCasesSection.svelte"
+  ],
+  "ui_components": [
+    "src/lib/components/ui/Button.svelte",
+    "src/lib/components/ui/Card.svelte",
+    "src/lib/components/ui/ProofStrip.svelte",
+    "src/lib/components/ui/SectionHeading.svelte"
+  ],
+  "content_files": [
+    "src/lib/content/platform-home.ts",
+    "src/lib/content/platform-home.ts.bak.20260411203821",
+    "src/lib/content/platform-home.ts.bak.20260411204042",
+    "src/lib/content/platform-home.ts.bak.20260411211309",
+    "src/lib/content/platform-home.ts.bak.fixdup.20260411234633"
+  ],
+  "style_files": [
+    "src/lib/styles/app.css",
+    "src/lib/styles/flagship.css",
+    "src/lib/styles/flagship.css.bak.20260411234248",
+    "src/lib/styles/tokens.css"
+  ],
+  "backup_files": [
+    "src/lib/components/platform/HowItWorksSection.svelte.bak.20260411204525",
+    "src/lib/components/platform/PlatformHero.svelte.bak.20260411203821",
+    "src/lib/components/platform/PlatformTopBar.svelte.bak.20260411203821",
+    "src/lib/components/platform/ProductPreviewSection.svelte.bak.20260411211309",
+    "src/lib/components/platform/RevenueLanesSection.svelte.bak.20260411204525",
+    "src/lib/components/platform/SponsorCommerceSection.svelte.bak.20260411211918",
+    "src/lib/components/platform/UseCasesSection.svelte.bak.20260411211918",
+    "src/lib/components/ui/ProofStrip.svelte.bak.20260411204525",
+    "src/lib/components/ui/SectionHeading.svelte.bak.20260411234248",
+    "src/lib/content/platform-home.ts.bak.20260411203821",
+    "src/lib/content/platform-home.ts.bak.20260411204042",
+    "src/lib/content/platform-home.ts.bak.20260411211309",
+    "src/lib/content/platform-home.ts.bak.fixdup.20260411234633",
+    "src/lib/styles/flagship.css.bak.20260411234248",
+    "src/routes/+layout.svelte.bak.20260411203242",
+    "src/routes/+layout.svelte.bak.20260411205845",
+    "src/routes/(platform)/+layout.svelte.bak.20260411203242",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260411213226",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260411234248"
+  ],
+  "route_imports_raw": "=== src/routes/(platform)/platform/+page.svelte ===\n2:  import PlatformTopBar from '$lib/components/platform/PlatformTopBar.svelte';\n3:  import PlatformHero from '$lib/components/platform/PlatformHero.svelte';\n4:  import HowItWorksSection from '$lib/components/platform/HowItWorksSection.svelte';\n5:  import RevenueLanesSection from '$lib/components/platform/RevenueLanesSection.svelte';\n6:  import UseCasesSection from '$lib/components/platform/UseCasesSection.svelte';\n7:  import ProductPreviewSection from '$lib/components/platform/ProductPreviewSection.svelte';\n8:  import SponsorCommerceSection from '$lib/components/platform/SponsorCommerceSection.svelte';\n9:  import BrandControlSection from '$lib/components/platform/BrandControlSection.svelte';\n10:  import FaqSection from '$lib/components/platform/FaqSection.svelte';\n11:  import CloseBand from '$lib/components/platform/CloseBand.svelte';\n12:  import PlatformFooter from '$lib/components/platform/PlatformFooter.svelte';\n13:  import ProofStrip from '$lib/components/ui/ProofStrip.svelte';\n29:  } from '$lib/content/platform-home';\n\n=== src/routes/(platform)/platform/dashboard/+page.svelte ===\n\n=== src/routes/(platform)/platform/demo/+page.svelte ===\n\n=== src/routes/(platform)/platform/onboarding/+page.svelte ===\n\n=== src/routes/(platform)/platform/pricing/+page.svelte ===\n\n",
+  "content_refs_raw": "src/routes/(platform)/platform/+page.svelte:29:  } from '$lib/content/platform-home';\nsrc/routes/(platform)/platform/+page.svelte.bak.20260411234248:29:  } from '$lib/content/platform-home';\n",
+  "style_refs_raw": "src/routes/+layout.svelte:2:  import '$lib/styles/flagship.css';\nsrc/routes/+layout.svelte.bak.20260411203242:2:  import '$lib/styles/tokens.css';\nsrc/routes/+layout.svelte.bak.20260411203242:3:  import '$lib/styles/app.css';\nsrc/routes/+layout.svelte.bak.20260411205845:2:  import '$lib/styles/tokens.css';\nsrc/routes/+layout.svelte.bak.20260411205845:3:  import '$lib/styles/app.css';\nsrc/lib/styles/app.css:1:@import './tokens.css';\n",
+  "corruption_hits_raw": ""
+}

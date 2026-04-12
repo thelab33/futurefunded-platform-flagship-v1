@@ -1,40 +1,80 @@
 <script lang="ts">
   import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
-  export let id = 'revenue';
-  export let eyebrow = '';
-  export let title = '';
-  export let lead = '';
-  export let items: { title: string; body: string; pills?: string[]; featured?: boolean }[] = [];
+
+  type Item = {
+    title: string;
+    body: string;
+    pills?: string[];
+    featured?: boolean;
+  };
+
+  type Props = {
+    id?: string;
+    eyebrow?: string;
+    title?: string;
+    lead?: string;
+    items?: Item[];
+  };
+
+  let {
+    id = 'revenue',
+    eyebrow = '',
+    title = '',
+    lead = '',
+    items = []
+  }: Props = $props();
 </script>
 
-<section {id} class="px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+<section {id} class="px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
   <div class="mx-auto max-w-7xl">
-    <SectionHeading {eyebrow} {title} {lead} />
-    <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+
+    <!-- tighter heading -->
+    <div class="max-w-2xl">
+      <SectionHeading {eyebrow} {title} {lead} />
+    </div>
+
+    <!-- grid -->
+    <div class="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
       {#each items as item}
-        <article class={`rounded-[28px] border p-5 backdrop-blur ${
-          item.featured
-            ? 'border-orange-400/25 bg-orange-400/8'
-            : 'border-white/10 bg-white/[0.03]'
-        }`}>
-          <div class="flex items-start justify-between gap-3">
-            <h3 class="m-0 text-xl font-extrabold tracking-[-0.03em] text-white">{item.title}</h3>
-            {#if item.featured}
-              <span class="rounded-full border border-orange-300/25 bg-orange-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-orange-100">
-                Featured
-              </span>
-            {/if}
-          </div>
-          <p class="mt-3 text-sm leading-7 text-white/72">{item.body}</p>
-          {#if item.pills?.length}
-            <div class="mt-4 flex flex-wrap gap-2">
-              {#each item.pills as pill}
-                <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-white/78">
-                  {pill}
+        <article
+          class={`relative overflow-hidden rounded-[22px] border p-4 backdrop-blur-xl transition duration-200 hover:border-white/14 ${
+            item.featured
+              ? 'border-orange-300/20 bg-[linear-gradient(180deg,rgba(255,122,26,0.10),rgba(255,122,26,0.04))] xl:col-span-2'
+              : 'border-white/8 bg-white/[0.025]'
+          }`}
+        >
+          <div class="relative">
+
+            <!-- header -->
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="m-0 text-[1rem] font-bold tracking-[-0.02em] text-white">
+                {item.title}
+              </h3>
+
+              {#if item.featured}
+                <span class="rounded-full border border-orange-200/20 bg-orange-200/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-orange-100">
+                  Featured
                 </span>
-              {/each}
+              {/if}
             </div>
-          {/if}
+
+            <!-- body -->
+            <p class="mt-2 text-[13px] leading-6 text-white/68">
+              {item.body}
+            </p>
+
+            <!-- pills -->
+            {#if item.pills?.length}
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {#each item.pills as pill}
+                  <span class="rounded-full border border-white/8 bg-black/10 px-2.5 py-1 text-[11px] text-white/70">
+                    {pill}
+                  </span>
+                {/each}
+              </div>
+            {/if}
+
+          </div>
         </article>
       {/each}
     </div>

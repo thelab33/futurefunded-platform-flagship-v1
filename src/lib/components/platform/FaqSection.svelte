@@ -1,24 +1,55 @@
 <script lang="ts">
   import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
-  export let id = 'faq';
-  export let eyebrow = '';
-  export let title = '';
-  export let lead = '';
-  export let items: { q: string; a: string }[] = [];
+
+  type Item = { q: string; a: string };
+  type Props = {
+    id?: string;
+    eyebrow?: string;
+    title?: string;
+    lead?: string;
+    items?: Item[];
+  };
+
+  let {
+    id = 'faq',
+    eyebrow = '',
+    title = '',
+    lead = '',
+    items = []
+  }: Props = $props();
 </script>
 
-<section {id} class="px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-  <div class="mx-auto max-w-5xl">
+<section {id} class="px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+  <div class="mx-auto max-w-3xl">
     <SectionHeading {eyebrow} {title} {lead} align="center" />
-    <div class="mt-8 space-y-3">
-      {#each items as item}
-        <details class="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
-          <summary class="cursor-pointer list-none text-lg font-semibold tracking-[-0.02em] text-white">
+
+    <!-- 👇 tighter stack, less vertical fatigue -->
+    <div class="mt-6 space-y-2">
+      {#each items.slice(0, 5) as item}
+        <details
+          class="group rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3 backdrop-blur-xl transition hover:border-white/14"
+        >
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-3 text-[0.95rem] font-semibold tracking-[-0.01em] text-white">
             {item.q}
+
+            <!-- subtle affordance -->
+            <span class="text-white/40 transition group-open:rotate-45">
+              +
+            </span>
           </summary>
-          <p class="mt-3 text-sm leading-7 text-white/72">{item.a}</p>
+
+          <p class="mt-2 text-[13px] leading-6 text-white/68">
+            {item.a}
+          </p>
         </details>
       {/each}
     </div>
+
+    <!-- 👇 soft cap to prevent scroll fatigue -->
+    {#if items.length > 5}
+      <p class="mt-4 text-center text-xs text-white/40">
+        More answers available after launch setup.
+      </p>
+    {/if}
   </div>
 </section>

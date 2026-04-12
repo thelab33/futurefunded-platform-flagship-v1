@@ -1,0 +1,114 @@
+<main
+  id="main"
+  class="min-h-screen bg-[radial-gradient(circle_at_top,rgba(255,122,26,0.14),transparent_28%),linear-gradient(180deg,#031022_0%,#061a31_100%)] text-white"
+  data-ff-template="platform"
+  data-ff-page="home"
+>
+  <!-- TOP BAR -->
+  <PlatformTopBar
+    brand={platformTopBar.brand}
+    nav={platformTopBar.nav}
+    secondaryCta={platformTopBar.ctas.secondary}
+    primaryCta={platformTopBar.ctas.primary}
+  />
+
+  <!-- HERO -->
+  <PlatformHero
+    eyebrow={platformHero.eyebrow}
+    title={platformHero.title}
+    body={platformHero.body}
+    primaryCta={platformHero.primaryCta}
+    secondaryCta={platformHero.secondaryCta}
+    trustPills={platformHero.trustPills}
+    railCards={platformHero.railCards}
+  />
+
+  <!-- 🔥 COMPRESSED TRUST BAND (SMALLER) -->
+  <section class="px-4 py-3 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl opacity-90">
+      <ProofStrip
+        id="platformProofTitle"
+        title={platformProofStrip.title}
+        items={platformProofStrip.items}
+      />
+    </div>
+  </section>
+
+  <!-- 🔥 COMPRESSED HOW IT WORKS -->
+  <div class="scale-[0.98] origin-top">
+    <HowItWorksSection
+      id="how-it-works"
+      eyebrow={platformHowItWorks.eyebrow}
+      title={platformHowItWorks.title}
+      lead={platformHowItWorks.lead}
+      steps={platformHowItWorks.steps}
+    />
+  </div>
+
+  <!-- 💰 FIRST HEAVY SECTION (KEEP STRONG) -->
+  <RevenueLanesSection
+    id="revenue"
+    eyebrow={platformRevenueLanes.eyebrow}
+    title={platformRevenueLanes.title}
+    lead={platformRevenueLanes.lead}
+    items={platformRevenueLanes.items}
+  />
+
+  <!-- 🚀 MOVE PRODUCT PROOF EARLIER -->
+  <ProductPreviewSection
+    id="product-preview"
+    eyebrow={platformProductPreview.eyebrow}
+    title={platformProductPreview.title}
+    lead={platformProductPreview.lead}
+    items={platformProductPreview.items}
+  />
+
+  <!-- 💼 SPONSOR = MONEY = KEEP HIGH -->
+  <SponsorCommerceSection
+    id="sponsors"
+    eyebrow={platformSponsorCommerce.eyebrow}
+    title={platformSponsorCommerce.title}
+    lead={platformSponsorCommerce.lead}
+    featuredBand={platformSponsorCommerce.featuredBand}
+    tiers={platformSponsorCommerce.tiers}
+  />
+
+  <!-- 👥 USE CASES (LOWER PRIORITY) -->
+  <UseCasesSection
+    id="use-cases"
+    eyebrow={platformUseCases.eyebrow}
+    title={platformUseCases.title}
+    lead={platformUseCases.lead}
+    items={platformUseCases.items}
+  />
+
+  <!-- 🎯 BRAND CONTROL -->
+  <BrandControlSection
+    id="brand-control"
+    eyebrow={platformBrandControl.eyebrow}
+    title={platformBrandControl.title}
+    lead={platformBrandControl.lead}
+    items={platformBrandControl.items}
+  />
+
+  <!-- ❓ FAQ -->
+  <FaqSection
+    id="faq"
+    eyebrow={platformFaq.eyebrow}
+    title={platformFaq.title}
+    lead={platformFaq.lead}
+    items={platformFaq.items}
+  />
+
+  <!-- 🚀 CLOSE -->
+  <CloseBand
+    id="launch"
+    eyebrow={platformCloseBand.eyebrow}
+    title={platformCloseBand.title}
+    body={platformCloseBand.body}
+    primaryCta={platformCloseBand.primaryCta}
+    secondaryCta={platformCloseBand.secondaryCta}
+  />
+
+  <PlatformFooter brand={platformFooter.brand} links={platformFooter.links} />
+</main>
