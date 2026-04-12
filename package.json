@@ -22,8 +22,8 @@
 		"lint:svelte5": "node tools/lint/svelte5-runes.mjs",
 		"lint:fix": "eslint . --fix && prettier --write .",
 		"validate": "pnpm check && pnpm lint:svelte5 && pnpm lint",
-		"format:active": "prettier --write eslint.config.js package.json svelte.config.js vite.config.ts tsconfig.json \"src/routes/c/[slug]/+page.svelte\" \"src/routes/(platform)/platform/+page.svelte\" src/lib/utils/cn.ts tools/lint/svelte5-runes.mjs",
-		"lint:active": "prettier --check eslint.config.js package.json svelte.config.js vite.config.ts tsconfig.json \"src/routes/c/[slug]/+page.svelte\" \"src/routes/(platform)/platform/+page.svelte\" src/lib/utils/cn.ts tools/lint/svelte5-runes.mjs && eslint eslint.config.js \"src/routes/c/[slug]/+page.svelte\" \"src/routes/(platform)/platform/+page.svelte\" src/lib/utils/cn.ts tools/lint/svelte5-runes.mjs",
+		"format:active": "prettier --write eslint.config.js package.json svelte.config.js vite.config.ts tsconfig.json \"src/routes/c/[slug]/+page.svelte\" \"src/routes/(platform)/platform/+page.svelte\" \"src/routes/(platform)/platform/onboarding/+page.svelte\" \"src/routes/(platform)/platform/dashboard/+page.svelte\" src/lib/utils/cn.ts tools/lint/svelte5-runes.mjs",
+		"lint:active": "prettier --check eslint.config.js package.json svelte.config.js vite.config.ts tsconfig.json \"src/routes/c/[slug]/+page.svelte\" \"src/routes/(platform)/platform/+page.svelte\" \"src/routes/(platform)/platform/onboarding/+page.svelte\" \"src/routes/(platform)/platform/dashboard/+page.svelte\" src/lib/utils/cn.ts tools/lint/svelte5-runes.mjs && eslint eslint.config.js \"src/routes/c/[slug]/+page.svelte\" \"src/routes/(platform)/platform/+page.svelte\" \"src/routes/(platform)/platform/onboarding/+page.svelte\" \"src/routes/(platform)/platform/dashboard/+page.svelte\" src/lib/utils/cn.ts tools/lint/svelte5-runes.mjs",
 		"validate:active": "pnpm check && pnpm lint:svelte5 && pnpm lint:active"
 	},
 	"devDependencies": {
