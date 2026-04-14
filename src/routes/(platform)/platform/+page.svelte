@@ -2,11 +2,26 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { mountFFPage, toggleFFTheme } from '$lib/utils/ff-theme';
 
-	type Metric = { label: string; value: string; note: string };
-	type Step = { id: string; title: string; body: string };
-	type Included = { title: string; body: string };
-	type Tier = {
+	type HeroSignal = {
+		label: string;
+		value: string;
+		body: string;
+	};
+
+	type LaunchStep = {
+		id: string;
+		title: string;
+		body: string;
+	};
+
+	type IncludedItem = {
+		title: string;
+		body: string;
+	};
+
+	type PricingTier = {
 		key: string;
 		name: string;
 		price: string;
@@ -16,32 +31,39 @@
 		featured?: boolean;
 		cta: string;
 	};
+
 	type SponsorLane = {
 		name: string;
 		amount: string;
-		body: string;
 		tag: string;
+		body: string;
 	};
 
-	const heroMetrics: Metric[] = [
+	const nav = [
+		{ label: 'Home', action: () => scrollToId('home') },
+		{ label: 'Pricing', action: () => scrollToId('pricing') },
+		{ label: 'Live fundraiser', action: () => goto('/c/connect-atx-elite') }
+	];
+
+	const heroSignals: HeroSignal[] = [
 		{
-			label: 'Launch',
-			value: 'Fast',
-			note: 'Go from branded setup to live page without stitching tools.'
+			label: 'Donor confidence',
+			value: 'Credible',
+			body: 'Cleaner branding, clearer actions, and a stronger first impression the moment someone opens the page.'
 		},
 		{
-			label: 'Revenue',
-			value: 'Structured',
-			note: 'Donations, sponsor packages, and recurring support in one cleaner product story.'
+			label: 'Sponsor readiness',
+			value: 'Monetizable',
+			body: 'A stronger business-facing story than a plain donation page, with clear visibility and package framing.'
 		},
 		{
-			label: 'Control',
-			value: 'Operator-ready',
-			note: 'A calmer dashboard path for setup, upkeep, and day-to-day campaign management.'
+			label: 'Operator control',
+			value: 'Calmer',
+			body: 'One dashboard to launch, manage, and improve the fundraiser without juggling scattered tools.'
 		}
 	];
 
-	const steps: Step[] = [
+	const launchSteps: LaunchStep[] = [
 		{
 			id: '01',
 			title: 'Brand it',
@@ -59,10 +81,10 @@
 		}
 	];
 
-	const included: Included[] = [
+	const included: IncludedItem[] = [
 		{
 			title: 'Public fundraiser',
-			body: 'A calmer, more premium public-facing experience built to feel legitimate the first time someone opens the link.'
+			body: 'A calmer, premium public-facing experience built to feel legitimate the first time someone opens the link.'
 		},
 		{
 			title: 'Sponsor packages',
@@ -86,75 +108,75 @@
 		}
 	];
 
-	const tiers: Tier[] = [
+	const tiers: PricingTier[] = [
 		{
 			key: 'starter',
 			name: 'Starter',
 			price: '$49 setup',
-			badge: 'Fastest launch',
-			body: 'Best for organizations that want to launch quickly with a stronger first impression than a generic donation tool.',
+			badge: 'Fastest way live',
+			body: 'Best for teams and organizations that want a polished launch, a credible public page, and one clean setup path without adding sponsor complexity on day one.',
 			bullets: [
 				'Branded fundraiser page',
 				'Clean launch workflow',
 				'Donor-ready public surface',
-				'Core operator access'
+				'Core operator access',
+				'Fastest way live with one clear setup path'
 			],
-			cta: 'Start with Starter'
+			cta: 'Choose Starter'
 		},
 		{
 			key: 'growth',
 			name: 'Growth',
 			price: '$79/mo',
-			badge: 'Best default',
-			body: 'Best default for teams and organizations that want sponsors, recurring support, and a more premium fundraising motion.',
+			badge: 'Best for revenue',
+			body: 'Best for teams and organizations that want to launch with sponsor packages, recurring support, and a fundraising model that can generate more than one-time donations.',
 			bullets: [
 				'Everything in Starter',
 				'Sponsor package positioning',
-				'Recurring support support',
-				'Stronger platform monetization'
+				'Built to monetize beyond one-time donations',
+				'Recurring support',
+				'Stronger sponsor revenue model'
 			],
 			featured: true,
-			cta: 'Launch with Growth'
+			cta: 'Choose Growth'
 		}
 	];
 
-	const sponsorLanes: SponsorLane[] = [
+	const sponsorLanes: (SponsorLane & { bullets: string[] })[] = [
 		{
 			name: 'Community sponsor',
 			amount: '$250',
-			body: 'Visible entry package for families, alumni, and local supporters who want recognition without a heavy lift.',
-			tag: 'Logo mention'
+			tag: 'Visible to every donor',
+			body: 'Entry visibility tier for families, alumni, and local businesses that want to be seen by donors without committing to a larger package.',
+			bullets: [
+				'Logo or name on fundraiser',
+				'Supporter-facing visibility',
+				'Clean recognition without a heavy lift'
+			]
 		},
 		{
 			name: 'Featured partner',
 			amount: '$500',
-			body: 'Recommended mid-tier for businesses that want more prominent placement and cleaner sponsor value.',
-			tag: 'Featured placement'
+			tag: 'Featured on launch',
+			body: 'Recommended partner tier for businesses that want stronger placement, clearer sponsor value, and more attention on launch.',
+			bullets: [
+				'Featured placement on fundraiser',
+				'Stronger business visibility',
+				'More attention during launch'
+			]
 		},
 		{
 			name: 'Founding sponsor',
 			amount: '$1,000',
-			body: 'Premium top-billing tier for supporters who want flagship visibility and brand association on launch.',
-			tag: 'Premium recognition'
+			tag: 'Shown across donor shares',
+			body: 'Top-visibility tier for businesses that want premium placement, launch-day prominence, and stronger brand association across the fundraiser.',
+			bullets: [
+				'Priority sponsor placement',
+				'Premium brand association',
+				'Recognition across donor shares'
+			]
 		}
 	];
-
-	const nav = [
-		{ label: 'Home', action: () => scrollToId('home') },
-		{ label: 'Pricing', action: () => scrollToId('pricing') },
-		{ label: 'Live fundraiser', action: () => goto('/c/connect-atx-elite') }
-	];
-
-	const shell =
-		'rounded-[28px] border border-slate-300/80 bg-white/92 shadow-[0_24px_54px_rgba(15,23,42,0.12)] backdrop-blur dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_30px_80px_rgba(0,0,0,0.42)]';
-	const soft =
-		'rounded-[18px] border border-slate-300/80 bg-white/92 p-4 shadow-[0_8px_24px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-white/[0.04]';
-	const pill =
-		'inline-flex items-center rounded-full border border-slate-300/80 bg-white/88 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300';
-	const buttonPrimary =
-		'inline-flex items-center justify-center rounded-full bg-gradient-to-b from-orange-400 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(249,115,22,0.28)] transition hover:-translate-y-0.5';
-	const buttonSecondary =
-		'inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/92 px-5 py-3 text-sm font-semibold text-slate-800 shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(15,23,42,0.10)] dark:border-white/10 dark:bg-white/[0.07] dark:text-slate-100 dark:hover:bg-white/[0.10]';
 
 	let theme = $state<'dark' | 'light'>('dark');
 	let drawerOpen = $state(false);
@@ -165,14 +187,21 @@
 	}
 
 	function toggleTheme() {
-		theme = theme === 'dark' ? 'light' : 'dark';
-		if (browser) localStorage.setItem('ff-theme', theme);
+		theme = toggleFFTheme(theme, {
+			page: 'platform',
+			template: 'platform',
+			brand: 'connect-atx-elite',
+			themePreset: 'core',
+			dataMode: 'preview'
+		});
 	}
 
 	onMount(() => {
-		if (!browser) return;
-		const saved = localStorage.getItem('ff-theme');
-		if (saved === 'light' || saved === 'dark') theme = saved;
+		theme = mountFFPage('platform', {
+			brand: 'connect-atx-elite',
+			themePreset: 'core',
+			dataMode: 'preview'
+		});
 	});
 </script>
 
@@ -184,71 +213,83 @@
 	/>
 </svelte:head>
 
-<div class={theme === 'dark' ? 'dark' : ''}>
-	<div
-		class="text-slate-900 dark:text-slate-50 min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.08),transparent_28%),radial-gradient(circle_at_top_right,rgba(249,115,22,0.10),transparent_26%),linear-gradient(180deg,#eef3f8_0%,#f8fafc_100%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.10),transparent_24%),radial-gradient(circle_at_top_right,rgba(249,115,22,0.14),transparent_22%),linear-gradient(180deg,#07111f_0%,#081223_100%)]"
-	>
+<div class="ff-platformPage">
+	<div class="ff-platformPage__inner">
 		<a
 			href="#content"
-			class="focus:left-4 focus:top-4 focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 sr-only focus:not-sr-only focus:absolute focus:z-[120] focus:rounded-full"
+			class="ff-skip"
 		>
 			Skip to content
 		</a>
 
-		<header class="top-0 px-3 pt-3 backdrop-blur sticky z-50">
-			<div class="max-w-7xl mx-auto">
-				<div class={`${shell} px-4 py-4`}>
-					<div class="gap-4 flex flex-wrap items-center justify-between">
-						<div class="min-w-0 gap-3 flex items-center">
+		<header class="ff-appbar">
+			<div class="ff-container">
+				<div class="ff-appbar__inner">
+					<div class="ff-platformTopbar">
+						<div class="flex min-w-0 items-center gap-3">
 							<div
-								class="h-10 w-10 rounded-2xl from-slate-900 to-slate-700 text-sm font-black text-white dark:from-slate-200 dark:to-white dark:text-slate-900 grid place-items-center bg-gradient-to-b"
+								class="ff-brand__mark"
 							>
 								FF
 							</div>
+
 							<div class="min-w-0">
-								<p class="text-sm font-semibold truncate">FutureFunded</p>
-								<p class="text-xs text-slate-600 dark:text-slate-300 truncate">
+								<p class="truncate text-sm font-semibold">FutureFunded</p>
+								<p class="ff-platformMeta">
 									Launch-ready fundraising
 								</p>
 							</div>
-							<span class={pill}>Platform</span>
+
+							<span class="ff-pill">Platform</span>
 						</div>
 
-						<nav class="gap-2 md:flex hidden items-center">
+						<nav class="hidden items-center gap-2 md:flex">
 							{#each nav as item (item.label)}
-								<button type="button" class={buttonSecondary} onclick={item.action}>
+								<button type="button" class="ff-btn ff-btn--secondary" onclick={item.action}>
 									{item.label}
 								</button>
 							{/each}
-							<button type="button" class={buttonSecondary} onclick={toggleTheme}>Theme</button>
+
+							<button type="button" class="ff-btn ff-btn--secondary" onclick={toggleTheme}>
+								Theme
+							</button>
+
 							<button
 								type="button"
-								class={buttonSecondary}
+								class="ff-btn ff-btn--secondary"
 								onclick={() => goto('/platform/dashboard')}
 							>
 								Dashboard
 							</button>
+
 							<button
 								type="button"
-								class={buttonPrimary}
+								class="ff-btn ff-btn--primary"
 								onclick={() => goto('/platform/onboarding')}
 							>
 								Launch your fundraiser
 							</button>
 						</nav>
 
-						<div class="gap-2 md:hidden flex items-center">
-							<button type="button" class={buttonSecondary} onclick={toggleTheme}>◐</button>
+						<div class="flex items-center gap-2 md:hidden">
+							<button type="button" class="ff-btn ff-btn--secondary" onclick={toggleTheme}>◐</button
+							>
+
 							<button
 								type="button"
-								class={buttonPrimary}
+								class="ff-btn ff-btn--primary"
 								onclick={() => goto('/platform/onboarding')}
 							>
 								Launch
 							</button>
-							<button type="button" class={buttonSecondary} onclick={() => (drawerOpen = true)}
-								>☰</button
+
+							<button
+								type="button"
+								class="ff-btn ff-btn--secondary"
+								onclick={() => (drawerOpen = true)}
 							>
+								☰
+							</button>
 						</div>
 					</div>
 				</div>
@@ -258,28 +299,34 @@
 		{#if drawerOpen}
 			<button
 				type="button"
-				class="inset-0 bg-slate-950/55 backdrop-blur-sm md:hidden fixed z-[90]"
+				class="fixed inset-0 z-[90] bg-slate-950/55 backdrop-blur-sm md:hidden"
 				aria-label="Close menu"
 				onclick={() => (drawerOpen = false)}
 			></button>
+
 			<aside
-				class="inset-y-0 right-0 max-w-sm border-white/10 bg-slate-950 p-5 text-slate-50 shadow-2xl md:hidden fixed z-[100] w-[92vw] border-l"
+				class="ff-drawer__panel ff-platformDrawer"
 			>
 				<div class="flex items-center justify-between">
 					<div>
 						<p class="text-sm font-semibold">FutureFunded</p>
-						<p class="text-xs text-slate-400">Platform</p>
+						<p class="ff-platformDrawerLabel">Platform</p>
 					</div>
-					<button type="button" class={buttonSecondary} onclick={() => (drawerOpen = false)}
-						>✕</button
+
+					<button
+						type="button"
+						class="ff-btn ff-btn--secondary"
+						onclick={() => (drawerOpen = false)}
 					>
+						✕
+					</button>
 				</div>
 
-				<nav class="mt-6 gap-2 grid">
+				<nav class="mt-6 grid gap-2">
 					{#each nav as item (item.label)}
 						<button
 							type="button"
-							class={buttonSecondary}
+							class="ff-btn ff-btn--secondary"
 							onclick={() => {
 								drawerOpen = false;
 								item.action();
@@ -288,9 +335,10 @@
 							{item.label}
 						</button>
 					{/each}
+
 					<button
 						type="button"
-						class={buttonSecondary}
+						class="ff-btn ff-btn--secondary"
 						onclick={() => {
 							drawerOpen = false;
 							goto('/platform/dashboard');
@@ -298,9 +346,10 @@
 					>
 						Dashboard
 					</button>
+
 					<button
 						type="button"
-						class={buttonPrimary}
+						class="ff-btn ff-btn--primary"
 						onclick={() => {
 							drawerOpen = false;
 							goto('/platform/onboarding');
@@ -312,144 +361,133 @@
 			</aside>
 		{/if}
 
-		<main id="content" class="max-w-7xl px-3 pb-16 pt-5 mx-auto">
-			<section id="home" class="gap-4 xl:grid-cols-[1.15fr_0.85fr] grid">
-				<article class={`${shell} p-5 md:p-6`}>
+		<main id="content" class="ff-main">
+			<div class="ff-container">
+			<section id="home" class="ff-section">
+				<div class="ff-heroGrid">
+				<article class="ff-card ff-platformHero">
 					<p
-						class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+						class="ff-kicker"
 					>
 						FutureFunded platform
 					</p>
+
 					<h1
-						class="mt-4 text-5xl font-black text-slate-900 dark:text-white md:text-7xl max-w-[12ch] leading-[0.92] tracking-[-0.06em]"
+						class="ff-display ff-mt-4"
 					>
 						Launch premium fundraising without the sprawl.
 					</h1>
-					<p class="mt-4 max-w-2xl text-base leading-7 text-slate-700 dark:text-slate-200">
+
+					<p class="ff-lead ff-mt-4">
 						A polished public fundraiser plus one dashboard for sponsors, recurring support, and
 						launch control.
 					</p>
 
-					<div class="mt-5 gap-3 flex flex-wrap">
+					<!-- FF_CTA_HIERARCHY_VERIFIED_V2 -->
+					<div class="mt-5 flex flex-wrap gap-3">
 						<button
 							type="button"
-							class={buttonPrimary}
+							class="ff-btn ff-btn--primary"
 							onclick={() => goto('/platform/onboarding')}
 						>
-							Open launch workspace
+							Launch your fundraiser
 						</button>
+
 						<button
 							type="button"
-							class={buttonSecondary}
+							class="ff-btn ff-btn--secondary"
 							onclick={() => goto('/c/connect-atx-elite')}
 						>
-							Open live fundraiser
+							Preview live page
 						</button>
 					</div>
 
-					<div class="mt-5 gap-2 flex flex-wrap">
-						<span class={pill}>Branded fundraiser</span>
-						<span class={pill}>Sponsor packages</span>
-						<span class={pill}>Recurring support</span>
+					<div class="mt-5 flex flex-wrap gap-2">
+						<span class="ff-pill ff-pill--soft">Branded fundraiser</span>
+						<span class="ff-pill ff-pill--ghost">Sponsor packages</span>
+						<span class="ff-pill ff-pill--ghost">Recurring support</span>
 					</div>
 
-					<div class="mt-5 gap-3 sm:grid-cols-3 grid">
-						<div class={soft}>
-							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
-							>
-								Donor confidence
-							</p>
-							<p class="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
-								Cleaner branding, clearer actions, and a more trustworthy first impression.
-							</p>
-						</div>
-						<div class={soft}>
-							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
-							>
-								Sponsor readiness
-							</p>
-							<p class="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
-								A stronger business-facing story than a plain donation page.
-							</p>
-						</div>
-						<div class={soft}>
-							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
-							>
-								Operator control
-							</p>
-							<p class="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
-								One dashboard to launch, manage, and improve the campaign.
-							</p>
-						</div>
+					<div class="mt-6 grid gap-3 sm:grid-cols-3">
+						{#each heroSignals as item (item.label)}
+							<div class="ff-card ff-card--soft">
+								<p
+									class="ff-kicker"
+								>
+									{item.label}
+								</p>
+								<p class="mt-2 text-lg font-black tracking-[-0.03em]">{item.value}</p>
+								<p class="ff-platformBody ff-platformBody--sm ff-mt-2">{item.body}</p>
+							</div>
+						{/each}
 					</div>
 				</article>
 
-				<aside class={`${shell} p-5 md:p-6 self-start`}>
+				<aside class="ff-card ff-platformSnapshot">
 					<p
-						class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+						class="ff-kicker"
 					>
 						Platform snapshot
 					</p>
-					<h2 class="mt-4 text-4xl font-black leading-tight max-w-[14ch] tracking-[-0.04em]">
-						Built to launch like a real software product.
+
+					<h2 class="mt-4 max-w-[13ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
+						Built to launch like a real product.
 					</h2>
-					<p class="mt-4 text-sm leading-7 text-slate-700 dark:text-slate-200">
-						Instead of piecing together donations, sponsors, and updates across multiple tools,
+
+					<p class="ff-copy ff-mt-4">
+						Instead of stitching together donations, sponsors, and updates across scattered tools,
 						FutureFunded puts the public experience and operator control into one calmer system.
 					</p>
 
-					<div class="mt-5 gap-3 sm:grid-cols-2 grid">
-						<div class={soft}>
+					<div class="mt-5 grid gap-3 sm:grid-cols-2">
+						<div class="ff-card ff-card--soft">
 							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+								class="ff-kicker"
 							>
 								Fundraiser
 							</p>
 							<p class="mt-2 text-lg font-black">Launch-ready</p>
-							<p class="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
+							<p class="ff-platformBody ff-platformBody--sm ff-mt-2">
 								Branded public page prepared for donor traffic.
 							</p>
 						</div>
-						<div class={soft}>
+
+						<div class="ff-card ff-card--soft">
 							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+								class="ff-kicker"
 							>
 								Sponsors
 							</p>
 							<p class="mt-2 text-lg font-black">Monetizable</p>
-							<p class="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
+							<p class="ff-platformBody ff-platformBody--sm ff-mt-2">
 								Package-based revenue lane built in.
 							</p>
 						</div>
-						<div class={`${soft} sm:col-span-2`}>
+
+						<div class="ff-card ff-card--soft sm:col-span-2">
 							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+								class="ff-kicker"
 							>
 								Dashboard
 							</p>
 							<p class="mt-2 text-lg font-black">Operator-first</p>
-							<p class="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
+							<p class="ff-platformBody ff-platformBody--sm ff-mt-2">
 								Clear launch and management flow for the team.
 							</p>
 						</div>
 					</div>
 
-					<div
-						class="mt-5 border-slate-300/80 bg-white/92 p-4 dark:border-white/10 dark:bg-white/[0.04] rounded-[22px] border"
-					>
+					<div class="ff-card ff-card--soft mt-5">
 						<p
-							class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+							class="ff-kicker"
 						>
 							Why this matters
 						</p>
-						<ul class="mt-3 gap-3 text-sm leading-7 text-slate-700 dark:text-slate-200 grid">
+						<ul class="ff-stack ff-mt-3 ff-platformBody ff-platformBody--sm">
 							<li>• One public fundraiser instead of scattered links and tools.</li>
 							<li>• Sponsor packages and recurring support built into the same product story.</li>
 							<li>
-								• Mobile-first layout designed to feel credible in demos, texts, and donor shares.
+								• Mobile-first design that still feels credible in demos, texts, and donor shares.
 							</li>
 						</ul>
 					</div>
@@ -457,128 +495,130 @@
 					<div class="mt-5">
 						<button
 							type="button"
-							class={buttonSecondary}
+							class="ff-btn ff-btn--secondary"
 							onclick={() => goto('/platform/dashboard')}
 						>
-							Open dashboard
+							Open operator dashboard
 						</button>
 					</div>
 				</aside>
+				</div>
 			</section>
 
-			<section id="how" class="pt-8">
-				<div class="gap-3 md:flex-row md:items-end md:justify-between flex flex-col">
-					<div>
-						<p
-							class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
-						>
-							How it works
-						</p>
-						<h2 class="mt-3 text-4xl font-black leading-tight max-w-[14ch] tracking-[-0.04em]">
-							A shorter path from setup to real support.
-						</h2>
-						<p class="mt-3 max-w-3xl text-sm leading-7 text-slate-700 dark:text-slate-200">
-							The product story stays simple: brand the campaign, open better revenue lanes, and run
-							it from one operator view.
-						</p>
-					</div>
+			<section id="how" class="ff-section ff-platformSection">
+				<div class="max-w-3xl">
+					<p
+						class="ff-kicker"
+					>
+						How it works
+					</p>
+
+					<h2 class="mt-3 max-w-[12ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
+						A shorter path from setup to real support.
+					</h2>
+
+					<p class="ff-copy ff-mt-3">
+						The product story stays simple: brand the campaign, open better revenue lanes, and run
+						it from one operator view.
+					</p>
 				</div>
 
-				<div class="mt-5 gap-4 lg:grid-cols-3 grid">
-					{#each steps as step (step.id)}
-						<article class={`${shell} p-5 md:p-6`}>
+				<div class="mt-5 grid gap-4 lg:grid-cols-3">
+					{#each launchSteps as step (step.id)}
+						<article class="ff-card ff-card--shell p-5 md:p-6">
 							<div
-								class="border-slate-300/80 bg-white/92 px-4 py-2 text-sm font-semibold dark:border-white/10 dark:bg-white/[0.05] rounded-full border"
+								class="ff-platformStepBadge"
 							>
 								{step.id}
 							</div>
-							<h3 class="mt-5 text-2xl font-black">{step.title}</h3>
-							<p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">
-								{step.body}
-							</p>
+
+							<h3 class="mt-5 text-2xl font-black tracking-[-0.03em]">{step.title}</h3>
+							<p class="ff-copy ff-mt-3">{step.body}</p>
 						</article>
 					{/each}
 				</div>
 			</section>
 
-			<section id="included" class="pt-8">
-				<div class="gap-3 md:flex-row md:items-end md:justify-between flex flex-col">
-					<div>
-						<p
-							class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
-						>
-							What’s included
-						</p>
-						<h2 class="mt-3 text-4xl font-black leading-tight max-w-[15ch] tracking-[-0.04em]">
-							The launch system, not just the donate page.
-						</h2>
-						<p class="mt-3 max-w-3xl text-sm leading-7 text-slate-700 dark:text-slate-200">
-							Every lane is there to help the organization feel more credible and raise in a more
-							structured way.
-						</p>
-					</div>
+			<section id="included" class="ff-section ff-platformSection">
+				<div class="max-w-3xl">
+					<p
+						class="ff-kicker"
+					>
+						What’s included
+					</p>
+
+					<h2 class="mt-3 max-w-[13ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
+						The launch system, not just the donate page.
+					</h2>
+
+					<p class="ff-copy ff-mt-3">
+						Every lane is there to help the organization feel more credible and raise in a more
+						structured way.
+					</p>
 				</div>
 
-				<div class="mt-5 gap-4 lg:grid-cols-2 grid">
+				<div class="mt-5 grid gap-4 lg:grid-cols-2">
 					{#each included as item (item.title)}
-						<article class={`${shell} p-5 md:p-6`}>
+						<article class="ff-card ff-card--shell p-5 md:p-6">
 							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+								class="ff-kicker"
 							>
 								{item.title}
 							</p>
-							<p class="mt-3 text-base leading-7 text-slate-700 dark:text-slate-200">
-								{item.body}
-							</p>
+							<p class="ff-copy ff-mt-3">{item.body}</p>
 						</article>
 					{/each}
 				</div>
 			</section>
 
-			<section id="pricing" class="pt-8">
-				<div class="gap-3 md:flex-row md:items-end md:justify-between flex flex-col">
-					<div>
+			<section id="pricing" class="ff-section ff-platformSection">
+				<div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+					<div class="max-w-3xl">
 						<p
-							class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+							class="ff-kicker"
 						>
 							Pricing
 						</p>
-						<h2 class="mt-3 text-4xl font-black leading-tight max-w-[15ch] tracking-[-0.04em]">
-							Start clean. Upgrade when the platform earns it.
+
+						<h2 class="mt-3 max-w-[12ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
+							Launch clean. Upgrade when you are ready to monetize.
 						</h2>
 					</div>
 
-					<button type="button" class={buttonSecondary} onclick={() => goto('/platform/pricing')}>
-						View full pricing
+					<button
+						type="button"
+						class="ff-btn ff-btn--secondary"
+						onclick={() => goto('/platform/pricing')}
+					>
+						Compare plans
 					</button>
 				</div>
 
-				<div class="mt-5 gap-4 lg:grid-cols-2 grid">
+				<div class="mt-5 grid gap-4 lg:grid-cols-2">
 					{#each tiers as tier (tier.key)}
 						<article
-							class={`${shell} p-5 md:p-6 ${tier.featured ? 'ring-orange-400/35 ring-1' : ''}`}
+							class={`ff-card ff-card--shell p-5 md:p-6 ${tier.featured ? 'ring-1 ring-orange-400/30' : ''}`}
 						>
-							<div class="gap-3 flex flex-wrap items-center justify-between">
+							<div class="flex flex-wrap items-center justify-between gap-3">
 								<div>
 									<p
-										class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+										class="ff-kicker"
 									>
 										{tier.name}
 									</p>
 									<p class="mt-2 text-4xl font-black tracking-[-0.05em]">{tier.price}</p>
 								</div>
+
 								{#if tier.badge}
-									<span
-										class={`${pill} ${tier.featured ? 'border-orange-300 bg-orange-100 text-orange-700 dark:border-orange-400/20 dark:bg-orange-500/10 dark:text-orange-300' : ''}`}
-									>
+									<span class={`ff-pill ${tier.featured ? 'ff-platformTag ff-platformTag--soft' : 'ff-platformTag'}`}>
 										{tier.badge}
 									</span>
 								{/if}
 							</div>
 
-							<p class="mt-4 text-sm leading-7 text-slate-700 dark:text-slate-200">{tier.body}</p>
+							<p class="ff-copy ff-mt-4">{tier.body}</p>
 
-							<ul class="mt-5 gap-3 text-sm leading-7 text-slate-700 dark:text-slate-200 grid">
+							<ul class="ff-stack ff-mt-5 ff-platformBody ff-platformBody--sm">
 								{#each tier.bullets as bullet, i (i)}
 									<li>• {bullet}</li>
 								{/each}
@@ -587,7 +627,7 @@
 							<div class="mt-5">
 								<button
 									type="button"
-									class={tier.featured ? buttonPrimary : buttonSecondary}
+									class={tier.featured ? 'ff-btn ff-btn--primary' : 'ff-btn ff-btn--secondary'}
 									onclick={() => goto('/platform/onboarding')}
 								>
 									{tier.cta}
@@ -598,17 +638,19 @@
 				</div>
 			</section>
 
-			<section id="sponsor-revenue" class="pt-7">
-				<article class={`${shell} p-5 md:p-6`}>
+			<section id="sponsor-revenue" class="ff-section ff-platformSection">
+				<article class="ff-card ff-card--shell p-5 md:p-7">
 					<p
-						class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+						class="ff-kicker"
 					>
-						Sponsor revenue, built in
+						Sponsor revenue lane
 					</p>
-					<h2 class="mt-3 text-4xl font-black leading-tight max-w-[16ch] tracking-[-0.04em]">
-						Turn community support into premium sponsor packages.
+
+					<h2 class="mt-3 max-w-[13ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
+						Turn supporter attention into sponsor revenue.
 					</h2>
-					<p class="mt-4 max-w-3xl text-sm leading-7 text-slate-700 dark:text-slate-200">
+
+					<p class="ff-copy ff-mt-4">
 						FutureFunded helps organizations sell visibility and recognition more clearly. That
 						makes sponsor outreach feel more professional, more business-friendly, and more valuable
 						than a generic donation ask.
@@ -617,31 +659,35 @@
 					<div class="mt-5">
 						<button
 							type="button"
-							class={buttonPrimary}
+							class="ff-btn ff-btn--primary"
 							onclick={() => goto('/platform/onboarding')}
 						>
-							Open sponsor-ready launch flow
+							Start sponsor outreach
 						</button>
 					</div>
 
-					<div class="mt-5 gap-4 lg:grid-cols-3 grid">
+					<div class="mt-5 grid gap-4 lg:grid-cols-3">
 						{#each sponsorLanes as lane (lane.name)}
-							<article class={soft}>
-								<div class="gap-2 flex flex-wrap items-center justify-between">
+							<article class="ff-card ff-card--soft">
+								<div class="flex flex-wrap items-center justify-between gap-2">
 									<p
-										class="text-sm font-semibold text-slate-600 dark:text-slate-300 tracking-[0.12em] uppercase"
+										class="ff-kicker"
 									>
 										{lane.name}
 									</p>
-									<span class={pill}>{lane.amount}</span>
+									<span class="ff-pill ff-pill--ghost">{lane.amount}</span>
 								</div>
-								<p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{lane.body}</p>
-								<div class="mt-4">
-									<span
-										class={`${pill} border-slate-300/80 text-slate-700 dark:border-white/10 dark:text-slate-300`}
-									>
-										{lane.tag}
-									</span>
+
+								<p class="ff-copy ff-mt-3">{lane.body}</p>
+
+								<ul class="ff-stack ff-mt-3 ff-platformBody ff-platformBody--sm">
+								{#each lane.bullets as bullet, i (i)}
+									<li>• {bullet}</li>
+								{/each}
+							</ul>
+
+							<div class="mt-4">
+									<span class="ff-pill ff-pill--soft">{lane.tag}</span>
 								</div>
 							</article>
 						{/each}
@@ -650,34 +696,37 @@
 			</section>
 
 			<footer class="pt-5">
-				<div class={`${shell} p-5 md:p-6`}>
-					<div class="gap-5 lg:grid-cols-[1fr_auto] lg:items-end grid">
+				<div class="ff-card ff-card--shell p-5 md:p-7">
+					<div class="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
 						<div>
 							<p
-								class="font-semibold text-slate-600 dark:text-slate-300 text-[11px] tracking-[0.14em] uppercase"
+								class="ff-kicker"
 							>
 								Next move
 							</p>
-							<h2 class="mt-3 text-4xl font-black leading-tight max-w-[10ch] tracking-[-0.04em]">
+
+							<h2 class="mt-3 max-w-[10ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
 								Launch one polished fundraiser.
 							</h2>
-							<p class="mt-4 max-w-2xl text-sm leading-7 text-slate-700 dark:text-slate-200">
+
+							<p class="ff-copy ff-mt-4">
 								Start with a premium public page, then add sponsors and recurring support when it
 								makes sense.
 							</p>
 						</div>
 
-						<div class="gap-3 grid">
+						<div class="grid gap-3">
 							<button
 								type="button"
-								class={buttonPrimary}
+								class="ff-btn ff-btn--primary"
 								onclick={() => goto('/platform/onboarding')}
 							>
-								Open launch workspace
+								Launch your fundraiser
 							</button>
+
 							<button
 								type="button"
-								class={buttonSecondary}
+								class="ff-btn ff-btn--secondary"
 								onclick={() => goto('/platform/dashboard')}
 							>
 								Open operator dashboard
@@ -686,6 +735,7 @@
 					</div>
 				</div>
 			</footer>
+			</div>
 		</main>
 	</div>
 </div>

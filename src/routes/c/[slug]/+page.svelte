@@ -1,8 +1,11 @@
 <script lang="ts">
-	import '$lib/styles/ff.css';
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
+	import StripeCheckoutPanel from '$lib/components/campaign/StripeCheckoutPanel.svelte';
+	import { mountFFPage, toggleFFTheme } from '$lib/utils/ff-theme';
+
+	let { data } = $props();
 
 	type QuickAmount = { amount: number; meta: string };
 	type ImpactChoice = { amount: number; label: string; note: string; featured?: boolean };
@@ -28,6 +31,14 @@
 		primary?: boolean;
 	};
 	type FAQ = { q: string; a: string };
+	type PersistedSponsor = {
+		id: string;
+		business: string;
+		email?: string;
+		tier: string;
+		campaignName?: string;
+		orgName?: string;
+	};
 
 	const campaign = {
 		orgName: 'Connect ATX Elite',
@@ -36,9 +47,9 @@
 		headline: 'Fuel the season. Fund the future.',
 		supportingName: 'Connect ATX Elite',
 		tagline:
-			'Support travel, training, tournament fees, and shared season costs with one cleaner, sponsor-ready fundraising page.',
+			'Support travel, training, tournament fees, and shared season costs with one cleaner fundraising page built to convert donors and sponsors.',
 		storyLead:
-			'This fundraiser supports the shared program: travel, training, tournaments, team costs, and the season support needed to keep athletes competing together.',
+			'This fundraiser supports the shared program: travel, training, tournaments, team costs, and the season support needed to keep athletes competing together with less friction.',
 		raised: 5175,
 		goal: 10000,
 		donorCount: 73,
@@ -173,7 +184,7 @@
 	const faqs: FAQ[] = [
 		{
 			q: 'How fast can someone donate?',
-			a: 'Most supporters should be able to choose an amount, add name and email, and finish in well under a minute once payment wiring is connected.'
+			a: 'Most supporters can choose an amount, add their details, and complete support in about a minute.'
 		},
 		{
 			q: 'Can businesses sponsor instead of donating?',
@@ -185,13 +196,17 @@
 		},
 		{
 			q: 'Will supporters get a receipt?',
-			a: 'Yes — once the real payment flow is wired, email receipts and confirmation states should be part of the final checkout experience.'
+			a: 'Yes. Supporters receive a confirmation state at checkout and a receipt by email.'
 		}
 	];
 
 	let theme = $state<'dark' | 'light'>('dark');
 	let drawerOpen = $state(false);
 	let sponsorOpen = $state(false);
+	let embeddedCheckoutActive = $state(false);
+	let donationComplete = $state(false);
+	let checkoutResultDismissed = $state(false);
+	let sponsorResultDismissed = $state(false);
 
 	let amount = $state(75);
 	let donorName = $state('');
@@ -206,6 +221,43 @@
 	let sponsorStatus = $state('');
 
 	const slug = $derived(page.params.slug || 'connect-atx-elite');
+	const pageMode = $derived(
+		(('mode' in data && typeof data.mode === 'string' ? data.mode : 'live').toLowerCase() ===
+		'preview')
+			? 'preview'
+			: 'live'
+	);
+	const persistedSponsors = $derived((data?.persistedSponsors ?? []) as PersistedSponsor[]);
+	const checkoutResult = $derived(page.url.searchParams.get('checkout')?.toLowerCase() ?? '');
+	const sponsorResult = $derived(page.url.searchParams.get('sponsor')?.toLowerCase() ?? '');
+	const checkoutSuccess = $derived(!checkoutResultDismissed && checkoutResult === 'success');
+	const checkoutCancelled = $derived(!checkoutResultDismissed && checkoutResult === 'cancelled');
+	const sponsorSuccess = $derived(!sponsorResultDismissed && sponsorResult === 'success');
+	const sponsorCancelled = $derived(!sponsorResultDismissed && sponsorResult === 'cancelled');
+	const latestPersistedSponsor = $derived(
+		sponsorSuccess && persistedSponsors.length ? persistedSponsors[0] : null
+	);
+	const sponsorDisplayBusiness = $derived(
+		latestPersistedSponsor?.business || sponsorBusiness || 'Sponsor'
+	);
+	const sponsorDisplayEmail = $derived(latestPersistedSponsor?.email || sponsorEmail || '');
+	const sponsorDisplayTier = $derived(latestPersistedSponsor?.tier || sponsorTier);
+	const selectedSponsorTier = $derived(
+		sponsorTiers.find((item) => item.key === sponsorDisplayTier) ??
+			sponsorTiers.find((item) => item.key === sponsorTier) ??
+			sponsorTiers[1]
+	);
+	const sponsorTierLabel = $derived(selectedSponsorTier.label);
+	const sponsorBenefit = $derived(selectedSponsorTier.recognition);
+	const sponsorSuccessState = $derived(
+		sponsorSuccess || sponsorStatus.toLowerCase().startsWith('sponsor secured')
+	);
+	const sponsorCancelledState = $derived(
+		sponsorCancelled || sponsorStatus.toLowerCase().includes('cancelled')
+	);
+	const checkoutCancelledState = $derived(
+		checkoutCancelled || checkoutStatus.toLowerCase().includes('cancelled')
+	);
 	const percent = $derived(
 		Math.max(0, Math.min(100, Math.floor((campaign.raised / campaign.goal) * 100)))
 	);
@@ -214,6 +266,31 @@
 		remaining >= 1500 ? 250 : remaining >= 600 ? 150 : remaining > 0 ? remaining : 100
 	);
 	const summaryAmount = $derived(money(amount));
+	const liveSponsorSpotlight = $derived(
+		sponsorSuccessState
+			? {
+					business: sponsorDisplayBusiness,
+					tier: sponsorTierLabel,
+					badge:
+						sponsorDisplayTier === 'vip'
+							? 'Top spotlight'
+							: sponsorDisplayTier === 'champion'
+								? 'Featured sponsor'
+								: sponsorDisplayTier === 'partner'
+									? 'Priority placement'
+									: 'Sponsor wall',
+					headline:
+						sponsorDisplayTier === 'vip'
+							? 'Now featured in the top sponsor spotlight.'
+							: sponsorDisplayTier === 'champion'
+								? 'Now featured with stronger campaign visibility.'
+								: sponsorDisplayTier === 'partner'
+									? 'Now highlighted with clearer sponsor placement.'
+									: 'Now listed in the live sponsor wall.',
+					body: sponsorBenefit
+				}
+			: null
+	);
 
 	function money(value: number) {
 		return new Intl.NumberFormat('en-US', {
@@ -229,17 +306,29 @@
 
 	function scrollToId(id: string) {
 		if (!browser) return;
-		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' });
+	}
+
+	function resetDonationFeedback() {
+		donationComplete = false;
+		checkoutResultDismissed = true;
+		checkoutStatus = '';
 	}
 
 	function applyAmountPreset(value: number) {
 		amount = value;
-		checkoutStatus = '';
+		embeddedCheckoutActive = false;
+		resetDonationFeedback();
 		scrollToId('checkout');
 	}
 
 	async function shareCampaign() {
-		const url = browser ? window.location.href : `https://getfuturefunded.com/c/${slug}`;
+		const url = browser
+			? new URL(window.location.href)
+			: new URL(`https://getfuturefunded.com/c/${slug}`);
+		url.search = '';
+		url.hash = '';
+		const shareUrl = url.toString();
 		const text = `Support ${campaign.orgName} — ${campaign.headline}`;
 
 		try {
@@ -247,11 +336,13 @@
 				await navigator.share({
 					title: `${campaign.orgName} Fundraiser`,
 					text,
-					url
+					url: shareUrl
 				});
 			} else if (browser && navigator.clipboard) {
-				await navigator.clipboard.writeText(url);
+				await navigator.clipboard.writeText(shareUrl);
 				checkoutStatus = 'Campaign link copied to clipboard.';
+			} else {
+				checkoutStatus = 'Campaign link is ready to share.';
 			}
 		} catch {
 			checkoutStatus = 'Share was cancelled.';
@@ -259,80 +350,136 @@
 	}
 
 	function openSponsor(tier?: string) {
-		sponsorTier = tier || sponsorTier;
+		sponsorResultDismissed = true;
 		sponsorStatus = '';
+		if (tier) sponsorTier = tier;
 		sponsorOpen = true;
 	}
 
 	function closeSponsor() {
+		sponsorResultDismissed = true;
 		sponsorOpen = false;
 	}
 
 	function submitDonation() {
-		if (amount < 1 || donorName.trim().length < 2 || !/\S+@\S+\.\S+/.test(donorEmail.trim())) {
-			checkoutStatus = 'Please review the amount, name, and email.';
+		donationComplete = false;
+		checkoutResultDismissed = true;
+
+		if (amount < 5 || donorName.trim().length < 2 || !/\S+@\S+\.\S+/.test(donorEmail.trim())) {
+			embeddedCheckoutActive = false;
+			checkoutStatus =
+				'Please review the donation amount, supporter name, and receipt email before continuing.';
 			return;
 		}
 
-		checkoutStatus =
-			'Fundraiser UI scaffold is ready. Next pass: wire Stripe / PayPal and receipt states.';
+		embeddedCheckoutActive = true;
+		checkoutStatus = '';
 	}
 
-	function submitSponsorInterest() {
+	async function submitSponsorInterest() {
+		sponsorStatus = '';
+		sponsorResultDismissed = true;
+
 		if (
 			!sponsorBusiness.trim() ||
+			sponsorBusiness.trim().length < 2 ||
 			!sponsorContact.trim() ||
+			sponsorContact.trim().length < 2 ||
 			!/\S+@\S+\.\S+/.test(sponsorEmail.trim())
 		) {
-			sponsorStatus = 'Please complete business name, contact name, and email.';
+			sponsorStatus =
+				'Please complete the business name, contact name, and business email before continuing.';
 			return;
 		}
 
-		sponsorStatus =
-			'Sponsor interest UI scaffold is ready. Next pass: wire backend lead capture and success state.';
-	}
+		try {
+			sponsorStatus = 'Redirecting to secure sponsor checkout…';
 
-	function syncTheme() {
-		if (!browser) return;
+			const response = await fetch(`/c/${slug}/sponsor`, {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify({
+					sponsorTier,
+					sponsorBusiness: sponsorBusiness.trim(),
+					sponsorContact: sponsorContact.trim(),
+					sponsorEmail: sponsorEmail.trim(),
+					orgName: campaign.orgName || 'Connect ATX Elite',
+					campaignName: campaign.campaignName || campaign.headline || 'Spring Fundraiser'
+				})
+			});
 
-		const root = document.documentElement;
-		const body = document.body;
-		const saved = localStorage.getItem('ff-theme');
+			const body = await response.json();
 
-		if (saved === 'light' || saved === 'dark') {
-			theme = saved;
+			if (!response.ok) {
+				throw new Error(body?.error || 'Sponsor checkout could not start.');
+			}
+
+			if (!body?.url) {
+				throw new Error('Sponsor checkout did not return a payment URL.');
+			}
+
+			if (browser) {
+				window.location.href = body.url;
+				return;
+			}
+
+			sponsorStatus = 'Sponsor checkout URL created, but browser redirect is unavailable.';
+		} catch (error) {
+			sponsorStatus =
+				error instanceof Error
+					? error.message
+					: 'Sponsor checkout could not start. Please try again.';
 		}
-
-		root.classList.add('ff-root');
-		root.dataset.theme = theme;
-		root.dataset.ffTheme = 'core';
-		root.dataset.ffBrand = 'connect-atx-elite';
-
-		body.classList.add('ff-body');
-		body.dataset.ffBody = '';
-		body.dataset.ffPage = 'fundraiser';
-		body.dataset.ffTemplate = 'index';
-		body.dataset.ffDataMode = 'preview';
-		body.dataset.ffCanonical = `https://getfuturefunded.com/c/${slug}`;
-		body.dataset.ffShareUrl = `https://getfuturefunded.com/c/${slug}`;
-		body.dataset.ffReturnUrl = `https://getfuturefunded.com/c/${slug}`;
 	}
 
 	function toggleTheme() {
-		theme = theme === 'dark' ? 'light' : 'dark';
-		if (browser) {
-			localStorage.setItem('ff-theme', theme);
-			syncTheme();
-		}
+		theme = toggleFFTheme(theme, {
+			page: 'fundraiser',
+			template: 'fundraiser',
+			brand: 'connect-atx-elite',
+			themePreset: 'core',
+			dataMode: pageMode,
+			canonical: `https://getfuturefunded.com/c/${slug}`,
+			shareUrl: `https://getfuturefunded.com/c/${slug}`,
+			returnUrl: `https://getfuturefunded.com/c/${slug}`
+		});
 	}
 
 	onMount(() => {
-		syncTheme();
+		if (sponsorSuccess) {
+			sponsorStatus = 'Sponsor secured. Thank you for backing the program.';
+			sponsorOpen = true;
+		} else if (sponsorCancelled) {
+			sponsorStatus =
+				'Sponsor checkout was cancelled. You can review the tier and try again when you\'re ready.';
+			sponsorOpen = true;
+		}
+
+		theme = mountFFPage('fundraiser', {
+			brand: 'connect-atx-elite',
+			themePreset: 'core',
+			dataMode: pageMode,
+			canonical: `https://getfuturefunded.com/c/${slug}`,
+			shareUrl: `https://getfuturefunded.com/c/${slug}`,
+			returnUrl: `https://getfuturefunded.com/c/${slug}`
+		});
+
+		if (checkoutSuccess) {
+			donationComplete = true;
+			checkoutStatus = 'Donation received. Thank you for backing the program.';
+			setTimeout(() => scrollToId('checkout'), 0);
+		} else if (checkoutCancelled) {
+			checkoutStatus =
+				'Donation checkout was cancelled. You can review the amount and try again anytime.';
+			setTimeout(() => scrollToId('checkout'), 0);
+		}
 	});
 </script>
 
 <svelte:head>
-	<title>{campaign.orgName} • Fundraiser</title>
+	<title>{campaign.orgName} • {campaign.campaignName}</title>
 	<meta name="description" content={campaign.tagline} />
 </svelte:head>
 
@@ -346,178 +493,149 @@
 	<div class="ff-shellBg" aria-hidden="true"></div>
 
 	<header class="ff-chrome" data-ff-chrome="">
-		<nav class="ff-topbar" id="ffTopbar" data-ff-topbar="" aria-label="Campaign header">
+		<nav class="ff-topbar ff-campaignHeader" id="ffTopbar" data-ff-topbar="" aria-label="Campaign header">
 			<div class="ff-container">
-				<div class="ff-topbar__capsule ff-glass ff-surface ff-topbar__capsule--flagship">
-					<div class="ff-topbar__capsuleInner ff-stack ff-gap-2">
-						<div class="ff-row ff-row--between ff-ais ff-wrap ff-topbar__mainRow">
-							<div class="ff-row ff-ais ff-gap-2 ff-minw-0 ff-topbar__brandCluster">
-								<a
-									class="ff-platformBrand ff-platformBrand--mark ff-nounderline"
-									href="/platform"
-									aria-label="FutureFunded platform"
+				<div class="ff-campaignHeader__shell ff-glass ff-surface">
+					<div class="ff-campaignHeader__row ff-campaignHeader__row--top">
+						<div class="ff-campaignHeader__brand">
+							<a
+								class="ff-platformBrand ff-platformBrand--mark ff-nounderline"
+								href="/platform"
+								aria-label="FutureFunded platform"
+							>
+								<span class="ff-platformBrand__disc" aria-hidden="true">
+									<span style="font-weight:800;">FF</span>
+								</span>
+								<span class="ff-sr">FutureFunded</span>
+							</a>
+
+							<a
+								class="ff-topbarBrand ff-topbarBrand--flagship ff-nounderline ff-campaignHeader__org"
+								href="#home"
+								data-ff-home=""
+								aria-label={`${campaign.orgName} fundraiser home`}
+							>
+								<div
+									class="ff-topbarBrand__logo"
+									style="width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--ff-border);border-radius:12px;background:var(--ff-panel-solid);font-weight:800;"
 								>
-									<span class="ff-platformBrand__disc" aria-hidden="true">
-										<span style="font-weight:800;">FF</span>
-									</span>
-									<span class="ff-sr">FutureFunded</span>
+									CA
+								</div>
+
+								<span class="ff-topbarBrand__stack ff-minw-0">
+									<span class="ff-topbarBrand__text">{campaign.orgName}</span>
+									<span class="ff-topbarBrand__sub ff-help ff-muted">{campaign.location}</span>
+								</span>
+
+								<span class="ff-pill ff-pill--ghost ff-topbarBrand__pill" aria-label="campaign page">
+									Campaign page
+								</span>
+							</a>
+						</div>
+
+						<div class="ff-campaignHeader__controls">
+							<nav class="ff-campaignHeader__nav ff-topbar__desktop-only" aria-label="Primary navigation">
+								<a class="ff-nav__link" href="#impact">Impact</a>
+								<a class="ff-nav__link" href="#teams">Teams</a>
+								<a class="ff-nav__link" href="#sponsors">Sponsors</a>
+								<a class="ff-nav__link" href="#story">Story</a>
+								<a class="ff-nav__link" href="#faq">Help</a>
+							</nav>
+
+							<div class="ff-campaignHeader__utility">
+								<button
+									type="button"
+									class="ff-btn ff-btn--sm ff-btn--ghost ff-btn--pill ff-themeToggle"
+									data-ff-theme-toggle=""
+									aria-label="Toggle color theme"
+									aria-pressed={theme === 'light'}
+									onclick={toggleTheme}
+								>
+									<span class="ff-themeToggle__glyph" aria-hidden="true">◐</span>
+									<span class="ff-themeToggle__label">Theme</span>
+								</button>
+
+								<a
+									class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-donate-btn"
+									href="#checkout"
+									aria-controls="checkout"
+									data-ff-donate=""
+									data-ff-open-checkout=""
+								>
+									Donate
 								</a>
 
-								<a
-									class="ff-topbarBrand ff-topbarBrand--flagship ff-nounderline"
-									href="#home"
-									data-ff-home=""
-									aria-label={`${campaign.orgName} fundraiser home`}
+								<button
+									type="button"
+									class="ff-iconbtn ff-campaignHeader__menu ff-topbar__mobile-only"
+									data-ff-open-drawer=""
+									aria-controls="ffDrawerPanel"
+									aria-expanded={drawerOpen}
+									aria-label="Open menu"
+									onclick={() => (drawerOpen = true)}
 								>
-									<div
-										class="ff-topbarBrand__logo"
-										style="width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--ff-border);border-radius:12px;background:var(--ff-panel-solid);font-weight:800;"
-									>
-										CA
-									</div>
+									<span aria-hidden="true">☰</span>
+									<span class="ff-sr">Open menu</span>
+								</button>
+							</div>
+						</div>
+					</div>
 
-									<span class="ff-topbarBrand__stack ff-minw-0">
-										<span class="ff-topbarBrand__text">{campaign.orgName}</span>
-										<span class="ff-topbarBrand__sub ff-help ff-muted">{campaign.location}</span>
-									</span>
-
-									<span
-										class="ff-pill ff-pill--ghost ff-topbarBrand__pill"
-										aria-label="preview mode"
-									>
-										Preview
-									</span>
-								</a>
+					<section
+						class="ff-topbarGoal ff-campaignHeader__goal"
+						data-ff-goalbar=""
+						role="group"
+						aria-label="Fundraising progress"
+					>
+						<div
+							class="ff-topbarGoal__summary"
+							data-ff-topbar-metrics=""
+							aria-label="Raised, goal, and progress"
+						>
+							<div class="ff-topbarGoal__metric ff-topbarGoal__metric--raised">
+								<span class="ff-topbarGoal__label">Raised</span>
+								<span class="ff-topbarGoal__raised ff-num" data-ff-raised=""
+									>{money(campaign.raised)}</span
+								>
 							</div>
 
-							<div class="ff-row ff-ais ff-gap-2 ff-wrap ff-topbar__rightCluster">
-								<div class="ff-topbar__desktop-only">
-									<div
-										class="ff-row ff-ais ff-gap-2 ff-wrap ff-topbar__desktopActions"
-										data-ff-topbar-actions=""
-										role="group"
-										aria-label="Desktop quick actions"
-									>
-										<nav
-											class="ff-navPill ff-glass ff-surface ff-nav ff-nav--pill"
-											aria-label="Primary navigation"
-										>
-											<a class="ff-nav__link" href="#impact">Impact</a>
-											<a class="ff-nav__link" href="#teams">Teams</a>
-											<a class="ff-nav__link" href="#sponsors">Sponsors</a>
-											<a class="ff-nav__link" href="#story">Story</a>
-											<a class="ff-nav__link" href="#faq">Help</a>
-										</nav>
+							<div class="ff-topbarGoal__metric ff-topbarGoal__metric--goal">
+								<span class="ff-topbarGoal__label">Goal</span>
+								<span class="ff-topbarGoal__goal ff-num" data-ff-goal=""
+									>{money(campaign.goal)}</span
+								>
+							</div>
 
-										<button
-											type="button"
-											class="ff-btn ff-btn--sm ff-btn--ghost ff-btn--pill ff-themeToggle ff-themeToggle--desktop"
-											data-ff-theme-toggle=""
-											aria-label="Toggle color theme"
-											aria-pressed={theme === 'light'}
-											onclick={toggleTheme}
-										>
-											<span class="ff-themeToggle__glyph" aria-hidden="true">◐</span>
-											<span class="ff-themeToggle__label">Theme</span>
-										</button>
-
-										<a
-											class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-donate-btn"
-											href="#checkout"
-											aria-controls="checkout"
-											data-ff-donate=""
-											data-ff-open-checkout=""
-										>
-											Donate
-										</a>
-									</div>
-								</div>
-
-								<div class="ff-topbar__mobile-only">
-									<a
-										class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-donate-btn"
-										href="#checkout"
-										aria-controls="checkout"
-										data-ff-donate=""
-										data-ff-open-checkout=""
-									>
-										Donate
-									</a>
-
-									<button
-										type="button"
-										class="ff-iconbtn"
-										data-ff-open-drawer=""
-										aria-controls="ffDrawerPanel"
-										aria-expanded={drawerOpen}
-										aria-label="Open menu"
-										onclick={() => (drawerOpen = true)}
-									>
-										<span aria-hidden="true">☰</span>
-										<span class="ff-sr">Open menu</span>
-									</button>
-								</div>
+							<div class="ff-topbarGoal__metric ff-topbarGoal__metric--progress">
+								<span class="ff-topbarGoal__label">Progress</span>
+								<span class="ff-topbarGoal__percent ff-num" data-ff-percent="">{percent}%</span>
 							</div>
 						</div>
 
-						<section
-							class="ff-topbarGoal ff-glass ff-surface"
-							data-ff-goalbar=""
-							role="group"
-							aria-label="Fundraising progress"
-						>
+						<div class="ff-topbarGoal__progressWrap">
+							<div class="ff-row ff-row--between ff-ais ff-gap-2 ff-wrap ff-topbarGoal__metaRow">
+								<span class="ff-topbarGoal__progressLabel">Fundraising progress</span>
+								<span class="ff-help ff-muted">Secure checkout • sponsor-ready • mobile-first</span>
+							</div>
+
 							<div
-								class="ff-topbarGoal__summary"
-								data-ff-topbar-metrics=""
-								aria-label="Raised, goal, and progress"
+								class="ff-meter"
+								data-ff-meter=""
+								role="group"
+								aria-label="Fundraising progress meter"
 							>
-								<div class="ff-topbarGoal__metric ff-topbarGoal__metric--raised">
-									<span class="ff-topbarGoal__label">Raised</span>
-									<span class="ff-topbarGoal__raised ff-num" data-ff-raised=""
-										>{money(campaign.raised)}</span
-									>
-								</div>
-
-								<div class="ff-topbarGoal__metric ff-topbarGoal__metric--goal">
-									<span class="ff-topbarGoal__label">Goal</span>
-									<span class="ff-topbarGoal__goal ff-num" data-ff-goal=""
-										>{money(campaign.goal)}</span
-									>
-								</div>
-
-								<div class="ff-topbarGoal__metric ff-topbarGoal__metric--progress">
-									<span class="ff-topbarGoal__label">Progress</span>
-									<span class="ff-topbarGoal__percent ff-num" data-ff-percent="">{percent}%</span>
-								</div>
-							</div>
-
-							<div class="ff-topbarGoal__progressWrap">
-								<div class="ff-row ff-row--between ff-ais ff-gap-2 ff-wrap ff-topbarGoal__metaRow">
-									<span class="ff-topbarGoal__progressLabel">Preview progress</span>
-									<span class="ff-help ff-muted"
-										>Secure checkout • sponsor-ready • mobile-first</span
-									>
-								</div>
-
-								<div
-									class="ff-meter"
-									data-ff-meter=""
-									role="group"
-									aria-label="Fundraising progress meter"
+								<progress
+									class="ff-meter__progress"
+									max="100"
+									value={percent}
+									data-ff-pct=""
+									aria-label="Fundraising progress"
 								>
-									<progress
-										class="ff-meter__progress"
-										max="100"
-										value={percent}
-										data-ff-pct=""
-										aria-label="Fundraising progress"
-									>
-										{percent}%
-									</progress>
-								</div>
+									{percent}%
+								</progress>
 							</div>
-						</section>
-					</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</nav>
@@ -632,7 +750,7 @@
 								openSponsor();
 							}}
 						>
-							Sponsor the season
+							Sponsor this season
 						</button>
 
 						<a
@@ -661,7 +779,7 @@
 	<main id="content" class="ff-main" data-ff-main="" data-ff-page-root="" tabindex="-1">
 		<section
 			id="home"
-			class="ff-section ff-section--hero ff-hero"
+			class="ff-section ff-section--hero ff-hero ff-campaignHero"
 			data-ff-section="hero"
 			aria-labelledby="heroTitle"
 			aria-describedby="heroLead"
@@ -669,7 +787,10 @@
 			<div class="ff-container ff-hero__shell">
 				<div class="ff-hero__grid">
 					<div class="ff-minw-0">
-						<article class="ff-hero__capsule ff-glass ff-surface" data-ff-animate="rise">
+						<article
+							class="ff-hero__capsule ff-glass ff-surface ff-campaignHero__story"
+							data-ff-animate="rise"
+						>
 							<div class="ff-hero__capsuleInner">
 								<header class="ff-heroHeader">
 									<div
@@ -734,7 +855,7 @@
 									role="list"
 									aria-label="Trust and sponsor proof"
 								>
-									<div class="ff-proofMini" role="listitem">
+									<div class="ff-proofMini ff-proofMini--checkout" role="listitem">
 										<p class="ff-kicker ff-m-0">Why supporters trust this page</p>
 										<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
 											Clear progress, secure checkout, and a cleaner page families, alumni, and
@@ -742,7 +863,7 @@
 										</p>
 									</div>
 
-									<div class="ff-proofMini" role="listitem">
+									<div class="ff-proofMini ff-proofMini--checkout" role="listitem">
 										<p class="ff-kicker ff-m-0">Why businesses sponsor</p>
 										<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
 											Visible recognition, featured placement, and clear follow-up for local
@@ -759,7 +880,7 @@
 											data-ff-donate=""
 											data-ff-open-checkout=""
 										>
-											Donate now
+											Donate securely now
 										</a>
 
 										<div
@@ -773,7 +894,7 @@
 												data-ff-open-sponsor=""
 												onclick={() => openSponsor()}
 											>
-												Sponsor the season
+												Sponsor this season
 											</button>
 
 											<button
@@ -789,7 +910,7 @@
 									</nav>
 
 									<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0 ff-heroTrustCue">
-										Secure checkout • No account required • Email receipt.
+										Secure checkout • No account required • Receipt-ready flow
 									</p>
 								</footer>
 							</div>
@@ -802,7 +923,7 @@
 						aria-labelledby="heroPanelTitle"
 					>
 						<article
-							class="ff-card ff-card--premium ff-card--lift ff-glass ff-pad"
+							class="ff-card ff-card--premium ff-card--lift ff-glass ff-pad ff-campaignHero__checkout"
 							data-ff-animate="rise"
 							id="checkout"
 						>
@@ -810,14 +931,16 @@
 								<div class="ff-row ff-row--between ff-ais ff-wrap ff-gap-2">
 									<div class="ff-minw-0">
 										<p class="ff-kicker ff-m-0">Donate</p>
-										<h2 class="ff-h2 ff-mt-1 ff-mb-0" id="heroPanelTitle">Support the season.</h2>
+										<h2 class="ff-h2 ff-mt-1 ff-mb-0" id="heroPanelTitle">
+											Support the season
+										</h2>
 									</div>
 									<span class="ff-pill ff-pill--soft">{percent}% funded</span>
 								</div>
 
 								<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
-									Choose an amount, then confirm securely in checkout. Most supporters should finish
-									fast once payment wiring is attached.
+									Choose an amount, then confirm securely in checkout. Most supporters can
+									complete support in just a few simple steps.
 								</p>
 							</header>
 
@@ -852,8 +975,10 @@
 								<input
 									class="ff-input"
 									type="number"
+									name="amount"
 									min="1"
 									step="1"
+									required
 									bind:value={amount}
 									data-ff-amount-input=""
 									aria-label="Donation amount"
@@ -862,6 +987,9 @@
 								<input
 									class="ff-input"
 									type="text"
+									name="donorName"
+									minlength="2"
+									required
 									placeholder="Your name"
 									bind:value={donorName}
 									data-ff-donor-name=""
@@ -871,6 +999,8 @@
 								<input
 									class="ff-input"
 									type="email"
+									name="donorEmail"
+									required
 									placeholder="Email receipt"
 									bind:value={donorEmail}
 									data-ff-email=""
@@ -879,6 +1009,7 @@
 
 								<textarea
 									class="ff-input"
+									name="donorMessage"
 									rows="4"
 									placeholder="Optional note"
 									bind:value={donorMessage}
@@ -886,23 +1017,121 @@
 									aria-label="Optional donor note"
 								></textarea>
 
-								<div class="ff-proofMini">
+								<div class="ff-proofMini ff-proofMini--checkout">
 									<p class="ff-kicker ff-m-0">Summary amount</p>
-									<p class="ff-h3 ff-mt-1 ff-mb-0" data-ff-summary-amount="">{summaryAmount}</p>
+									<p class="ff-h3 ff-mt-1 ff-mb-0" data-ff-summary-amount="">
+										{summaryAmount}
+									</p>
 									<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
-										This is the amount your supporter-facing checkout should reflect.
+										This amount carries into secure payment and email receipt confirmation.
+									</p>
+									<p class="ff-help ff-mutedStrong ff-mt-1 ff-mb-0 ff-checkoutMetaNote">
+										Secure donation handoff • fast supporter flow • receipt-ready confirmation
 									</p>
 								</div>
 
 								<button type="submit" class="ff-btn ff-btn--primary ff-btn--pill ff-btn--lg">
-									Donate now
+									Donate securely now
 								</button>
 
-								{#if checkoutStatus}
+								<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0 ff-checkoutTrustNote">
+									Secure payment, clear confirmation, and receipt-ready follow-up.
+								</p>
+
+								{#if embeddedCheckoutActive}
+									<div class="ff-mt-3" data-ff-embedded-checkout>
+										{#key `${amount}:${donorName}:${donorEmail}:${donorMessage}`}
+											<StripeCheckoutPanel
+												slug={slug}
+												amount={amount}
+												donorName={donorName}
+												donorEmail={donorEmail}
+												donorMessage={donorMessage}
+												orgName={campaign.orgName}
+												campaignName={campaign.campaignName}
+												active={embeddedCheckoutActive}
+												on:ready={() => {
+													checkoutStatus = 'Secure payment is ready.';
+												}}
+												on:error={(e) => {
+													checkoutStatus = e.detail.message;
+												}}
+												on:success={() => {
+													donationComplete = true;
+													embeddedCheckoutActive = false;
+													checkoutStatus =
+														'Donation received. Thank you for backing the program.';
+													setTimeout(() => scrollToId('checkout'), 0);
+												}}
+											/>
+										{/key}
+									</div>
+								{/if}
+
+								{#if donationComplete}
+									<div
+										id="checkoutStatus"
+										class="ff-successCard ff-mt-3"
+										data-ff-checkout-status=""
+										role="status"
+										aria-live="polite"
+									>
+										<div class="ff-successCard__icon" aria-hidden="true">🏀</div>
+										<h3 class="ff-successCard__title">You just helped power the season.</h3>
+										<p class="ff-successCard__body">
+											Your support directly helps fund travel, training, tournament fees, and
+											shared team costs.
+										</p>
+
+										<div class="ff-successCard__meta" role="list" aria-label="Donation summary">
+											<div class="ff-successCard__metaItem" role="listitem">
+												<span class="ff-successCard__label">Amount</span>
+												<strong>{summaryAmount}</strong>
+											</div>
+											<div class="ff-successCard__metaItem" role="listitem">
+												<span class="ff-successCard__label">Supporter</span>
+												<strong>{donorName || 'Supporter'}</strong>
+											</div>
+										</div>
+
+										<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0">
+											A receipt was sent to {donorEmail || 'your email'}.
+										</p>
+
+										<div class="ff-successCard__actions">
+											<button
+												type="button"
+												class="ff-btn ff-btn--primary ff-btn--pill"
+												onclick={shareCampaign}
+											>
+												Share fundraiser
+											</button>
+
+											<button
+												type="button"
+												class="ff-btn ff-btn--secondary ff-btn--pill"
+												onclick={() => openSponsor()}
+											>
+												Sponsor this season
+											</button>
+										</div>
+									</div>
+								{:else if checkoutCancelledState}
+									<div
+										id="checkoutStatus"
+										class="ff-alert ff-alert--warn"
+										data-ff-checkout-status=""
+										role="alert"
+									>
+										{checkoutStatus}
+									</div>
+								{:else if checkoutStatus}
 									<div
 										id="checkoutStatus"
 										class="ff-alert ff-alert--info"
 										data-ff-checkout-status=""
+										role="status"
+										aria-live="polite"
 									>
 										{checkoutStatus}
 									</div>
@@ -919,7 +1148,7 @@
 				<header class="ff-sectionhead" aria-labelledby="impactTitle">
 					<p class="ff-kicker ff-m-0">What support covers</p>
 					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="impactTitle">
-						Support helps move the season forward.
+						Support moves the season forward.
 					</h2>
 					<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
 						This page supports the shared program: travel, training, tournament fees, and the real
@@ -948,7 +1177,7 @@
 						<p class="ff-kicker ff-m-0">This support helps cover</p>
 						<div class="ff-stack ff-mt-3">
 							{#each supportCovers as item (item.title)}
-								<div class="ff-proofMini">
+								<div class="ff-proofMini ff-proofMini--checkout">
 									<p class="ff-h3 ff-m-0">{item.title}</p>
 									<p class="ff-help ff-muted ff-mt-1 ff-mb-0">{item.body}</p>
 								</div>
@@ -958,19 +1187,19 @@
 				</div>
 
 				<div class="ff-grid ff-grid--3 ff-gap-2 ff-mt-3">
-					<div class="ff-proofMini">
+					<div class="ff-proofMini ff-proofMini--checkout">
 						<p class="ff-kicker ff-m-0">Support raised so far</p>
 						<p class="ff-h3 ff-mt-1 ff-mb-0">{money(campaign.raised)}</p>
 						<p class="ff-help ff-muted ff-mt-1 ff-mb-0">Momentum is already building.</p>
 					</div>
 
-					<div class="ff-proofMini">
+					<div class="ff-proofMini ff-proofMini--checkout">
 						<p class="ff-kicker ff-m-0">Donor count</p>
 						<p class="ff-h3 ff-mt-1 ff-mb-0">{campaign.donorCount}</p>
 						<p class="ff-help ff-muted ff-mt-1 ff-mb-0">Community support is showing up.</p>
 					</div>
 
-					<div class="ff-proofMini">
+					<div class="ff-proofMini ff-proofMini--checkout">
 						<p class="ff-kicker ff-m-0">Still to goal</p>
 						<p class="ff-h3 ff-mt-1 ff-mb-0">{money(remaining)}</p>
 						<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
@@ -986,7 +1215,7 @@
 				<header class="ff-sectionhead" aria-labelledby="teamsTitle">
 					<p class="ff-kicker ff-m-0">Teams in the program</p>
 					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="teamsTitle">
-						Support the athletes behind the fundraiser.
+						Support the athletes behind the fundraiser
 					</h2>
 					<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
 						Team cards show who the program serves while the support story stays centered on the
@@ -994,7 +1223,7 @@
 					</p>
 				</header>
 
-				<div class="ff-teamGrid ff-mt-3">
+				<div class="ff-teamGrid ff-mt-3 ff-campaignTeamsGrid">
 					{#each teams as team (team.id)}
 						<article class={`ff-teamCard ${team.featured ? 'ff-card--premium' : ''}`}>
 							<div class="ff-teamCard__inner">
@@ -1070,10 +1299,13 @@
 			<div class="ff-container">
 				<header class="ff-sectionhead" aria-labelledby="sponsorsTitle">
 					<p class="ff-kicker ff-m-0">Sponsors</p>
-					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="sponsorsTitle">Become a featured sponsor.</h2>
+					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="sponsorsTitle">Become a visible sponsor</h2>
 					<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
 						This page gives businesses a cleaner reason to support the season through visible
 						recognition and better placement.
+					</p>
+					<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0 ff-sponsorIntroNote">
+						Choose a sponsor tier with clearer visibility, stronger recognition, and cleaner community alignment.
 					</p>
 				</header>
 
@@ -1081,27 +1313,26 @@
 					<article class="ff-card ff-glass ff-pad">
 						<p class="ff-kicker ff-m-0">Why businesses sponsor</p>
 						<div class="ff-stack ff-mt-3">
-							<div class="ff-proofMini">
+							<div class="ff-proofMini ff-proofMini--checkout">
 								<p class="ff-h3 ff-m-0">Cleaner local visibility</p>
 								<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
 									Local businesses get a stronger presentation than a generic donation ask.
 								</p>
 							</div>
-							<div class="ff-proofMini">
+							<div class="ff-proofMini ff-proofMini--checkout">
 								<p class="ff-h3 ff-m-0">Better sponsor story</p>
 								<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
-									Recognition, placement, and community alignment are easier to explain and easier
-									to say yes to.
+									Recognition, placement, and community alignment are easier to explain and
+									easier to say yes to.
 								</p>
 							</div>
 						</div>
 					</article>
 
 					<article class="ff-card ff-glass ff-pad">
-						<p class="ff-kicker ff-m-0">Sponsor interest</p>
+						<p class="ff-kicker ff-m-0">Sponsor this season</p>
 						<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
-							Open sponsor interest from the same page instead of sending businesses through a messy
-							side process.
+							Businesses can sponsor from the same page with a clear checkout path and visible recognition on the fundraiser.
 						</p>
 						<div class="ff-row ff-wrap ff-gap-2 ff-mt-3">
 							<button
@@ -1116,7 +1347,56 @@
 					</article>
 				</div>
 
-				<div class="ff-impactTierGrid ff-mt-3">
+				{#if persistedSponsors.length}
+					<article class="ff-card ff-glass ff-pad ff-mt-3" aria-label="Persisted sponsor wall">
+						<div class="ff-row ff-row--between ff-wrap ff-ais ff-gap-2">
+							<div class="ff-minw-0">
+								<p class="ff-kicker ff-m-0">Paid sponsors</p>
+								<h3 class="ff-h3 ff-mt-1 ff-mb-0">Live sponsor wall</h3>
+							</div>
+							<span class="ff-pill ff-pill--ghost">{persistedSponsors.length} active</span>
+						</div>
+
+						<div class="ff-grid ff-grid--2 ff-gap-2 ff-mt-3">
+							{#each persistedSponsors as sponsor (sponsor.id)}
+								<div class="ff-proofMini ff-proofMini--checkout">
+									<p class="ff-kicker ff-m-0">{sponsor.tier.toUpperCase()}</p>
+									<p class="ff-h3 ff-mt-1 ff-mb-0">{sponsor.business}</p>
+									<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
+										{sponsor.campaignName} • {sponsor.orgName}
+									</p>
+								</div>
+							{/each}
+						</div>
+					</article>
+				{/if}
+
+				{#if liveSponsorSpotlight}
+					<article
+						class="ff-card ff-glass ff-pad ff-card--premium ff-mt-3 ff-sponsorSpotlightLive"
+						data-ff-live-sponsor-spotlight=""
+						aria-label="Live sponsor spotlight"
+					>
+						<div class="ff-row ff-row--between ff-wrap ff-ais ff-gap-2">
+							<div class="ff-minw-0">
+								<p class="ff-kicker ff-m-0">Live sponsor spotlight</p>
+								<h3 class="ff-h3 ff-mt-1 ff-mb-0">{liveSponsorSpotlight.business}</h3>
+							</div>
+							<span class="ff-pill ff-pill--soft">{liveSponsorSpotlight.badge}</span>
+						</div>
+
+						<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0">
+							{liveSponsorSpotlight.headline}
+						</p>
+
+						<div class="ff-proofMini ff-proofMini--checkout ff-mt-3">
+							<p class="ff-kicker ff-m-0">Included with this tier</p>
+							<p class="ff-help ff-muted ff-mt-1 ff-mb-0">{liveSponsorSpotlight.body}</p>
+						</div>
+					</article>
+				{/if}
+
+				<div class="ff-impactTierGrid ff-mt-3 ff-campaignSponsorGrid">
 					{#each sponsorTiers as tier (tier.key)}
 						<article
 							class={`ff-impactTier ${tier.primary ? 'ff-impactTier--premium ff-impactTier--recommended' : ''}`}
@@ -1124,7 +1404,7 @@
 							<div class="ff-impactTier__head">
 								<div class="ff-row ff-row--between ff-ais ff-wrap">
 									<p class="ff-kicker ff-m-0">{tier.label}</p>
-									<span class={`ff-pill ${tier.primary ? 'ff-pill--accent' : 'ff-pill--ghost'}`}
+									<span class={`ff-pill ${tier.primary ? 'ff-pill--soft' : 'ff-pill--ghost'}`}
 										>{tier.badge}</span
 									>
 								</div>
@@ -1159,17 +1439,19 @@
 					<article class="ff-card ff-glass ff-pad">
 						<p class="ff-kicker ff-m-0">Story</p>
 						<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="storyTitle">
-							A season built on reps, travel, and support.
+							A season built on reps, travel, and shared support.
 						</h2>
 						<p class="ff-help ff-muted ff-mt-2 ff-mb-0">{campaign.storyLead}</p>
 						<div class="ff-row ff-wrap ff-gap-2 ff-mt-3">
-							<a class="ff-btn ff-btn--primary ff-btn--pill" href="#checkout">Donate now</a>
+							<a class="ff-btn ff-btn--primary ff-btn--pill" href="#checkout"
+								>Donate securely now</a
+							>
 							<button
 								type="button"
 								class="ff-btn ff-btn--secondary ff-btn--pill"
 								onclick={() => openSponsor()}
 							>
-								Sponsor the season
+								Sponsor this season
 							</button>
 						</div>
 					</article>
@@ -1177,17 +1459,17 @@
 					<article class="ff-card ff-glass ff-pad">
 						<p class="ff-kicker ff-m-0">Why this page matters</p>
 						<div class="ff-stack ff-mt-3">
-							<div class="ff-proofMini">
-								<p class="ff-h3 ff-m-0">Cleaner donor trust</p>
+							<div class="ff-proofMini ff-proofMini--checkout">
+								<p class="ff-h3 ff-m-0">Cleaner donor trust from first click</p>
 								<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
-									The fundraiser reads like a real product surface instead of a rushed link page.
+									The page is designed to feel clear, credible, and easy to support.
 								</p>
 							</div>
-							<div class="ff-proofMini">
-								<p class="ff-h3 ff-m-0">Better sponsor conversations</p>
+							<div class="ff-proofMini ff-proofMini--checkout">
+								<p class="ff-h3 ff-m-0">Better sponsor conversations for local businesses</p>
 								<p class="ff-help ff-muted ff-mt-1 ff-mb-0">
-									Businesses can see a stronger support package instead of guessing what sponsorship
-									means.
+									Businesses can choose a tier, complete checkout, and understand what
+									recognition comes next.
 								</p>
 							</div>
 						</div>
@@ -1201,7 +1483,7 @@
 				<header class="ff-sectionhead" aria-labelledby="faqTitle">
 					<p class="ff-kicker ff-m-0">FAQ</p>
 					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="faqTitle">
-						Everything organizations usually ask before they go live.
+						Everything supporters and sponsors usually ask
 					</h2>
 				</header>
 
@@ -1223,34 +1505,36 @@
 
 		<footer id="footer" class="ff-section" aria-labelledby="footerTitle">
 			<div class="ff-container">
-				<div class="ff-footerShell ff-glass">
+				<div class="ff-footerShell ff-glass ff-campaignFooterShell">
 					<div class="ff-footerGrid">
 						<div class="ff-footerBrand">
 							<p class="ff-kicker ff-m-0">FutureFunded</p>
 							<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="footerTitle">
-								A cleaner way to raise, brand, and grow support.
+								A cleaner way to raise, brand, and grow support
 							</h2>
 							<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
-								This fundraiser surface is the flagship money page. Homepage stays shorter. Campaign
-								carries the deeper conversion story.
+								This page is built to make giving, sponsoring, and sharing feel clear from the
+								first click.
 							</p>
 						</div>
 
 						<div class="ff-stack">
-							<a class="ff-btn ff-btn--primary ff-btn--pill" href="#checkout">Donate now</a>
+							<a class="ff-btn ff-btn--primary ff-btn--pill" href="#checkout"
+								>Donate securely now</a
+							>
 							<button
 								type="button"
 								class="ff-btn ff-btn--secondary ff-btn--pill"
 								onclick={() => openSponsor()}
 							>
-								Sponsor the season
+								Sponsor this season
 							</button>
 							<button
 								type="button"
 								class="ff-btn ff-btn--ghost ff-btn--pill"
 								onclick={shareCampaign}
 							>
-								Share this page
+								Share fundraiser
 							</button>
 						</div>
 					</div>
@@ -1266,13 +1550,13 @@
 			style="position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:1rem;background:rgb(2 6 23 / 0.56);"
 		>
 			<div
-				class="ff-modal__panel ff-card ff-glass ff-pad"
+				class="ff-modal__panel ff-card ff-glass ff-pad ff-sponsorModalPanel"
 				style="width:min(100%,36rem);max-height:min(90dvh,48rem);overflow:auto;"
 			>
 				<div class="ff-row ff-row--between ff-ais ff-wrap">
 					<div>
-						<p class="ff-kicker ff-m-0">Sponsor interest</p>
-						<h2 class="ff-h2 ff-mt-2 ff-mb-0">Open a sponsor conversation.</h2>
+						<p class="ff-kicker ff-m-0">Sponsor this season</p>
+						<h2 class="ff-h2 ff-mt-2 ff-mb-0">Complete sponsor checkout</h2>
 					</div>
 
 					<button
@@ -1286,9 +1570,12 @@
 					</button>
 				</div>
 
-				<div class="ff-proofMini ff-mt-3">
-					<p class="ff-kicker ff-m-0">Selected tier</p>
-					<p class="ff-h3 ff-mt-1 ff-mb-0">{sponsorTier.toUpperCase()}</p>
+				<div class="ff-proofMini ff-proofMini--checkout ff-mt-3">
+					<p class="ff-kicker ff-m-0">Selected sponsor package</p>
+					<p class="ff-h3 ff-mt-1 ff-mb-0">
+						{selectedSponsorTier.label} • {money(selectedSponsorTier.amount)}
+					</p>
+					<p class="ff-help ff-muted ff-mt-1 ff-mb-0">{selectedSponsorTier.recognition}</p>
 				</div>
 
 				<form
@@ -1323,15 +1610,135 @@
 						aria-label="Business email"
 					/>
 
-					<button type="submit" class="ff-btn ff-btn--primary ff-btn--pill"
-						>Send sponsor interest</button
-					>
+					<button type="submit" class="ff-btn ff-btn--primary ff-btn--pill">
+						Continue to sponsor checkout
+					</button>
 
-					{#if sponsorStatus}
-						<div class="ff-alert ff-alert--info">{sponsorStatus}</div>
+					<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0 ff-sponsorTrustNote">
+						Secure sponsor checkout • clear confirmation • clean follow-up after payment.
+					</p>
+
+					{#if sponsorSuccessState}
+						<div
+							class="ff-successCard ff-mt-3"
+							data-ff-sponsor-status=""
+							role="status"
+							aria-live="polite"
+						>
+							<div class="ff-successCard__icon" aria-hidden="true">🏆</div>
+							<h3 class="ff-successCard__title">Your business just backed the season.</h3>
+							<p class="ff-successCard__body">
+								Thank you for sponsoring {campaign.orgName}. Your support helps fund travel,
+								training, tournaments, and shared program costs.
+							</p>
+
+							<div class="ff-successCard__meta" role="list" aria-label="Sponsor summary">
+								<div class="ff-successCard__metaItem" role="listitem">
+									<span class="ff-successCard__label">Tier</span>
+									<strong>{sponsorTierLabel}</strong>
+								</div>
+								<div class="ff-successCard__metaItem" role="listitem">
+									<span class="ff-successCard__label">Business</span>
+									<strong>{sponsorDisplayBusiness}</strong>
+								</div>
+							</div>
+
+							<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0">
+								A confirmation was sent to {sponsorDisplayEmail || 'your email'}.
+							</p>
+
+							<div class="ff-proofMini ff-proofMini--checkout ff-mt-2" aria-label="Sponsor tier benefits">
+								<p class="ff-kicker ff-m-0">Included with this tier</p>
+								<p class="ff-help ff-muted ff-mt-1 ff-mb-0">{sponsorBenefit}</p>
+							</div>
+
+							<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
+								Next step: finalize logo, recognition, and placement details for this sponsor
+								tier.
+							</p>
+
+							<div class="ff-successCard__actions">
+								<button
+									type="button"
+									class="ff-btn ff-btn--primary ff-btn--pill"
+									onclick={closeSponsor}
+								>
+									Done
+								</button>
+
+								<button
+									type="button"
+									class="ff-btn ff-btn--secondary ff-btn--pill"
+									onclick={shareCampaign}
+								>
+									Share fundraiser
+								</button>
+							</div>
+						</div>
+					{:else if sponsorCancelledState}
+						<div class="ff-alert ff-alert--warn" data-ff-sponsor-status="" role="alert">
+							{sponsorStatus}
+						</div>
+					{:else if sponsorStatus}
+						<div
+							class="ff-alert ff-alert--info"
+							data-ff-sponsor-status=""
+							role="status"
+							aria-live="polite"
+						>
+							{sponsorStatus}
+						</div>
 					{/if}
 				</form>
 			</div>
 		</div>
 	{/if}
 </div>
+
+
+<style>
+	/* FF_CAMPAIGN_PERFORMANCE_SAFE_V1 */
+	.ff-shellBg {
+		display: none !important;
+	}
+
+	.ff-glass,
+	.ff-surface,
+	.ff-impactTier,
+	.ff-teamCard,
+	.ff-proofMini,
+	.ff-successCard,
+	.ff-modal__panel,
+	.ff-footerShell,
+	.ff-campaignHeader__shell,
+	.ff-campaignHero__story,
+	.ff-campaignHero__checkout {
+		backdrop-filter: none !important;
+		-webkit-backdrop-filter: none !important;
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
+	}
+
+	.ff-impactTier,
+	.ff-teamCard,
+	.ff-proofMini,
+	.ff-successCard,
+	.ff-modal__panel,
+	.ff-campaignHero__story,
+	.ff-campaignHero__checkout,
+	.ff-campaignHeader__shell {
+		transform: none !important;
+		transition: none !important;
+		animation: none !important;
+	}
+
+	.ff-teamCard__media,
+	.ff-proofMini,
+	.ff-impactTier,
+	.ff-successCard__metaItem {
+		will-change: auto !important;
+	}
+
+	:global(html) {
+		scroll-behavior: auto !important;
+	}
+</style>
