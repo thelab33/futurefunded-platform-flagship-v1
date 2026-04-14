@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { env } from '$env/dynamic/private';
 
 const STRIPE_CURRENCY = 'usd';
+
 const MIN_DONATION_USD = 5;
 const MAX_DONATION_USD = 25000;
 
@@ -108,3 +109,176 @@ export async function createDonationIntent(
     currency: STRIPE_CURRENCY
   };
 }
+
+// FF_STRIPE_CHECKOUT_HELPER_START
+type DonationCheckoutSessionInput = {
+  amount: number;
+  donorName?: string;
+  donorEmail: string;
+  donorMessage?: string;
+  slug: string;
+  successUrl: string;
+  cancelUrl: string;
+  orgName: string;
+  campaignName: string;
+};
+
+export async function createDonationCheckoutSession(
+  input: DonationCheckoutSessionInput
+) {
+  const session = await stripe().checkout.sessions.create({
+    mode: 'payment',
+    submit_type: 'donate',
+    success_url: input.successUrl,
+    cancel_url: input.cancelUrl,
+    customer_email: input.donorEmail || undefined,
+    metadata: {
+      slug: input.slug,
+      donorName: input.donorName || '',
+      donorEmail: input.donorEmail,
+      donorMessage: input.donorMessage || '',
+      orgName: input.orgName,
+      campaignName: input.campaignName
+    },
+    line_items: [
+      {
+        quantity: 1,
+        price_data: {
+          currency: 'usd',
+          unit_amount: Math.round(input.amount * 100),
+          product_data: {
+            name: `${input.orgName} Donation`,
+            description: input.campaignName
+          }
+        }
+      }
+    ]
+  });
+
+  if (!session.url) {
+    throw new Error('Stripe checkout session did not return a URL.');
+  }
+
+  return {
+    id: session.id,
+    url: session.url
+  };
+}
+// FF_STRIPE_CHECKOUT_HELPER_END
+
+// FF_STRIPE_ELEMENTS_CHECKOUT_HELPER_START
+type DonationElementsCheckoutSessionInput = {
+  amount: number;
+  donorName?: string;
+  donorEmail: string;
+  donorMessage?: string;
+  slug: string;
+  returnUrl: string;
+  orgName: string;
+  campaignName: string;
+};
+
+export async function createDonationElementsCheckoutSession(
+  input: DonationElementsCheckoutSessionInput
+) {
+  const amountCents = normalizeUsdAmount(input.amount);
+
+  const session = await stripe().checkout.sessions.create({
+    mode: 'payment',
+    ui_mode: 'elements',
+    return_url: input.returnUrl,
+    customer_email: input.donorEmail || undefined,
+    metadata: {
+      slug: input.slug,
+      donorName: input.donorName || '',
+      donorEmail: input.donorEmail,
+      donorMessage: input.donorMessage || '',
+      orgName: input.orgName,
+      campaignName: input.campaignName
+    },
+    line_items: [
+      {
+        quantity: 1,
+        price_data: {
+          currency: STRIPE_CURRENCY,
+          unit_amount: amountCents,
+          product_data: {
+            name: `${input.orgName} Donation`,
+            description: input.campaignName
+          }
+        }
+      }
+    ]
+  });
+
+  if (!session.client_secret) {
+    throw new Error('Stripe checkout session did not return a client_secret.');
+  }
+
+  return {
+    id: session.id,
+    clientSecret: session.client_secret
+  };
+}
+// FF_STRIPE_ELEMENTS_CHECKOUT_HELPER_END
+
+// FF_STRIPE_SPONSOR_CHECKOUT_HELPER_START
+type SponsorCheckoutSessionInput = {
+  amount: number;
+  sponsorTier: string;
+  sponsorBusiness: string;
+  sponsorContact: string;
+  sponsorEmail: string;
+  slug: string;
+  orgName: string;
+  campaignName: string;
+  successUrl: string;
+  cancelUrl: string;
+};
+
+export async function createSponsorCheckoutSession(
+  input: SponsorCheckoutSessionInput
+) {
+  const amountCents = normalizeUsdAmount(input.amount);
+
+  const session = await stripe().checkout.sessions.create({
+    mode: 'payment',
+    success_url: input.successUrl,
+    cancel_url: input.cancelUrl,
+    customer_email: input.sponsorEmail || undefined,
+    metadata: {
+      type: 'sponsor',
+      slug: input.slug,
+      sponsorTier: input.sponsorTier,
+      sponsorBusiness: input.sponsorBusiness,
+      sponsorContact: input.sponsorContact,
+      sponsorEmail: input.sponsorEmail,
+      orgName: input.orgName,
+      campaignName: input.campaignName
+    },
+    line_items: [
+      {
+        quantity: 1,
+        price_data: {
+          currency: STRIPE_CURRENCY,
+          unit_amount: amountCents,
+          product_data: {
+            name: `${input.orgName} Sponsor Package`,
+            description: `${input.campaignName} • ${input.sponsorTier} sponsor tier`
+          }
+        }
+      }
+    ]
+  });
+
+  if (!session.url) {
+    throw new Error('Stripe sponsor checkout session did not return a URL.');
+  }
+
+  return {
+    id: session.id,
+    url: session.url
+  };
+}
+// FF_STRIPE_SPONSOR_CHECKOUT_HELPER_END
+
