@@ -1,0 +1,995 @@
+{
+  "repo_root": "/home/elCUCO/futurefunded-platform-flagship-v1",
+  "total_files": 290,
+  "file_types": {
+    ".svelte": 38,
+    ".txt": 21,
+    ".ts": 17,
+    ".css": 7,
+    "[no_ext]": 6,
+    ".20260412_165625": 6,
+    ".json": 5,
+    ".20260412_165857": 5,
+    ".md": 4,
+    ".20260412224124": 4,
+    ".20260412_161051": 4,
+    ".sh": 3,
+    ".20260413210708": 3,
+    ".20260413222639": 3,
+    ".20260413225600": 3,
+    ".20260411203821": 3,
+    ".20260411234248": 3,
+    ".20260411204525": 3,
+    ".20260412_170415": 3,
+    ".js": 2,
+    ".yaml": 2,
+    ".jsonl": 2,
+    ".20260411203242": 2,
+    ".20260411211309": 2,
+    ".20260413005600": 2,
+    ".20260414152550": 2,
+    ".20260413010358": 2,
+    ".20260413121158": 2,
+    ".20260414153242": 2,
+    ".20260413000015": 2,
+    ".20260413002346": 2,
+    ".20260414150622": 2,
+    ".20260413001106": 2,
+    ".20260412234647": 2,
+    ".20260413002052": 2,
+    ".20260412234946": 2,
+    ".20260413001722": 2,
+    ".bak": 2,
+    ".20260413000331": 2,
+    ".20260414150948": 2,
+    ".20260413143906": 2,
+    ".20260413203930": 2,
+    ".20260413144355": 2,
+    ".20260411211918": 2,
+    ".20260413215542": 2,
+    ".20260414142225": 2,
+    ".20260414140852": 2,
+    ".20260411201932": 1,
+    ".20260413150159": 1,
+    ".example": 1,
+    ".local": 1,
+    ".20260413145842": 1,
+    ".html": 1,
+    ".20260411205845": 1,
+    ".20260411234633": 1,
+    ".20260411204042": 1,
+    ".20260413161110": 1,
+    ".20260414154822": 1,
+    ".20260412230429": 1,
+    ".20260414013749": 1,
+    ".20260414005258": 1,
+    ".20260414155913": 1,
+    ".20260413134141": 1,
+    ".20260414155356": 1,
+    ".20260413000741": 1,
+    ".20260413201439": 1,
+    ".20260413161804": 1,
+    ".20260414150236": 1,
+    ".20260412231112": 1,
+    ".20260413140502": 1,
+    ".20260414153947": 1,
+    ".20260413155506": 1,
+    ".20260414014703": 1,
+    ".20260414160834": 1,
+    ".20260413135529": 1,
+    ".20260412_175600": 1,
+    ".20260412225240": 1,
+    ".20260413141802": 1,
+    ".20260414130159": 1,
+    ".20260414180413": 1,
+    ".20260414130615": 1,
+    ".20260414125947": 1,
+    ".20260414014351": 1,
+    ".20260413211227": 1,
+    ".20260413151600": 1,
+    ".20260413160351": 1,
+    ".20260413203513": 1,
+    ".svg": 1,
+    ".20260412224347": 1,
+    ".20260413154335": 1,
+    ".20260413154156": 1,
+    ".20260413152150": 1,
+    ".20260413153509": 1,
+    ".20260413160407": 1,
+    ".20260413201434": 1,
+    ".20260413160417": 1,
+    ".20260413161749": 1,
+    ".20260413152817": 1,
+    ".20260413212937": 1,
+    ".20260413155630": 1,
+    ".20260413155422": 1,
+    ".20260413203526": 1,
+    ".20260413153949": 1,
+    ".20260413232007": 1,
+    ".20260413220903": 1,
+    ".20260413220002": 1,
+    ".20260413155654": 1,
+    ".20260412234250": 1,
+    ".20260413161056": 1,
+    ".20260413144916": 1,
+    ".20260414003542": 1,
+    ".20260413153957": 1,
+    ".20260413203518": 1,
+    ".20260413160642": 1,
+    ".20260414000902": 1,
+    ".20260413220136": 1,
+    ".20260413160607": 1,
+    ".20260413154831": 1,
+    ".20260413211534": 1,
+    ".20260412225435": 1,
+    ".20260414145544": 1,
+    ".20260412_160532": 1,
+    ".20260412225313": 1,
+    ".20260414145016": 1,
+    ".20260414143611": 1,
+    ".20260411213226": 1,
+    ".20260412224953": 1,
+    ".20260414144710": 1,
+    ".20260414145427": 1,
+    ".20260412233557": 1,
+    ".20260412231630": 1,
+    ".20260412231143": 1,
+    ".20260413141743": 1,
+    ".20260412233243": 1,
+    ".20260413140449": 1,
+    ".20260414151917": 1,
+    ".20260412230547": 1,
+    ".20260412_191056": 1,
+    ".20260414151436": 1,
+    ".mjs": 1
+  },
+  "largest_files": [
+    {
+      "file": "sales_mode_audit_grep.txt",
+      "bytes": 886412
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.20260412_175600",
+      "bytes": 299873
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "bytes": 119425
+    },
+    {
+      "file": "src/lib/styles/ff.css.20260412211344.bak",
+      "bytes": 117225
+    },
+    {
+      "file": "src/lib/styles/ff.css.20260412211208.bak",
+      "bytes": 111214
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.campaign_canonical_rail.20260414154822",
+      "bytes": 103401
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.campaign_fluid_desktop.20260414155913",
+      "bytes": 102794
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.first_half_refactor.20260414160834",
+      "bytes": 101935
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.campaign_breakpoint_tune.20260414155356",
+      "bytes": 101656
+    },
+    {
+      "file": "src/lib/styles/ff.css",
+      "bytes": 101531
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.campaign_half_cleanup.20260414180413",
+      "bytes": 101497
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.campaign_hero_zoomfix.20260414153947",
+      "bytes": 100535
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.campaign_prestige.20260414153242",
+      "bytes": 98424
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.onboarding_prestige.20260414152550",
+      "bytes": 96778
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.dashboard_compress_launch.20260414150948",
+      "bytes": 95170
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.hero_sponsor_tighten.20260414150622",
+      "bytes": 93670
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.growth_sponsor_close_rate.20260414150236",
+      "bytes": 90794
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.lightfix.20260414130159",
+      "bytes": 86399
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.chrome_density.20260414130615",
+      "bytes": 86300
+    },
+    {
+      "file": "src/lib/styles/ff.css.perfcss.bak.20260414005258",
+      "bytes": 85364
+    },
+    {
+      "file": "src/lib/styles/ff.css.sourceblurkill.bak.20260414014703",
+      "bytes": 85364
+    },
+    {
+      "file": "src/lib/styles/ff.css.perfcss.bak.20260414014351",
+      "bytes": 85364
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.20260414125947",
+      "bytes": 85306
+    },
+    {
+      "file": "src/lib/styles/ff.css.perfcss.bak.20260414005258.perfcss.bak.20260414013749",
+      "bytes": 84058
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.20260413141802",
+      "bytes": 71192
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.20260413140502",
+      "bytes": 61987
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte",
+      "bytes": 55592
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.bak.campaign_prestige.20260414153242",
+      "bytes": 55483
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.perfguard.bak.20260414003542",
+      "bytes": 54585
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.prestigefinish.bak.20260414000902",
+      "bytes": 54431
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.livecopyhardening.bak.20260413232007",
+      "bytes": 54366
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.prestigehard.bak.20260413225600",
+      "bytes": 53860
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.cleanupfix.bak.20260413222639",
+      "bytes": 53860
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorwire.bak.20260413212937",
+      "bytes": 51701
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorfix.bak.20260413215542",
+      "bytes": 51701
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorwire4.bak.20260413220903",
+      "bytes": 51701
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorwire2.bak.20260413220002",
+      "bytes": 51701
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorwire3.bak.20260413220136",
+      "bytes": 51701
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.persistedsponsors.bak.20260413203526",
+      "bytes": 50651
+    },
+    {
+      "file": "src/lib/styles/ff.css.bak.20260413135529",
+      "bytes": 50488
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorspotlight.bak.20260413201434",
+      "bytes": 48982
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsortierbenefits.bak.20260413161749",
+      "bytes": 48153
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorsuccesscard.bak.20260413161056",
+      "bytes": 46288
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorflow.bak.20260413160407",
+      "bytes": 45867
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorcta.bak.20260413160417",
+      "bytes": 45867
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.sponsorstatus.bak.20260413160642",
+      "bytes": 45861
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.checkoutscroll.bak.20260413155654",
+      "bytes": 45501
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.successcard2.bak.20260413155630",
+      "bytes": 43641
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.successcard.bak.20260413155422",
+      "bytes": 43641
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte.returnfix.bak.20260413153957",
+      "bytes": 43641
+    }
+  ],
+  "backup_files_count": 178,
+  "backup_files": [
+    ".env.local.auditfix.bak.20260413210708",
+    ".env.local.bak.20260413145842",
+    ".env.local.bak.20260413150159",
+    "data/sponsors.json.cleanupfix.bak.20260413222639",
+    "data/sponsors.json.prestigehard.bak.20260413225600",
+    "package.json.bak.20260411201932",
+    "src/lib/components/campaign/StripeCheckoutPanel.svelte.bak.20260413152150",
+    "src/lib/components/campaign/StripeCheckoutPanel.svelte.confirmpatch.bak.20260413154335",
+    "src/lib/components/campaign/StripeCheckoutPanel.svelte.envfix.bak.20260413153509",
+    "src/lib/components/campaign/StripeCheckoutPanel.svelte.returnurl.bak.20260413154156",
+    "src/lib/components/platform/HowItWorksSection.svelte.bak.20260411204525",
+    "src/lib/components/platform/PlatformHero.svelte.bak.20260411203821",
+    "src/lib/components/platform/PlatformTopBar.svelte.bak.20260411203821",
+    "src/lib/components/platform/ProductPreviewSection.svelte.bak.20260411211309",
+    "src/lib/components/platform/RevenueLanesSection.svelte.bak.20260411204525",
+    "src/lib/components/platform/SponsorCommerceSection.svelte.bak.20260411211918",
+    "src/lib/components/platform/UseCasesSection.svelte.bak.20260411211918",
+    "src/lib/components/ui/ProofStrip.svelte.bak.20260411204525",
+    "src/lib/components/ui/SectionHeading.svelte.bak.20260411234248",
+    "src/lib/content/platform-home.ts.bak.20260411203821",
+    "src/lib/content/platform-home.ts.bak.20260411204042",
+    "src/lib/content/platform-home.ts.bak.20260411211309",
+    "src/lib/content/platform-home.ts.bak.fixdup.20260411234633",
+    "src/lib/server/sponsor-store.ts.auditfix.bak.20260413210708",
+    "src/lib/server/sponsor-store.ts.cleanupfix.bak.20260413222639",
+    "src/lib/server/sponsor-store.ts.prestigehard.bak.20260413225600",
+    "src/lib/server/sponsor-store.ts.storetrace.bak.20260413211227",
+    "src/lib/server/stripe.ts.bak.20260413143906",
+    "src/lib/server/stripe.ts.bak.20260413144355",
+    "src/lib/server/stripe.ts.bak.20260413151600",
+    "src/lib/server/stripe.ts.sponsorcheckout.bak.20260413160351",
+    "src/lib/server/stripe.ts.webhookexports.bak.20260413203513",
+    "src/lib/server/stripe.ts.webhookfix.bak.20260413203930",
+    "src/lib/styles/app.css.sponsorbenefits.bak.20260413161804",
+    "src/lib/styles/app.css.sponsorcardpolish.bak.20260413161110",
+    "src/lib/styles/app.css.sponsorspotlight.bak.20260413201439",
+    "src/lib/styles/app.css.successcard.bak.20260413155506",
+    "src/lib/styles/ff.css.20260412211208.bak",
+    "src/lib/styles/ff.css.20260412211344.bak",
+    "src/lib/styles/ff.css.bak.20260412225240",
+    "src/lib/styles/ff.css.bak.20260412230429",
+    "src/lib/styles/ff.css.bak.20260412231112",
+    "src/lib/styles/ff.css.bak.20260412234647",
+    "src/lib/styles/ff.css.bak.20260412234946",
+    "src/lib/styles/ff.css.bak.20260412_175600",
+    "src/lib/styles/ff.css.bak.20260413000015",
+    "src/lib/styles/ff.css.bak.20260413000331",
+    "src/lib/styles/ff.css.bak.20260413000741",
+    "src/lib/styles/ff.css.bak.20260413001106",
+    "src/lib/styles/ff.css.bak.20260413001722",
+    "src/lib/styles/ff.css.bak.20260413002052",
+    "src/lib/styles/ff.css.bak.20260413002346",
+    "src/lib/styles/ff.css.bak.20260413005600",
+    "src/lib/styles/ff.css.bak.20260413010358",
+    "src/lib/styles/ff.css.bak.20260413121158",
+    "src/lib/styles/ff.css.bak.20260413134141",
+    "src/lib/styles/ff.css.bak.20260413135529",
+    "src/lib/styles/ff.css.bak.20260413140502",
+    "src/lib/styles/ff.css.bak.20260413141802",
+    "src/lib/styles/ff.css.bak.20260414125947",
+    "src/lib/styles/ff.css.bak.campaign_breakpoint_tune.20260414155356",
+    "src/lib/styles/ff.css.bak.campaign_canonical_rail.20260414154822",
+    "src/lib/styles/ff.css.bak.campaign_fluid_desktop.20260414155913",
+    "src/lib/styles/ff.css.bak.campaign_half_cleanup.20260414180413",
+    "src/lib/styles/ff.css.bak.campaign_hero_zoomfix.20260414153947",
+    "src/lib/styles/ff.css.bak.campaign_prestige.20260414153242",
+    "src/lib/styles/ff.css.bak.chrome_density.20260414130615",
+    "src/lib/styles/ff.css.bak.dashboard_compress_launch.20260414150948",
+    "src/lib/styles/ff.css.bak.first_half_refactor.20260414160834",
+    "src/lib/styles/ff.css.bak.growth_sponsor_close_rate.20260414150236",
+    "src/lib/styles/ff.css.bak.hero_sponsor_tighten.20260414150622",
+    "src/lib/styles/ff.css.bak.lightfix.20260414130159",
+    "src/lib/styles/ff.css.bak.onboarding_prestige.20260414152550",
+    "src/lib/styles/ff.css.perfcss.bak.20260414005258",
+    "src/lib/styles/ff.css.perfcss.bak.20260414005258.perfcss.bak.20260414013749",
+    "src/lib/styles/ff.css.perfcss.bak.20260414014351",
+    "src/lib/styles/ff.css.sourceblurkill.bak.20260414014703",
+    "src/lib/styles/flagship.css.bak.20260411234248",
+    "src/lib/ui/ff-surface.ts.bak.20260412_165625",
+    "src/lib/utils/ff-theme.ts.bak.20260412224347",
+    "src/routes/(platform)/+layout.svelte.bak.20260411203242",
+    "src/routes/(platform)/+layout.svelte.bak.20260412224124",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260411213226",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260411234248",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412224124",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412224953",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412225313",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412225435",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412_160532",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412_161051",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412_165625",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412_165857",
+    "src/routes/(platform)/platform/+page.svelte.bak.20260412_170415",
+    "src/routes/(platform)/platform/+page.svelte.bak.cta_hierarchy.20260414140852",
+    "src/routes/(platform)/platform/+page.svelte.bak.hero_sponsor_tighten.20260414150622",
+    "src/routes/(platform)/platform/+page.svelte.bak.microcopy.20260414142225",
+    "src/routes/(platform)/platform/+page.svelte.bak.pricing_close_rate.20260414145427",
+    "src/routes/(platform)/platform/+page.svelte.bak.pricing_close_rate.20260414145544",
+    "src/routes/(platform)/platform/+page.svelte.bak.sponsor_bullets_render.20260414145016",
+    "src/routes/(platform)/platform/+page.svelte.bak.sponsor_monetization.20260414143611",
+    "src/routes/(platform)/platform/+page.svelte.bak.sponsor_value_pricing.20260414144710",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412224124",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412230547",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412_161051",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412_165625",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412_165857",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412_170415",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260412_191056",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.20260413140449",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.cta_hierarchy.20260414140852",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.dashboard_compress_launch.20260414150948",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.dashboard_repair.20260414151917",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.microcopy.20260414142225",
+    "src/routes/(platform)/platform/dashboard/+page.svelte.bak.revenue_psychology.20260414151436",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412224124",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412231143",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412231630",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412233243",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412233557",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412_161051",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412_165625",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412_165857",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260412_170415",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.20260413141743",
+    "src/routes/(platform)/platform/onboarding/+page.svelte.bak.onboarding_prestige.20260414152550",
+    "src/routes/+layout.svelte.bak.20260411203242",
+    "src/routes/+layout.svelte.bak.20260411205845",
+    "src/routes/+layout.svelte.bak.20260412_165625",
+    "src/routes/+layout.svelte.bak.20260412_165857",
+    "src/routes/api/stripe/webhook/+server.ts.auditfix.bak.20260413210708",
+    "src/routes/api/stripe/webhook/+server.ts.envfix.bak.20260413211534",
+    "src/routes/api/stripe/webhook/+server.ts.secretfix.bak.20260413203930",
+    "src/routes/c/[slug]/+page.server.ts.sponsorload.bak.20260413203518",
+    "src/routes/c/[slug]/+page.svelte.bak.20260412234250",
+    "src/routes/c/[slug]/+page.svelte.bak.20260412234647",
+    "src/routes/c/[slug]/+page.svelte.bak.20260412234946",
+    "src/routes/c/[slug]/+page.svelte.bak.20260412_161051",
+    "src/routes/c/[slug]/+page.svelte.bak.20260412_165625",
+    "src/routes/c/[slug]/+page.svelte.bak.20260412_165857",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413000015",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413000331",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413001106",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413001722",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413002052",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413002346",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413005600",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413010358",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413121158",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413143906",
+    "src/routes/c/[slug]/+page.svelte.bak.20260413144355",
+    "src/routes/c/[slug]/+page.svelte.bak.campaign_prestige.20260414153242",
+    "src/routes/c/[slug]/+page.svelte.checkoutscroll.bak.20260413155654",
+    "src/routes/c/[slug]/+page.svelte.cleanupfix.bak.20260413222639",
+    "src/routes/c/[slug]/+page.svelte.embed.bak.20260413152817",
+    "src/routes/c/[slug]/+page.svelte.formfix.bak.20260413153949",
+    "src/routes/c/[slug]/+page.svelte.livecopyhardening.bak.20260413232007",
+    "src/routes/c/[slug]/+page.svelte.perfguard.bak.20260414003542",
+    "src/routes/c/[slug]/+page.svelte.persistedsponsors.bak.20260413203526",
+    "src/routes/c/[slug]/+page.svelte.prestigefinish.bak.20260414000902",
+    "src/routes/c/[slug]/+page.svelte.prestigehard.bak.20260413225600",
+    "src/routes/c/[slug]/+page.svelte.rescue.bak.20260413144916",
+    "src/routes/c/[slug]/+page.svelte.returnfix.bak.20260413153957",
+    "src/routes/c/[slug]/+page.svelte.sponsorcta.bak.20260413160417",
+    "src/routes/c/[slug]/+page.svelte.sponsorfix.bak.20260413215542",
+    "src/routes/c/[slug]/+page.svelte.sponsorflow.bak.20260413160407",
+    "src/routes/c/[slug]/+page.svelte.sponsorspotlight.bak.20260413201434",
+    "src/routes/c/[slug]/+page.svelte.sponsorstatus.bak.20260413160642",
+    "src/routes/c/[slug]/+page.svelte.sponsorsuccesscard.bak.20260413161056",
+    "src/routes/c/[slug]/+page.svelte.sponsortierbenefits.bak.20260413161749",
+    "src/routes/c/[slug]/+page.svelte.sponsorwire.bak.20260413212937",
+    "src/routes/c/[slug]/+page.svelte.sponsorwire2.bak.20260413220002",
+    "src/routes/c/[slug]/+page.svelte.sponsorwire3.bak.20260413220136",
+    "src/routes/c/[slug]/+page.svelte.sponsorwire4.bak.20260413220903",
+    "src/routes/c/[slug]/+page.svelte.successcard.bak.20260413155422",
+    "src/routes/c/[slug]/+page.svelte.successcard2.bak.20260413155630",
+    "src/routes/c/[slug]/checkout/+server.ts.returnfix.bak.20260413154831",
+    "src/routes/c/[slug]/sponsor/+server.ts.fixslash.bak.20260413160607",
+    "src/routes/c/[slug]/sponsor/+server.ts.sponsorfix.bak.20260413215542"
+  ],
+  "route_dirs": {
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes": [
+      "+layout.svelte",
+      "+layout.svelte.bak.20260411203242",
+      "+layout.svelte.bak.20260411205845",
+      "+layout.svelte.bak.20260412_165625",
+      "+layout.svelte.bak.20260412_165857",
+      "+page.server.ts"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)": [
+      "+layout.svelte",
+      "+layout.svelte.bak.20260411203242",
+      "+layout.svelte.bak.20260412224124"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform": [
+      "+page.svelte",
+      "+page.svelte.bak.20260411213226",
+      "+page.svelte.bak.20260411234248",
+      "+page.svelte.bak.20260412224124",
+      "+page.svelte.bak.20260412224953",
+      "+page.svelte.bak.20260412225313",
+      "+page.svelte.bak.20260412225435",
+      "+page.svelte.bak.20260412_160532",
+      "+page.svelte.bak.20260412_161051",
+      "+page.svelte.bak.20260412_165625",
+      "+page.svelte.bak.20260412_165857",
+      "+page.svelte.bak.20260412_170415",
+      "+page.svelte.bak.cta_hierarchy.20260414140852",
+      "+page.svelte.bak.hero_sponsor_tighten.20260414150622",
+      "+page.svelte.bak.microcopy.20260414142225",
+      "+page.svelte.bak.pricing_close_rate.20260414145427",
+      "+page.svelte.bak.pricing_close_rate.20260414145544",
+      "+page.svelte.bak.sponsor_bullets_render.20260414145016",
+      "+page.svelte.bak.sponsor_monetization.20260414143611",
+      "+page.svelte.bak.sponsor_value_pricing.20260414144710"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/dashboard": [
+      "+page.svelte",
+      "+page.svelte.bak.20260412224124",
+      "+page.svelte.bak.20260412230547",
+      "+page.svelte.bak.20260412_161051",
+      "+page.svelte.bak.20260412_165625",
+      "+page.svelte.bak.20260412_165857",
+      "+page.svelte.bak.20260412_170415",
+      "+page.svelte.bak.20260412_191056",
+      "+page.svelte.bak.20260413140449",
+      "+page.svelte.bak.cta_hierarchy.20260414140852",
+      "+page.svelte.bak.dashboard_compress_launch.20260414150948",
+      "+page.svelte.bak.dashboard_repair.20260414151917",
+      "+page.svelte.bak.microcopy.20260414142225",
+      "+page.svelte.bak.revenue_psychology.20260414151436"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/demo": [
+      "+page.svelte"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/onboarding": [
+      "+page.svelte",
+      "+page.svelte.bak.20260412224124",
+      "+page.svelte.bak.20260412231143",
+      "+page.svelte.bak.20260412231630",
+      "+page.svelte.bak.20260412233243",
+      "+page.svelte.bak.20260412233557",
+      "+page.svelte.bak.20260412_161051",
+      "+page.svelte.bak.20260412_165625",
+      "+page.svelte.bak.20260412_165857",
+      "+page.svelte.bak.20260412_170415",
+      "+page.svelte.bak.20260413141743",
+      "+page.svelte.bak.onboarding_prestige.20260414152550"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/pricing": [
+      "+page.svelte"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/api/stripe/webhook": [
+      "+server.ts",
+      "+server.ts.auditfix.bak.20260413210708",
+      "+server.ts.envfix.bak.20260413211534",
+      "+server.ts.secretfix.bak.20260413203930"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/c/[slug]": [
+      "+page.server.ts",
+      "+page.server.ts.sponsorload.bak.20260413203518",
+      "+page.svelte",
+      "+page.svelte.bak.20260412234250",
+      "+page.svelte.bak.20260412234647",
+      "+page.svelte.bak.20260412234946",
+      "+page.svelte.bak.20260412_161051",
+      "+page.svelte.bak.20260412_165625",
+      "+page.svelte.bak.20260412_165857",
+      "+page.svelte.bak.20260413000015",
+      "+page.svelte.bak.20260413000331",
+      "+page.svelte.bak.20260413001106",
+      "+page.svelte.bak.20260413001722",
+      "+page.svelte.bak.20260413002052",
+      "+page.svelte.bak.20260413002346",
+      "+page.svelte.bak.20260413005600",
+      "+page.svelte.bak.20260413010358",
+      "+page.svelte.bak.20260413121158",
+      "+page.svelte.bak.20260413143906",
+      "+page.svelte.bak.20260413144355",
+      "+page.svelte.bak.campaign_prestige.20260414153242",
+      "+page.svelte.checkoutscroll.bak.20260413155654",
+      "+page.svelte.cleanupfix.bak.20260413222639",
+      "+page.svelte.embed.bak.20260413152817",
+      "+page.svelte.formfix.bak.20260413153949",
+      "+page.svelte.livecopyhardening.bak.20260413232007",
+      "+page.svelte.perfguard.bak.20260414003542",
+      "+page.svelte.persistedsponsors.bak.20260413203526",
+      "+page.svelte.prestigefinish.bak.20260414000902",
+      "+page.svelte.prestigehard.bak.20260413225600",
+      "+page.svelte.rescue.bak.20260413144916",
+      "+page.svelte.returnfix.bak.20260413153957",
+      "+page.svelte.sponsorcta.bak.20260413160417",
+      "+page.svelte.sponsorfix.bak.20260413215542",
+      "+page.svelte.sponsorflow.bak.20260413160407",
+      "+page.svelte.sponsorspotlight.bak.20260413201434",
+      "+page.svelte.sponsorstatus.bak.20260413160642",
+      "+page.svelte.sponsorsuccesscard.bak.20260413161056",
+      "+page.svelte.sponsortierbenefits.bak.20260413161749",
+      "+page.svelte.sponsorwire.bak.20260413212937",
+      "+page.svelte.sponsorwire2.bak.20260413220002",
+      "+page.svelte.sponsorwire3.bak.20260413220136",
+      "+page.svelte.sponsorwire4.bak.20260413220903",
+      "+page.svelte.successcard.bak.20260413155422",
+      "+page.svelte.successcard2.bak.20260413155630"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/c/[slug]/checkout": [
+      "+server.ts",
+      "+server.ts.returnfix.bak.20260413154831"
+    ],
+    "/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/c/[slug]/sponsor": [
+      "+server.ts",
+      "+server.ts.fixslash.bak.20260413160607",
+      "+server.ts.sponsorfix.bak.20260413215542"
+    ]
+  },
+  "css_markers": {
+    "src/lib/styles/ff.css": [
+      "FF_CAMPAIGN_HALF_CLEANUP_V1",
+      "FF_POLISH_PASS_V1_START",
+      "FF_POLISH_PASS_V1_END",
+      "FF_PLATFORM_HOME_POLISH_V1_START",
+      "FF_PLATFORM_HOME_POLISH_V1_END",
+      "FF_DASHBOARD_POLISH_V1_START",
+      "FF_DASHBOARD_POLISH_V1_END",
+      "FF_ONBOARDING_POLISH_V1_START",
+      "FF_ONBOARDING_POLISH_V1_END",
+      "FF_PERF_SAFE_GLOBAL_V1_START",
+      "FF_PERF_SAFE_GLOBAL_V1_END",
+      "FF_SAFE_PREMIUM_RESTORE_V1_START",
+      "FF_SAFE_PREMIUM_RESTORE_V1_END",
+      "FF_CHROME_DENSITY_PRESTIGE_V1_START",
+      "FF_CHROME_DENSITY_PRESTIGE_V1_END",
+      "FF_GROWTH_SPONSOR_CLOSE_RATE_V1_START",
+      "FF_GROWTH_SPONSOR_CLOSE_RATE_V1_END",
+      "FF_HERO_COMPRESSION_SPONSOR_TIGHTEN_V1_START",
+      "FF_HERO_COMPRESSION_SPONSOR_TIGHTEN_V1_END",
+      "FF_DASHBOARD_COMPRESSION_LAUNCH_POLISH_V1_START",
+      "FF_DASHBOARD_COMPRESSION_LAUNCH_POLISH_V1_END",
+      "FF_ONBOARDING_PRESTIGE_V1_START",
+      "FF_ONBOARDING_PRESTIGE_V1_END",
+      "FF_CAMPAIGN_FLUID_DESKTOP_V3_START",
+      "FF_CAMPAIGN_FLUID_DESKTOP_V3_END"
+    ]
+  },
+  "phrase_hits": {
+    "operator dashboard": [
+      "sales_mode_audit.json",
+      "sales_mode_audit_grep.txt",
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/dashboard/+page.svelte",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "recurring support": [
+      "sales_mode_audit.json",
+      "sales_mode_audit_grep.txt",
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "nonprofit": [
+      "sales_mode_audit.json",
+      "sales_mode_audit_grep.txt",
+      "src/lib/content/platform-home.ts",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "school": [
+      "sales_mode_audit.json",
+      "sales_mode_audit_grep.txt",
+      "src/lib/content/platform-home.ts",
+      "src/lib/styles/ff.css",
+      "src/lib/utils/ff-theme.ts",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "club": [
+      "sales_mode_audit.json",
+      "sales_mode_audit_grep.txt",
+      "src/lib/content/platform-home.ts",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "sponsor packages": [
+      "docs/PRODUCT_RESET_CONTRACT.md",
+      "sales_mode_audit_grep.txt",
+      "src/lib/content/platform-home.ts",
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/dashboard/+page.svelte",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "sponsor revenue": [
+      "docs/PRODUCT_RESET_CONTRACT.md",
+      "sales_mode_audit_grep.txt",
+      "src/lib/styles/ff.css",
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/dashboard/+page.svelte"
+    ],
+    "launch-ready": [
+      "sales_mode_audit_grep.txt",
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "monetize": [
+      "sales_mode_audit_grep.txt",
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ],
+    "coach": [
+      "sales_mode_audit_grep.txt"
+    ],
+    "donate securely now": [
+      "src/routes/c/[slug]/+page.svelte"
+    ],
+    "launch your fundraiser": [
+      "src/routes/(platform)/platform/+page.svelte"
+    ],
+    "preview live page": [
+      "src/routes/(platform)/platform/+page.svelte",
+      "src/routes/(platform)/platform/dashboard/+page.svelte",
+      "src/routes/(platform)/platform/onboarding/+page.svelte"
+    ]
+  },
+  "giant_text_files": [
+    {
+      "file": "sales_mode_audit_grep.txt",
+      "bytes": 886412
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "bytes": 119425
+    },
+    {
+      "file": "src/lib/styles/ff.css",
+      "bytes": 101531
+    }
+  ],
+  "authority_hotspots": [
+    {
+      "file": "sales_mode_audit_grep.txt",
+      "score": 6049
+    },
+    {
+      "file": "src/lib/styles/ff.css",
+      "score": 988
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.svelte",
+      "score": 460
+    },
+    {
+      "file": "src/routes/(platform)/platform/+page.svelte",
+      "score": 147
+    },
+    {
+      "file": "src/lib/content/platform-home.ts",
+      "score": 129
+    },
+    {
+      "file": "src/routes/(platform)/platform/onboarding/+page.svelte",
+      "score": 107
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/summary.md",
+      "score": 102
+    },
+    {
+      "file": "src/routes/(platform)/platform/dashboard/+page.svelte",
+      "score": 101
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/ownership_snapshot.json",
+      "score": 100
+    },
+    {
+      "file": "sales_mode_audit.json",
+      "score": 94
+    },
+    {
+      "file": "artifacts/css_audit/defined_ff_classes.txt",
+      "score": 73
+    },
+    {
+      "file": "src/lib/server/stripe.ts",
+      "score": 70
+    },
+    {
+      "file": "src/lib/styles/_archive/20260412_165607/app.css",
+      "score": 45
+    },
+    {
+      "file": "docs/PRODUCT_RESET_CONTRACT.md",
+      "score": 40
+    },
+    {
+      "file": "docs/REPO_OWNERSHIP.md",
+      "score": 40
+    },
+    {
+      "file": "artifacts/css_audit/used_ff_classes.txt",
+      "score": 37
+    },
+    {
+      "file": "artifacts/css_audit/stale_in_css.txt",
+      "score": 36
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/route_imports.txt",
+      "score": 35
+    },
+    {
+      "file": "src/routes/c/[slug]/sponsor/+server.ts",
+      "score": 34
+    },
+    {
+      "file": "package.json",
+      "score": 25
+    },
+    {
+      "file": "src/lib/components/platform/PlatformChrome.svelte",
+      "score": 25
+    },
+    {
+      "file": "src/lib/config/ff-launch-state.ts",
+      "score": 23
+    },
+    {
+      "file": "src/lib/utils/ff-theme.ts",
+      "score": 20
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/backup_files.txt",
+      "score": 20
+    },
+    {
+      "file": "src/lib/server/sponsor-store.ts",
+      "score": 19
+    },
+    {
+      "file": "src/routes/api/stripe/webhook/+server.ts",
+      "score": 19
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/platform_components.txt",
+      "score": 18
+    },
+    {
+      "file": "README.md",
+      "score": 15
+    },
+    {
+      "file": "src/routes/c/[slug]/+page.server.ts",
+      "score": 14
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/routes.txt",
+      "score": 14
+    },
+    {
+      "file": "src/lib/components/campaign/StripeCheckoutPanel.svelte",
+      "score": 13
+    },
+    {
+      "file": "artifacts/css_audit/template_ff_ids.txt",
+      "score": 12
+    },
+    {
+      "file": "src/routes/c/[slug]/checkout/+server.ts",
+      "score": 8
+    },
+    {
+      "file": "artifacts/css_audit/template_ff_hooks.txt",
+      "score": 6
+    },
+    {
+      "file": "artifacts/css_audit/missing_hooks_in_css.txt",
+      "score": 6
+    },
+    {
+      "file": "artifacts/css_audit/hooks_not_referenced_in_css.txt",
+      "score": 6
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/content_refs.txt",
+      "score": 6
+    },
+    {
+      "file": "artifacts/repo_audit/20260411_235918/content_files.txt",
+      "score": 5
+    },
+    {
+      "file": "src/routes/(platform)/platform/pricing/+page.svelte",
+      "score": 4
+    },
+    {
+      "file": "src/lib/components/platform/CloseBand.svelte",
+      "score": 3
+    },
+    {
+      "file": "data/sponsors.json",
+      "score": 2
+    },
+    {
+      "file": "src/lib/components/platform/SponsorCommerceSection.svelte",
+      "score": 2
+    },
+    {
+      "file": "src/lib/components/platform/PlatformTopBar.svelte",
+      "score": 2
+    },
+    {
+      "file": "src/routes/(platform)/+layout.svelte",
+      "score": 2
+    },
+    {
+      "file": ".backup_runes_wave_20260411202735/src/lib/components/platform/PlatformTopBar.svelte",
+      "score": 2
+    },
+    {
+      "file": "src/app.d.ts",
+      "score": 1
+    },
+    {
+      "file": "src/routes/+page.server.ts",
+      "score": 1
+    },
+    {
+      "file": "src/lib/components/platform/FaqSection.svelte",
+      "score": 1
+    },
+    {
+      "file": "src/lib/components/platform/PlatformHero.svelte",
+      "score": 1
+    },
+    {
+      "file": "src/lib/components/platform/UseCasesSection.svelte",
+      "score": 1
+    },
+    {
+      "file": "src/lib/styles/_archive/20260412_165607/ff-surface.ts",
+      "score": 1
+    },
+    {
+      "file": ".backup_runes_wave_20260411202735/src/lib/components/platform/SponsorCommerceSection.svelte",
+      "score": 1
+    },
+    {
+      "file": ".backup_runes_wave_20260411202735/src/lib/components/platform/CloseBand.svelte",
+      "score": 1
+    }
+  ]
+}

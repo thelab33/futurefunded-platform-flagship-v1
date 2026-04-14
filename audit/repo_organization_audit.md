@@ -1,0 +1,360 @@
+# Repo organization audit
+
+- Repo root: `/home/elCUCO/futurefunded-platform-flagship-v1`
+- Total files scanned: **290**
+
+## Top file types
+- `.svelte`: 38
+- `.txt`: 21
+- `.ts`: 17
+- `.css`: 7
+- `[no_ext]`: 6
+- `.20260412_165625`: 6
+- `.json`: 5
+- `.20260412_165857`: 5
+- `.md`: 4
+- `.20260412224124`: 4
+- `.20260412_161051`: 4
+- `.sh`: 3
+- `.20260413210708`: 3
+- `.20260413222639`: 3
+- `.20260413225600`: 3
+- `.20260411203821`: 3
+- `.20260411234248`: 3
+- `.20260411204525`: 3
+- `.20260412_170415`: 3
+- `.js`: 2
+
+## Largest files
+- `sales_mode_audit_grep.txt` — 886,412 bytes
+- `src/lib/styles/ff.css.bak.20260412_175600` — 299,873 bytes
+- `pnpm-lock.yaml` — 119,425 bytes
+- `src/lib/styles/ff.css.20260412211344.bak` — 117,225 bytes
+- `src/lib/styles/ff.css.20260412211208.bak` — 111,214 bytes
+- `src/lib/styles/ff.css.bak.campaign_canonical_rail.20260414154822` — 103,401 bytes
+- `src/lib/styles/ff.css.bak.campaign_fluid_desktop.20260414155913` — 102,794 bytes
+- `src/lib/styles/ff.css.bak.first_half_refactor.20260414160834` — 101,935 bytes
+- `src/lib/styles/ff.css.bak.campaign_breakpoint_tune.20260414155356` — 101,656 bytes
+- `src/lib/styles/ff.css` — 101,531 bytes
+- `src/lib/styles/ff.css.bak.campaign_half_cleanup.20260414180413` — 101,497 bytes
+- `src/lib/styles/ff.css.bak.campaign_hero_zoomfix.20260414153947` — 100,535 bytes
+- `src/lib/styles/ff.css.bak.campaign_prestige.20260414153242` — 98,424 bytes
+- `src/lib/styles/ff.css.bak.onboarding_prestige.20260414152550` — 96,778 bytes
+- `src/lib/styles/ff.css.bak.dashboard_compress_launch.20260414150948` — 95,170 bytes
+- `src/lib/styles/ff.css.bak.hero_sponsor_tighten.20260414150622` — 93,670 bytes
+- `src/lib/styles/ff.css.bak.growth_sponsor_close_rate.20260414150236` — 90,794 bytes
+- `src/lib/styles/ff.css.bak.lightfix.20260414130159` — 86,399 bytes
+- `src/lib/styles/ff.css.bak.chrome_density.20260414130615` — 86,300 bytes
+- `src/lib/styles/ff.css.perfcss.bak.20260414005258` — 85,364 bytes
+
+## Backup clutter: 178 files
+- `.env.local.auditfix.bak.20260413210708`
+- `.env.local.bak.20260413145842`
+- `.env.local.bak.20260413150159`
+- `data/sponsors.json.cleanupfix.bak.20260413222639`
+- `data/sponsors.json.prestigehard.bak.20260413225600`
+- `package.json.bak.20260411201932`
+- `src/lib/components/campaign/StripeCheckoutPanel.svelte.bak.20260413152150`
+- `src/lib/components/campaign/StripeCheckoutPanel.svelte.confirmpatch.bak.20260413154335`
+- `src/lib/components/campaign/StripeCheckoutPanel.svelte.envfix.bak.20260413153509`
+- `src/lib/components/campaign/StripeCheckoutPanel.svelte.returnurl.bak.20260413154156`
+- `src/lib/components/platform/HowItWorksSection.svelte.bak.20260411204525`
+- `src/lib/components/platform/PlatformHero.svelte.bak.20260411203821`
+- `src/lib/components/platform/PlatformTopBar.svelte.bak.20260411203821`
+- `src/lib/components/platform/ProductPreviewSection.svelte.bak.20260411211309`
+- `src/lib/components/platform/RevenueLanesSection.svelte.bak.20260411204525`
+- `src/lib/components/platform/SponsorCommerceSection.svelte.bak.20260411211918`
+- `src/lib/components/platform/UseCasesSection.svelte.bak.20260411211918`
+- `src/lib/components/ui/ProofStrip.svelte.bak.20260411204525`
+- `src/lib/components/ui/SectionHeading.svelte.bak.20260411234248`
+- `src/lib/content/platform-home.ts.bak.20260411203821`
+- `src/lib/content/platform-home.ts.bak.20260411204042`
+- `src/lib/content/platform-home.ts.bak.20260411211309`
+- `src/lib/content/platform-home.ts.bak.fixdup.20260411234633`
+- `src/lib/server/sponsor-store.ts.auditfix.bak.20260413210708`
+- `src/lib/server/sponsor-store.ts.cleanupfix.bak.20260413222639`
+- `src/lib/server/sponsor-store.ts.prestigehard.bak.20260413225600`
+- `src/lib/server/sponsor-store.ts.storetrace.bak.20260413211227`
+- `src/lib/server/stripe.ts.bak.20260413143906`
+- `src/lib/server/stripe.ts.bak.20260413144355`
+- `src/lib/server/stripe.ts.bak.20260413151600`
+- `src/lib/server/stripe.ts.sponsorcheckout.bak.20260413160351`
+- `src/lib/server/stripe.ts.webhookexports.bak.20260413203513`
+- `src/lib/server/stripe.ts.webhookfix.bak.20260413203930`
+- `src/lib/styles/app.css.sponsorbenefits.bak.20260413161804`
+- `src/lib/styles/app.css.sponsorcardpolish.bak.20260413161110`
+- `src/lib/styles/app.css.sponsorspotlight.bak.20260413201439`
+- `src/lib/styles/app.css.successcard.bak.20260413155506`
+- `src/lib/styles/ff.css.20260412211208.bak`
+- `src/lib/styles/ff.css.20260412211344.bak`
+- `src/lib/styles/ff.css.bak.20260412225240`
+- `src/lib/styles/ff.css.bak.20260412230429`
+- `src/lib/styles/ff.css.bak.20260412231112`
+- `src/lib/styles/ff.css.bak.20260412234647`
+- `src/lib/styles/ff.css.bak.20260412234946`
+- `src/lib/styles/ff.css.bak.20260412_175600`
+- `src/lib/styles/ff.css.bak.20260413000015`
+- `src/lib/styles/ff.css.bak.20260413000331`
+- `src/lib/styles/ff.css.bak.20260413000741`
+- `src/lib/styles/ff.css.bak.20260413001106`
+- `src/lib/styles/ff.css.bak.20260413001722`
+
+## Route directories
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes`
+  - `+layout.svelte`
+  - `+layout.svelte.bak.20260411203242`
+  - `+layout.svelte.bak.20260411205845`
+  - `+layout.svelte.bak.20260412_165625`
+  - `+layout.svelte.bak.20260412_165857`
+  - `+page.server.ts`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)`
+  - `+layout.svelte`
+  - `+layout.svelte.bak.20260411203242`
+  - `+layout.svelte.bak.20260412224124`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform`
+  - `+page.svelte`
+  - `+page.svelte.bak.20260411213226`
+  - `+page.svelte.bak.20260411234248`
+  - `+page.svelte.bak.20260412224124`
+  - `+page.svelte.bak.20260412224953`
+  - `+page.svelte.bak.20260412225313`
+  - `+page.svelte.bak.20260412225435`
+  - `+page.svelte.bak.20260412_160532`
+  - `+page.svelte.bak.20260412_161051`
+  - `+page.svelte.bak.20260412_165625`
+  - `+page.svelte.bak.20260412_165857`
+  - `+page.svelte.bak.20260412_170415`
+  - `+page.svelte.bak.cta_hierarchy.20260414140852`
+  - `+page.svelte.bak.hero_sponsor_tighten.20260414150622`
+  - `+page.svelte.bak.microcopy.20260414142225`
+  - `+page.svelte.bak.pricing_close_rate.20260414145427`
+  - `+page.svelte.bak.pricing_close_rate.20260414145544`
+  - `+page.svelte.bak.sponsor_bullets_render.20260414145016`
+  - `+page.svelte.bak.sponsor_monetization.20260414143611`
+  - `+page.svelte.bak.sponsor_value_pricing.20260414144710`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/dashboard`
+  - `+page.svelte`
+  - `+page.svelte.bak.20260412224124`
+  - `+page.svelte.bak.20260412230547`
+  - `+page.svelte.bak.20260412_161051`
+  - `+page.svelte.bak.20260412_165625`
+  - `+page.svelte.bak.20260412_165857`
+  - `+page.svelte.bak.20260412_170415`
+  - `+page.svelte.bak.20260412_191056`
+  - `+page.svelte.bak.20260413140449`
+  - `+page.svelte.bak.cta_hierarchy.20260414140852`
+  - `+page.svelte.bak.dashboard_compress_launch.20260414150948`
+  - `+page.svelte.bak.dashboard_repair.20260414151917`
+  - `+page.svelte.bak.microcopy.20260414142225`
+  - `+page.svelte.bak.revenue_psychology.20260414151436`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/demo`
+  - `+page.svelte`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/onboarding`
+  - `+page.svelte`
+  - `+page.svelte.bak.20260412224124`
+  - `+page.svelte.bak.20260412231143`
+  - `+page.svelte.bak.20260412231630`
+  - `+page.svelte.bak.20260412233243`
+  - `+page.svelte.bak.20260412233557`
+  - `+page.svelte.bak.20260412_161051`
+  - `+page.svelte.bak.20260412_165625`
+  - `+page.svelte.bak.20260412_165857`
+  - `+page.svelte.bak.20260412_170415`
+  - `+page.svelte.bak.20260413141743`
+  - `+page.svelte.bak.onboarding_prestige.20260414152550`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/(platform)/platform/pricing`
+  - `+page.svelte`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/api/stripe/webhook`
+  - `+server.ts`
+  - `+server.ts.auditfix.bak.20260413210708`
+  - `+server.ts.envfix.bak.20260413211534`
+  - `+server.ts.secretfix.bak.20260413203930`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/c/[slug]`
+  - `+page.server.ts`
+  - `+page.server.ts.sponsorload.bak.20260413203518`
+  - `+page.svelte`
+  - `+page.svelte.bak.20260412234250`
+  - `+page.svelte.bak.20260412234647`
+  - `+page.svelte.bak.20260412234946`
+  - `+page.svelte.bak.20260412_161051`
+  - `+page.svelte.bak.20260412_165625`
+  - `+page.svelte.bak.20260412_165857`
+  - `+page.svelte.bak.20260413000015`
+  - `+page.svelte.bak.20260413000331`
+  - `+page.svelte.bak.20260413001106`
+  - `+page.svelte.bak.20260413001722`
+  - `+page.svelte.bak.20260413002052`
+  - `+page.svelte.bak.20260413002346`
+  - `+page.svelte.bak.20260413005600`
+  - `+page.svelte.bak.20260413010358`
+  - `+page.svelte.bak.20260413121158`
+  - `+page.svelte.bak.20260413143906`
+  - `+page.svelte.bak.20260413144355`
+  - `+page.svelte.bak.campaign_prestige.20260414153242`
+  - `+page.svelte.checkoutscroll.bak.20260413155654`
+  - `+page.svelte.cleanupfix.bak.20260413222639`
+  - `+page.svelte.embed.bak.20260413152817`
+  - `+page.svelte.formfix.bak.20260413153949`
+  - `+page.svelte.livecopyhardening.bak.20260413232007`
+  - `+page.svelte.perfguard.bak.20260414003542`
+  - `+page.svelte.persistedsponsors.bak.20260413203526`
+  - `+page.svelte.prestigefinish.bak.20260414000902`
+  - `+page.svelte.prestigehard.bak.20260413225600`
+  - `+page.svelte.rescue.bak.20260413144916`
+  - `+page.svelte.returnfix.bak.20260413153957`
+  - `+page.svelte.sponsorcta.bak.20260413160417`
+  - `+page.svelte.sponsorfix.bak.20260413215542`
+  - `+page.svelte.sponsorflow.bak.20260413160407`
+  - `+page.svelte.sponsorspotlight.bak.20260413201434`
+  - `+page.svelte.sponsorstatus.bak.20260413160642`
+  - `+page.svelte.sponsorsuccesscard.bak.20260413161056`
+  - `+page.svelte.sponsortierbenefits.bak.20260413161749`
+  - `+page.svelte.sponsorwire.bak.20260413212937`
+  - `+page.svelte.sponsorwire2.bak.20260413220002`
+  - `+page.svelte.sponsorwire3.bak.20260413220136`
+  - `+page.svelte.sponsorwire4.bak.20260413220903`
+  - `+page.svelte.successcard.bak.20260413155422`
+  - `+page.svelte.successcard2.bak.20260413155630`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/c/[slug]/checkout`
+  - `+server.ts`
+  - `+server.ts.returnfix.bak.20260413154831`
+- `/home/elCUCO/futurefunded-platform-flagship-v1/src/routes/c/[slug]/sponsor`
+  - `+server.ts`
+  - `+server.ts.fixslash.bak.20260413160607`
+  - `+server.ts.sponsorfix.bak.20260413215542`
+
+## CSS authority markers
+- `src/lib/styles/ff.css`
+  - `FF_CAMPAIGN_HALF_CLEANUP_V1`
+  - `FF_POLISH_PASS_V1_START`
+  - `FF_POLISH_PASS_V1_END`
+  - `FF_PLATFORM_HOME_POLISH_V1_START`
+  - `FF_PLATFORM_HOME_POLISH_V1_END`
+  - `FF_DASHBOARD_POLISH_V1_START`
+  - `FF_DASHBOARD_POLISH_V1_END`
+  - `FF_ONBOARDING_POLISH_V1_START`
+  - `FF_ONBOARDING_POLISH_V1_END`
+  - `FF_PERF_SAFE_GLOBAL_V1_START`
+  - `FF_PERF_SAFE_GLOBAL_V1_END`
+  - `FF_SAFE_PREMIUM_RESTORE_V1_START`
+  - `FF_SAFE_PREMIUM_RESTORE_V1_END`
+  - `FF_CHROME_DENSITY_PRESTIGE_V1_START`
+  - `FF_CHROME_DENSITY_PRESTIGE_V1_END`
+  - `FF_GROWTH_SPONSOR_CLOSE_RATE_V1_START`
+  - `FF_GROWTH_SPONSOR_CLOSE_RATE_V1_END`
+  - `FF_HERO_COMPRESSION_SPONSOR_TIGHTEN_V1_START`
+  - `FF_HERO_COMPRESSION_SPONSOR_TIGHTEN_V1_END`
+  - `FF_DASHBOARD_COMPRESSION_LAUNCH_POLISH_V1_START`
+  - `FF_DASHBOARD_COMPRESSION_LAUNCH_POLISH_V1_END`
+  - `FF_ONBOARDING_PRESTIGE_V1_START`
+  - `FF_ONBOARDING_PRESTIGE_V1_END`
+  - `FF_CAMPAIGN_FLUID_DESKTOP_V3_START`
+  - `FF_CAMPAIGN_FLUID_DESKTOP_V3_END`
+
+## Phrase hits
+- **club**
+  - `sales_mode_audit.json`
+  - `sales_mode_audit_grep.txt`
+  - `src/lib/content/platform-home.ts`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **coach**
+  - `sales_mode_audit_grep.txt`
+- **donate securely now**
+  - `src/routes/c/[slug]/+page.svelte`
+- **launch your fundraiser**
+  - `src/routes/(platform)/platform/+page.svelte`
+- **launch-ready**
+  - `sales_mode_audit_grep.txt`
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **monetize**
+  - `sales_mode_audit_grep.txt`
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **nonprofit**
+  - `sales_mode_audit.json`
+  - `sales_mode_audit_grep.txt`
+  - `src/lib/content/platform-home.ts`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **operator dashboard**
+  - `sales_mode_audit.json`
+  - `sales_mode_audit_grep.txt`
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/dashboard/+page.svelte`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **preview live page**
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/dashboard/+page.svelte`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **recurring support**
+  - `sales_mode_audit.json`
+  - `sales_mode_audit_grep.txt`
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **school**
+  - `sales_mode_audit.json`
+  - `sales_mode_audit_grep.txt`
+  - `src/lib/content/platform-home.ts`
+  - `src/lib/styles/ff.css`
+  - `src/lib/utils/ff-theme.ts`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **sponsor packages**
+  - `docs/PRODUCT_RESET_CONTRACT.md`
+  - `sales_mode_audit_grep.txt`
+  - `src/lib/content/platform-home.ts`
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/dashboard/+page.svelte`
+  - `src/routes/(platform)/platform/onboarding/+page.svelte`
+- **sponsor revenue**
+  - `docs/PRODUCT_RESET_CONTRACT.md`
+  - `sales_mode_audit_grep.txt`
+  - `src/lib/styles/ff.css`
+  - `src/routes/(platform)/platform/+page.svelte`
+  - `src/routes/(platform)/platform/dashboard/+page.svelte`
+
+## Giant text files
+- `sales_mode_audit_grep.txt` — 886,412 bytes
+- `pnpm-lock.yaml` — 119,425 bytes
+- `src/lib/styles/ff.css` — 101,531 bytes
+
+## Authority hotspots
+- `sales_mode_audit_grep.txt` — score 6049
+- `src/lib/styles/ff.css` — score 988
+- `src/routes/c/[slug]/+page.svelte` — score 460
+- `src/routes/(platform)/platform/+page.svelte` — score 147
+- `src/lib/content/platform-home.ts` — score 129
+- `src/routes/(platform)/platform/onboarding/+page.svelte` — score 107
+- `artifacts/repo_audit/20260411_235918/summary.md` — score 102
+- `src/routes/(platform)/platform/dashboard/+page.svelte` — score 101
+- `artifacts/repo_audit/20260411_235918/ownership_snapshot.json` — score 100
+- `sales_mode_audit.json` — score 94
+- `artifacts/css_audit/defined_ff_classes.txt` — score 73
+- `src/lib/server/stripe.ts` — score 70
+- `src/lib/styles/_archive/20260412_165607/app.css` — score 45
+- `docs/PRODUCT_RESET_CONTRACT.md` — score 40
+- `docs/REPO_OWNERSHIP.md` — score 40
+- `artifacts/css_audit/used_ff_classes.txt` — score 37
+- `artifacts/css_audit/stale_in_css.txt` — score 36
+- `artifacts/repo_audit/20260411_235918/route_imports.txt` — score 35
+- `src/routes/c/[slug]/sponsor/+server.ts` — score 34
+- `package.json` — score 25
+- `src/lib/components/platform/PlatformChrome.svelte` — score 25
+- `src/lib/config/ff-launch-state.ts` — score 23
+- `src/lib/utils/ff-theme.ts` — score 20
+- `artifacts/repo_audit/20260411_235918/backup_files.txt` — score 20
+- `src/lib/server/sponsor-store.ts` — score 19
+- `src/routes/api/stripe/webhook/+server.ts` — score 19
+- `artifacts/repo_audit/20260411_235918/platform_components.txt` — score 18
+- `README.md` — score 15
+- `src/routes/c/[slug]/+page.server.ts` — score 14
+- `artifacts/repo_audit/20260411_235918/routes.txt` — score 14
+- `src/lib/components/campaign/StripeCheckoutPanel.svelte` — score 13
+- `artifacts/css_audit/template_ff_ids.txt` — score 12
+- `src/routes/c/[slug]/checkout/+server.ts` — score 8
+- `artifacts/css_audit/template_ff_hooks.txt` — score 6
+- `artifacts/css_audit/missing_hooks_in_css.txt` — score 6
+- `artifacts/css_audit/hooks_not_referenced_in_css.txt` — score 6
+- `artifacts/repo_audit/20260411_235918/content_refs.txt` — score 6
+- `artifacts/repo_audit/20260411_235918/content_files.txt` — score 5
+- `src/routes/(platform)/platform/pricing/+page.svelte` — score 4
+- `src/lib/components/platform/CloseBand.svelte` — score 3

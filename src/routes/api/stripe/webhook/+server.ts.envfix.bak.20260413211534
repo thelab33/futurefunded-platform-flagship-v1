@@ -1,0 +1,99 @@
+import { stripe } from '$lib/server/stripe';
+import { addPaidSponsor, appendWebhookDebugLog } from '$lib/server/sponsor-store';
+import type Stripe from 'stripe';
+
+function asTier(value: string): 'community' | 'partner' | 'champion' | 'vip' {
+  if (value === 'vip' || value === 'champion' || value === 'partner') return value;
+  return 'community';
+}
+
+export async function POST({ request }) {
+  const sig = request.headers.get('stripe-signature');
+
+  if (!sig) {
+    return new Response('Missing stripe-signature header', { status: 400 });
+  }
+
+  const rawBody = await request.text();
+  await appendWebhookDebugLog({
+    stage: 'webhook_received',
+    hasSignature: Boolean(sig),
+    bodyLength: rawBody.length
+  });
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim() || '';
+
+  if (!webhookSecret) {
+    await appendWebhookDebugLog({
+      stage: 'missing_webhook_secret'
+    });
+    return new Response('Missing STRIPE_WEBHOOK_SECRET', { status: 500 });
+  }
+
+  let event: Stripe.Event;
+  try {
+    event = stripe().webhooks.constructEvent(rawBody, sig, webhookSecret);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Invalid webhook signature';
+    await appendWebhookDebugLog({
+      stage: 'construct_event_failed',
+      message
+    });
+    return new Response(message, { status: 400 });
+  }
+
+  try {
+    await appendWebhookDebugLog({
+      stage: 'event_parsed',
+      eventType: event.type
+    });
+
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object as Stripe.Checkout.Session;
+      const metadata = session.metadata ?? {};
+
+      await appendWebhookDebugLog({
+        stage: 'session_completed_seen',
+        sessionId: session.id,
+        metadataType: metadata.type ?? '',
+        slug: metadata.slug ?? '',
+        sponsorTier: metadata.sponsorTier ?? '',
+        sponsorEmail: metadata.sponsorEmail ?? ''
+      });
+
+      if (metadata.type === 'sponsor') {
+        await appendWebhookDebugLog({
+          stage: 'sponsor_session_matched',
+          sessionId: session.id
+        });
+
+        await appendWebhookDebugLog({
+          stage: 'sponsor_persisted',
+          sessionId: session.id
+        });
+
+        await addPaidSponsor({
+          id: session.id,
+          business: metadata.sponsorBusiness || 'Sponsor',
+          contact: metadata.sponsorContact || '',
+          email: metadata.sponsorEmail || session.customer_details?.email || '',
+          tier: asTier(metadata.sponsorTier || 'community'),
+          amount: session.amount_total ? Math.round(session.amount_total / 100) : 0,
+          slug: metadata.slug || 'connect-atx-elite',
+          orgName: metadata.orgName || 'Connect ATX Elite',
+          campaignName: metadata.campaignName || 'Spring Fundraiser',
+          status: 'paid',
+          createdAt: new Date().toISOString()
+        });
+      }
+    }
+
+    return new Response('ok', { status: 200 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Webhook handler failed';
+    await appendWebhookDebugLog({
+      stage: 'webhook_handler_failed',
+      message
+    });
+    return new Response(message, { status: 500 });
+  }
+}
