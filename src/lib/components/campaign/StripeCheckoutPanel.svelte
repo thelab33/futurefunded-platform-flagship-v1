@@ -101,7 +101,10 @@
 				throw new Error(payload?.error || 'Could not initialize payment.');
 			}
 
-			clientSecret = payload.clientSecret;
+			if (!payload.clientSecret) {
+						throw new Error(payload.error || 'Could not initialize payment.');
+					}
+					clientSecret = payload.clientSecret;
 
 			stripe = await loadStripe(publishableKey);
 
