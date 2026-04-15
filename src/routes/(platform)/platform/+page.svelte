@@ -1,5 +1,5 @@
-import { marketingHero, marketingNav, pricingCards, sponsorCards, marketingLinks } from '$lib/content/offer-presenters';
 <script lang="ts">
+	import { marketingHero, marketingNav, pricingCards, sponsorCards, marketingLinks } from '$lib/content/offer-presenters';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';

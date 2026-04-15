@@ -118,10 +118,10 @@
 	]);
 
 	const diagnostics = $derived<Diagnostic[]>([
-		{ label: 'Environment', value: 'local', tone: 'muted' },
+		{ label: 'Workspace', value: 'Preview-ready', tone: 'muted' },
 		{
-			label: 'Data mode',
-			value: dataMode === 'preview' ? 'Preview' : 'Live',
+			label: 'Launch mode',
+			value: dataMode === 'preview' ? 'Preview-ready' : 'Live',
 			tone: dataMode === 'preview' ? 'warn' : 'good'
 		},
 		{
@@ -129,7 +129,7 @@
 			value: paymentsConnected ? 'Connected' : 'Setup needed',
 			tone: paymentsConnected ? 'good' : 'warn'
 		},
-		{ label: 'Build lane', value: 'production-prep', tone: 'muted' },
+		{ label: 'Readiness', value: 'Production prep', tone: 'muted' },
 		{ label: 'Public route', value: publicPath, tone: 'muted' }
 	]);
 
@@ -437,7 +437,7 @@
 				</h2>
 
 				<p class="ff-copy ff-mt-3">
-					Know what mode the workspace is in, what is ready, and what still needs wiring before this
+					See what is ready, what still needs attention, and what to do next before this
 					becomes a real public launch.
 				</p>
 
