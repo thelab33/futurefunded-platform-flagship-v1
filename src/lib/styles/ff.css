@@ -4110,3 +4110,263 @@ html.ff-root[data-theme="dark"] .ff-campaignHeader__utility .ff-btn--quiet:hover
   }
 }
 /* FF_FINAL_DENSITY_RHYTHM_V1_END */
+
+/* === FF_WAVE1_DENSITY_PRESTIGE_V1_START === */
+:root {
+  --ff-space-2xs: 0.375rem;
+  --ff-space-xs: 0.625rem;
+  --ff-space-sm: 0.875rem;
+  --ff-space-md: 1.125rem;
+  --ff-space-lg: 1.5rem;
+  --ff-space-xl: 2rem;
+  --ff-space-2xl: 2.75rem;
+  --ff-space-3xl: 3.5rem;
+
+  --ff-section-py: clamp(2.2rem, 3.2vw, 3.75rem);
+  --ff-section-gap: clamp(0.9rem, 1.4vw, 1.35rem);
+  --ff-grid-gap: clamp(0.875rem, 1.4vw, 1.2rem);
+
+  --ff-card-pad: clamp(1rem, 1.35vw, 1.25rem);
+  --ff-card-pad-lg: clamp(1.125rem, 1.7vw, 1.5rem);
+  --ff-card-pad-tight: clamp(0.8rem, 1vw, 1rem);
+  --ff-card-gap: 0.8rem;
+
+  --ff-stack-tight: 0.45rem;
+  --ff-stack-sm: 0.65rem;
+  --ff-stack-md: 0.9rem;
+  --ff-stack-lg: 1.2rem;
+
+  --ff-text-max: 62ch;
+  --ff-copy-max: 68ch;
+
+  --ff-control-h: 3rem;
+  --ff-control-h-lg: 3.25rem;
+
+  --ff-radius-card: min(calc(var(--ff-radius, 28px) - 8px), 24px);
+  --ff-radius-panel: min(calc(var(--ff-radius, 28px) - 4px), 26px);
+}
+
+/* page rhythm */
+:where(.ff-page, .ff-shell, .ff-route, main[class*="ff-"]) {
+  --ff-page-section-gap: var(--ff-section-gap);
+}
+
+:where(
+  .ff-section,
+  .ff-band,
+  .ff-surfaceBlock,
+  .ff-pageSection,
+  [data-ff-section]
+) {
+  padding-block: var(--ff-section-py);
+}
+
+:where(
+  .ff-section,
+  .ff-band,
+  .ff-surfaceBlock,
+  .ff-pageSection,
+  [data-ff-section]
+) + :where(
+  .ff-section,
+  .ff-band,
+  .ff-surfaceBlock,
+  .ff-pageSection,
+  [data-ff-section]
+) {
+  margin-top: 0;
+}
+
+/* card density */
+:where(
+  .ff-card,
+  .ff-panel,
+  .ff-surface,
+  .ff-tile,
+  .ff-stat,
+  .ff-metric,
+  .ff-package,
+  .ff-tier,
+  .ff-step,
+  .ff-faqItem,
+  .ff-teamCard,
+  .ff-storyCard,
+  .ff-checkoutCard,
+  .ff-summaryCard,
+  .ff-shellCard
+) {
+  padding: var(--ff-card-pad);
+  border-radius: var(--ff-radius-card);
+  gap: var(--ff-card-gap);
+}
+
+:where(
+  .ff-card--lg,
+  .ff-panel--lg,
+  .ff-heroCard,
+  .ff-launchCard,
+  .ff-spotlightCard
+) {
+  padding: var(--ff-card-pad-lg);
+  border-radius: var(--ff-radius-panel);
+}
+
+:where(
+  .ff-card--tight,
+  .ff-kpi,
+  .ff-stat,
+  .ff-metric,
+  .ff-chip,
+  .ff-pillCard,
+  .ff-miniCard,
+  .ff-diagnosticRow
+) {
+  padding: var(--ff-card-pad-tight);
+}
+
+/* grid rhythm */
+:where(
+  .ff-grid,
+  .ff-cardGrid,
+  .ff-metricsGrid,
+  .ff-packageGrid,
+  .ff-teamGrid,
+  .ff-faqGrid,
+  .ff-actionGrid,
+  .ff-kpiGrid
+) {
+  gap: var(--ff-grid-gap);
+}
+
+/* vertical stacks */
+:where(
+  .ff-stack,
+  .ff-copyStack,
+  .ff-sectionIntro,
+  .ff-cardBody,
+  .ff-actions,
+  .ff-ctaGroup,
+  .ff-metaStack
+) > * + * {
+  margin-top: var(--ff-stack-md);
+}
+
+:where(
+  .ff-stack--tight,
+  .ff-labelStack,
+  .ff-eyebrowStack,
+  .ff-kickerStack,
+  .ff-cardMeta
+) > * + * {
+  margin-top: var(--ff-stack-tight);
+}
+
+/* copy width */
+:where(
+  .ff-lead,
+  .ff-copy,
+  .ff-sectionIntro p,
+  .ff-cardBody p,
+  .ff-storyCopy,
+  .ff-faqCopy
+) {
+  max-width: var(--ff-copy-max);
+}
+
+/* label rhythm */
+:where(
+  .ff-kicker,
+  .ff-eyebrow,
+  .ff-label,
+  .ff-overline
+) {
+  margin-bottom: var(--ff-stack-tight);
+  letter-spacing: 0.14em;
+}
+
+/* controls */
+:where(
+  .ff-btn,
+  button.ff-btn,
+  a.ff-btn
+) {
+  min-height: var(--ff-control-h);
+  padding-inline: 1rem;
+}
+
+:where(.ff-btn--lg, .ff-btn--hero, .ff-btn--primaryLarge) {
+  min-height: var(--ff-control-h-lg);
+  padding-inline: 1.1rem;
+}
+
+:where(
+  .ff-input,
+  .ff-select,
+  .ff-textarea,
+  .ff-field input,
+  .ff-field select,
+  .ff-field textarea,
+  .ff-amountChoice,
+  .ff-choiceCard
+) {
+  min-height: var(--ff-control-h);
+}
+
+:where(
+  .ff-formRow,
+  .ff-fieldRow,
+  .ff-chipRow,
+  .ff-amountGrid,
+  .ff-choiceGrid
+) {
+  gap: 0.75rem;
+}
+
+/* keep checkout + sponsor blocks visually tighter */
+:where(
+  .ff-checkoutCard,
+  .ff-summaryCard,
+  .ff-sponsorCard,
+  .ff-tierCard
+) :where(h3, h4, p, ul, .ff-btn, .ff-actions) {
+  margin-block-start: 0;
+}
+
+@media (min-width: 900px) {
+  :where(
+    .ff-sectionIntro,
+    .ff-heroCopy,
+    .ff-platformIntro,
+    .ff-dashboardIntro,
+    .ff-onboardingIntro
+  ) {
+    max-width: min(100%, 60rem);
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --ff-section-py: 1.9rem;
+    --ff-grid-gap: 0.8rem;
+    --ff-card-pad: 0.95rem;
+    --ff-card-pad-lg: 1rem;
+    --ff-card-pad-tight: 0.78rem;
+    --ff-control-h: 2.9rem;
+    --ff-control-h-lg: 3.1rem;
+  }
+
+  :where(
+    .ff-btn,
+    button.ff-btn,
+    a.ff-btn,
+    .ff-input,
+    .ff-select,
+    .ff-textarea,
+    .ff-field input,
+    .ff-field select,
+    .ff-field textarea
+  ) {
+    border-radius: 16px;
+  }
+}
+/* === FF_WAVE1_DENSITY_PRESTIGE_V1_END === */
