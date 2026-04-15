@@ -545,7 +545,7 @@
 							<div class="ff-campaignHeader__utility">
 								<button
 									type="button"
-									class="ff-btn ff-btn--sm ff-btn--ghost ff-btn--pill ff-themeToggle"
+									class="ff-btn ff-btn--sm ff-btn--ghost ff-btn--pill ff-btn--quiet ff-themeToggle"
 									data-ff-theme-toggle=""
 									aria-label="Toggle color theme"
 									aria-pressed={theme === 'light'}
@@ -556,7 +556,7 @@
 								</button>
 
 								<a
-									class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-donate-btn"
+									class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-btn--topCta ff-donate-btn"
 									href="#checkout"
 									aria-controls="checkout"
 									data-ff-donate=""
@@ -719,7 +719,7 @@
 					>
 						<button
 							type="button"
-							class="ff-btn ff-btn--sm ff-btn--ghost ff-btn--pill ff-themeToggle"
+							class="ff-btn ff-btn--sm ff-btn--ghost ff-btn--pill ff-btn--quiet ff-themeToggle"
 							data-ff-theme-toggle=""
 							aria-label="Toggle dark mode"
 							aria-pressed={theme === 'light'}

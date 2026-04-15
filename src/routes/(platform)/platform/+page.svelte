@@ -245,18 +245,18 @@
 
 						<nav class="hidden items-center gap-2 md:flex">
 							{#each nav as item (item.label)}
-								<button type="button" class="ff-btn ff-btn--secondary" onclick={item.action}>
+								<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={item.action}>
 									{item.label}
 								</button>
 							{/each}
 
-							<button type="button" class="ff-btn ff-btn--secondary" onclick={toggleTheme}>
+							<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={toggleTheme}>
 								Theme
 							</button>
 
 							<button
 								type="button"
-								class="ff-btn ff-btn--secondary"
+								class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 								onclick={() => goto('/platform/dashboard')}
 							>
 								Dashboard
@@ -264,7 +264,7 @@
 
 							<button
 								type="button"
-								class="ff-btn ff-btn--primary"
+								class="ff-btn ff-btn--primary ff-btn--sm ff-btn--topCta"
 								onclick={() => goto('/platform/onboarding')}
 							>
 								Launch your fundraiser
@@ -272,12 +272,12 @@
 						</nav>
 
 						<div class="flex items-center gap-2 md:hidden">
-							<button type="button" class="ff-btn ff-btn--secondary" onclick={toggleTheme}>◐</button
+							<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={toggleTheme}>◐</button
 							>
 
 							<button
 								type="button"
-								class="ff-btn ff-btn--primary"
+								class="ff-btn ff-btn--primary ff-btn--sm ff-btn--topCta"
 								onclick={() => goto('/platform/onboarding')}
 							>
 								Launch
@@ -383,10 +383,10 @@
 					</p>
 
 					<!-- FF_CTA_HIERARCHY_VERIFIED_V2 -->
-					<div class="mt-5 flex flex-wrap gap-3">
+					<div class="mt-5 flex flex-wrap gap-3 ff-coreCtaRow">
 						<button
 							type="button"
-							class="ff-btn ff-btn--primary"
+							class="ff-btn ff-btn--primary ff-btn--lg ff-btn--heroPrimary"
 							onclick={() => goto('/platform/onboarding')}
 						>
 							Launch your fundraiser
@@ -394,7 +394,7 @@
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary"
+							class="ff-btn ff-btn--secondary ff-btn--lg ff-btn--heroSecondary"
 							onclick={() => goto('/c/connect-atx-elite')}
 						>
 							Preview live page
@@ -658,7 +658,7 @@
 					<div class="mt-5">
 						<button
 							type="button"
-							class="ff-btn ff-btn--primary"
+							class="ff-btn ff-btn--primary ff-btn--lg ff-btn--heroPrimary"
 							onclick={() => goto('/platform/onboarding')}
 						>
 							Start sponsor outreach
@@ -717,7 +717,7 @@
 						<div class="grid gap-3">
 							<button
 								type="button"
-								class="ff-btn ff-btn--primary"
+								class="ff-btn ff-btn--primary ff-btn--sm ff-btn--topCta"
 								onclick={() => goto('/platform/onboarding')}
 							>
 								Launch your fundraiser
@@ -725,7 +725,7 @@
 
 							<button
 								type="button"
-								class="ff-btn ff-btn--secondary"
+								class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 								onclick={() => goto('/platform/dashboard')}
 							>
 								Open operator dashboard

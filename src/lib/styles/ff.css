@@ -3527,3 +3527,183 @@ html.ff-root,
   }
 }
 /* FF_CAMPAIGN_FLUID_DESKTOP_V3_END */
+
+/* FF_CORE_SURFACE_MICRO_UX_V1_START */
+.ff-btn--quiet {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ff-text-soft);
+}
+
+.ff-btn--quiet:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgb(15 23 42 / 0.05);
+  color: var(--ff-text-strong);
+}
+
+html.ff-root[data-theme="dark"] .ff-btn--quiet:hover {
+  background: rgb(255 255 255 / 0.06);
+}
+
+.ff-btn--topCta,
+.ff-btn--topCtaMuted {
+  min-height: 2.45rem;
+  padding-inline: 0.95rem;
+}
+
+.ff-btn--topCta {
+  box-shadow: 0 12px 28px rgb(249 115 22 / 0.22);
+}
+
+.ff-btn--topCtaMuted {
+  border-color: var(--ff-border);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.10), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+  color: var(--ff-text-strong);
+}
+
+.ff-btn--heroPrimary,
+.ff-btn--heroSecondary {
+  min-height: 3.05rem;
+  padding-inline: 1.15rem;
+}
+
+.ff-btn--heroPrimary {
+  box-shadow: 0 16px 36px rgb(249 115 22 / 0.28);
+}
+
+.ff-btn--heroSecondary {
+  border-color: rgb(15 23 42 / 0.12);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+html.ff-root[data-theme="dark"] .ff-btn--heroSecondary {
+  border-color: rgb(226 232 240 / 0.14);
+}
+
+.ff-coreCtaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ff-platformPage .ff-appbar__inner,
+.ff-dashboardPage .ff-appbar__inner,
+.ff-onboardingPage .ff-appbar__inner {
+  padding: 0.82rem 0.92rem;
+}
+
+.ff-platformHero,
+.ff-dashboardHero,
+.ff-onboardingMain,
+.ff-onboardingRail,
+.ff-onboardingPreview,
+.ff-campaignHero__story,
+.ff-campaignHero__checkout {
+  padding: clamp(1.05rem, 0.95rem + 0.7vw, 1.55rem);
+}
+
+.ff-platformHero .ff-display,
+.ff-dashboardHero .ff-display,
+.ff-onboardingRail .ff-h1 {
+  max-width: 9.25ch;
+}
+
+.ff-platformHero .ff-lead,
+.ff-dashboardHero .ff-lead {
+  max-width: 54ch;
+}
+
+.ff-platformHero .ff-card--soft,
+.ff-dashboardHero .ff-card--soft,
+.ff-onboardingRail .ff-card--soft,
+.ff-onboardingPreview .ff-card--soft {
+  padding: 0.95rem;
+  box-shadow: var(--ff-shadow-xs);
+}
+
+.ff-platformSnapshot,
+.ff-dashboardRail,
+.ff-onboardingPreview {
+  border-color: rgb(15 23 42 / 0.10);
+  box-shadow: var(--ff-shadow-xs);
+}
+
+.ff-platformHero .ff-btn--primary,
+.ff-platformFooter .ff-btn--primary,
+.ff-dashboardHero .ff-btn--primary,
+.ff-dashboardSection .ff-btn--primary,
+.ff-dashboardFooter .ff-btn--primary,
+.ff-onboardingMain .ff-btn--primary,
+.ff-campaignHero .ff-btn--primary,
+.ff-campaignFooterShell .ff-btn--primary {
+  box-shadow: 0 16px 34px rgb(249 115 22 / 0.26);
+}
+
+.ff-platformHero .ff-btn--secondary,
+.ff-platformFooter .ff-btn--secondary,
+.ff-dashboardHero .ff-btn--secondary,
+.ff-dashboardSection .ff-btn--secondary,
+.ff-onboardingMain .ff-btn--secondary,
+.ff-campaignHero .ff-btn--secondary,
+.ff-campaignFooterShell .ff-btn--secondary {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.10), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-dashboardSection .ff-btn--primary,
+.ff-dashboardRail .ff-btn--primary,
+.ff-impactTier__footer .ff-btn--primary {
+  width: 100%;
+  justify-content: center;
+}
+
+.ff-campaignHero__checkout {
+  border-color: rgb(249 115 22 / 0.12);
+  box-shadow: var(--ff-shadow-lg);
+}
+
+.ff-campaignHero__story .ff-heroFooter,
+.ff-campaignHero__checkout .ff-stack,
+.ff-platformFooter .ff-row,
+.ff-dashboardFooter .ff-row {
+  gap: 0.72rem;
+}
+
+@media (max-width: 47.99rem) {
+  .ff-coreCtaRow {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ff-btn--heroPrimary,
+  .ff-btn--heroSecondary,
+  .ff-btn--topCta,
+  .ff-btn--topCtaMuted {
+    width: 100%;
+  }
+
+  .ff-platformPage .ff-appbar__inner,
+  .ff-dashboardPage .ff-appbar__inner,
+  .ff-onboardingPage .ff-appbar__inner {
+    padding: 0.74rem 0.8rem;
+  }
+
+  .ff-platformHero,
+  .ff-dashboardHero,
+  .ff-onboardingMain,
+  .ff-onboardingRail,
+  .ff-onboardingPreview,
+  .ff-campaignHero__story,
+  .ff-campaignHero__checkout {
+    padding: 0.96rem;
+  }
+}
+/* FF_CORE_SURFACE_MICRO_UX_V1_END */

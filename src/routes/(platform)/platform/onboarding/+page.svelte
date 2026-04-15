@@ -152,19 +152,19 @@
 					<nav class="ff-actions ff-desktopOnly">
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 							onclick={() => goto('/platform')}
 						>
 							Back to platform
 						</button>
 
-						<button type="button" class="ff-btn ff-btn--secondary" onclick={openPreview}>
+						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={openPreview}>
 							Preview live page
 						</button>
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 							onclick={() => goto('/platform/dashboard')}
 						>
 							Dashboard
@@ -172,7 +172,7 @@
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary ff-themeToggle"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-themeToggle"
 							aria-label="Toggle color theme"
 							aria-pressed={theme === 'light'}
 							onclick={toggleTheme}
@@ -181,7 +181,7 @@
 							<span class="ff-themeToggle__label">Theme</span>
 						</button>
 
-						<button type="button" class="ff-btn ff-btn--primary" onclick={launchWorkspace}>
+						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--topCtaMuted" onclick={launchWorkspace}>
 							Publish fundraiser
 						</button>
 					</nav>
@@ -189,7 +189,7 @@
 					<div class="ff-actions ff-mobileOnly">
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary ff-themeToggle"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-themeToggle"
 							aria-label="Toggle color theme"
 							aria-pressed={theme === 'light'}
 							onclick={toggleTheme}
@@ -197,7 +197,7 @@
 							<span class="ff-themeToggle__glyph" aria-hidden="true">◐</span>
 						</button>
 
-						<button type="button" class="ff-btn ff-btn--primary" onclick={launchWorkspace}>
+						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--topCtaMuted" onclick={launchWorkspace}>
 							Publish
 						</button>
 
@@ -270,7 +270,7 @@
 
 				<button
 					type="button"
-					class="ff-btn ff-btn--secondary ff-themeToggle"
+					class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-themeToggle"
 					aria-label="Toggle color theme"
 					aria-pressed={theme === 'light'}
 					onclick={() => {
@@ -283,7 +283,7 @@
 
 				<button
 					type="button"
-					class="ff-btn ff-btn--primary"
+					class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--topCtaMuted"
 					onclick={() => {
 						drawerOpen = false;
 						launchWorkspace();
@@ -558,7 +558,7 @@
 					</button>
 
 					<div class="flex flex-wrap gap-3">
-						<button type="button" class="ff-btn ff-btn--secondary" onclick={openPreview}>
+						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={openPreview}>
 							Preview live page
 						</button>
 
@@ -567,7 +567,7 @@
 								Continue
 							</button>
 						{:else}
-							<button type="button" class="ff-btn ff-btn--primary" onclick={launchWorkspace}>
+							<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--topCtaMuted" onclick={launchWorkspace}>
 								Publish fundraiser
 							</button>
 						{/if}

@@ -218,7 +218,7 @@
 					<nav class="ff-actions ff-desktopOnly">
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 							onclick={() => goto('/platform')}
 						>
 							Back to platform
@@ -226,19 +226,19 @@
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 							onclick={() => goto('/platform/onboarding')}
 						>
 							Onboarding
 						</button>
 
-						<button type="button" class="ff-btn ff-btn--secondary" onclick={() => goto(publicPath)}>
+						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={() => goto(publicPath)}>
 							Live fundraiser
 						</button>
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary ff-themeToggle"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-themeToggle"
 							aria-label="Toggle color theme"
 							aria-pressed={theme === 'light'}
 							onclick={toggleTheme}
@@ -249,7 +249,7 @@
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--primary"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--topCtaMuted"
 							onclick={() => (dataMode = dataMode === 'preview' ? 'live' : 'preview')}
 						>
 							{dataMode === 'preview' ? 'Publish setup' : 'Set preview'}
@@ -259,7 +259,7 @@
 					<div class="ff-actions ff-mobileOnly">
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary ff-themeToggle"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-themeToggle"
 							aria-label="Toggle color theme"
 							aria-pressed={theme === 'light'}
 							onclick={toggleTheme}
@@ -269,7 +269,7 @@
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--primary"
+							class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--topCtaMuted"
 							onclick={() => (dataMode = dataMode === 'preview' ? 'live' : 'preview')}
 						>
 							{dataMode === 'preview' ? 'Publish' : 'Preview'}
@@ -344,7 +344,7 @@
 
 				<button
 					type="button"
-					class="ff-btn ff-btn--secondary ff-themeToggle"
+					class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-themeToggle"
 					aria-label="Toggle color theme"
 					aria-pressed={theme === 'light'}
 					onclick={() => {
@@ -461,7 +461,7 @@
 						Copy fundraiser link
 					</button>
 
-					<button type="button" class="ff-btn ff-btn--secondary" onclick={() => goto(publicPath)}>
+					<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={() => goto(publicPath)}>
 						Open public page
 					</button>
 
