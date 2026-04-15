@@ -750,7 +750,7 @@
 								openSponsor();
 							}}
 						>
-							Sponsor this season
+							Sponsor the program
 						</button>
 
 						<a
@@ -894,7 +894,7 @@
 												data-ff-open-sponsor=""
 												onclick={() => openSponsor()}
 											>
-												Sponsor this season
+												Sponsor the program
 											</button>
 
 											<button
@@ -1112,7 +1112,7 @@
 												class="ff-btn ff-btn--secondary ff-btn--pill"
 												onclick={() => openSponsor()}
 											>
-												Sponsor this season
+												Sponsor the program
 											</button>
 										</div>
 									</div>
@@ -1145,16 +1145,13 @@
 
 		<section id="impact" class="ff-section" aria-labelledby="impactTitle">
 			<div class="ff-container">
-				<header class="ff-sectionhead" aria-labelledby="impactTitle">
-					<p class="ff-kicker ff-m-0">What support covers</p>
-					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="impactTitle">
-						Support moves the season forward.
-					</h2>
-					<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
-						This page supports the shared program: travel, training, tournament fees, and the real
-						costs that keep athletes competing together.
-					</p>
-				</header>
+				<header class="ff-sectionhead ff-sectionIntro ff-stack ff-stack--tight" aria-labelledby="impactTitle">
+	<p class="ff-kicker ff-m-0">Support levels</p>
+	<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="impactTitle">Support moves the season forward.</h2>
+	<p class="ff-lead ff-mt-2 ff-mb-0">
+		Pick a support level that helps cover travel, training, tournament fees, and shared season costs.
+	</p>
+</header>
 
 				<div class="ff-grid ff-grid--2 ff-gap-3 ff-mt-3">
 					<article class="ff-card ff-glass ff-pad">
@@ -1297,17 +1294,26 @@
 
 		<section id="sponsors" class="ff-section" aria-labelledby="sponsorsTitle">
 			<div class="ff-container">
-				<header class="ff-sectionhead" aria-labelledby="sponsorsTitle">
-					<p class="ff-kicker ff-m-0">Sponsors</p>
-					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="sponsorsTitle">Become a visible sponsor</h2>
-					<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
-						This page gives businesses a cleaner reason to support the season through visible
-						recognition and better placement.
-					</p>
-					<p class="ff-help ff-mutedStrong ff-mt-2 ff-mb-0 ff-sponsorIntroNote">
-						Choose a sponsor tier with clearer visibility, stronger recognition, and cleaner community alignment.
-					</p>
-				</header>
+				<header class="ff-sectionhead ff-stack ff-stack--tight" aria-labelledby="sponsorsTitle">
+	<p class="ff-kicker ff-m-0">Sponsors</p>
+	<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="sponsorsTitle">Become a visible sponsor</h2>
+	<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
+		Businesses can support the season with clear recognition, fast checkout, and a more credible public presence.
+	</p>
+
+	<div class="ff-card ff-card--tight ff-stack ff-stack--tight">
+		<p class="ff-kicker ff-m-0">Sponsor readiness</p>
+		<h3 class="ff-h3 ff-mt-2 ff-mb-0">Back the program. Be seen supporting it.</h3>
+		<p class="ff-copy ff-mt-2 ff-mb-0">
+			Local businesses can sponsor the season through a clean checkout path with visible recognition on the fundraiser.
+		</p>
+		<div class="ff-chipRow">
+			<span class="ff-chip">Fast sponsor checkout</span>
+			<span class="ff-chip">Clear recognition</span>
+			<span class="ff-chip">Business-friendly support</span>
+		</div>
+	</div>
+</header>
 
 				<div class="ff-grid ff-grid--2 ff-gap-3 ff-mt-3">
 					<article class="ff-card ff-glass ff-pad">
@@ -1330,7 +1336,7 @@
 					</article>
 
 					<article class="ff-card ff-glass ff-pad">
-						<p class="ff-kicker ff-m-0">Sponsor this season</p>
+						<p class="ff-kicker ff-m-0">Sponsor the program</p>
 						<p class="ff-help ff-muted ff-mt-2 ff-mb-0">
 							Businesses can sponsor from the same page with a clear checkout path and visible recognition on the fundraiser.
 						</p>
@@ -1451,7 +1457,7 @@
 								class="ff-btn ff-btn--secondary ff-btn--pill"
 								onclick={() => openSponsor()}
 							>
-								Sponsor this season
+								Sponsor the program
 							</button>
 						</div>
 					</article>
@@ -1480,12 +1486,10 @@
 
 		<section id="faq" class="ff-section" aria-labelledby="faqTitle">
 			<div class="ff-container">
-				<header class="ff-sectionhead" aria-labelledby="faqTitle">
-					<p class="ff-kicker ff-m-0">FAQ</p>
-					<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="faqTitle">
-						Everything supporters and sponsors usually ask
-					</h2>
-				</header>
+				<header class="ff-sectionhead ff-sectionIntro ff-stack ff-stack--tight" aria-labelledby="faqTitle">
+	<p class="ff-kicker ff-m-0">FAQ</p>
+	<h2 class="ff-h2 ff-mt-2 ff-mb-0" id="faqTitle">Everything supporters and sponsors usually ask</h2>
+</header>
 
 				<div class="ff-faqList ff-mt-3">
 					{#each faqs as item (item.q)}
@@ -1527,7 +1531,7 @@
 								class="ff-btn ff-btn--secondary ff-btn--pill"
 								onclick={() => openSponsor()}
 							>
-								Sponsor this season
+								Sponsor the program
 							</button>
 							<button
 								type="button"
@@ -1555,7 +1559,7 @@
 			>
 				<div class="ff-row ff-row--between ff-ais ff-wrap">
 					<div>
-						<p class="ff-kicker ff-m-0">Sponsor this season</p>
+						<p class="ff-kicker ff-m-0">Sponsor the program</p>
 						<h2 class="ff-h2 ff-mt-2 ff-mb-0">Complete sponsor checkout</h2>
 					</div>
 
