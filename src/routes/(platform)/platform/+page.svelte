@@ -49,17 +49,17 @@
 		{
 			label: 'Donor confidence',
 			value: 'Credible',
-			body: 'Cleaner branding, clearer actions, and a stronger first impression the moment someone opens the page.'
+			body: 'Clear branding, clear actions, and a first impression that feels legitimate.'
 		},
 		{
 			label: 'Sponsor readiness',
 			value: 'Monetizable',
-			body: 'A stronger business-facing story than a plain donation page, with clear visibility and package framing.'
+			body: 'Clear sponsor packages and visibility instead of a vague business ask.'
 		},
 		{
 			label: 'Operator control',
 			value: 'Calmer',
-			body: 'One dashboard to launch, manage, and improve the fundraiser without juggling scattered tools.'
+			body: 'One place to launch, monitor, and tighten the fundraiser.'
 		}
 	];
 
@@ -67,44 +67,44 @@
 		{
 			id: '01',
 			title: 'Brand it',
-			body: 'Add logo, colors, campaign story, and launch context without rebuilding the product.'
+			body: 'Add logo, colors, story, and launch context without rebuilding anything.'
 		},
 		{
 			id: '02',
 			title: 'Monetize it',
-			body: 'Open donations, sponsor packages, and recurring support in one cleaner flow.'
+			body: 'Turn on donations, sponsors, and recurring support in one clean flow.'
 		},
 		{
 			id: '03',
 			title: 'Run it',
-			body: 'Use one operator dashboard to launch, monitor momentum, and keep the campaign sharp.'
+			body: 'Run the fundraiser from one operator view.'
 		}
 	];
 
 	const included: IncludedItem[] = [
 		{
 			title: 'Public fundraiser',
-			body: 'A calmer, premium public-facing experience built to feel legitimate the first time someone opens the link.'
+			body: 'A premium public-facing page that feels legitimate the first time someone opens it.'
 		},
 		{
 			title: 'Sponsor packages',
-			body: 'A stronger business-support offer with visible recognition instead of a generic donation ask.'
+			body: 'A clearer business-support offer with visible recognition, not a generic ask.'
 		},
 		{
 			title: 'Recurring support',
-			body: 'Membership-ready from the start, so monthly or seasonal support does not require a second system later.'
+			body: 'Recurring support from the start, without needing a second system later.'
 		},
 		{
 			title: 'Operator dashboard',
-			body: 'One control center for launch, updates, next actions, and campaign upkeep.'
+			body: 'One control center for launch, updates, and next actions.'
 		},
 		{
 			title: 'Looks credible on mobile',
-			body: 'The product reads well in text threads, social shares, and donor handoffs where first impressions actually decide trust.'
+			body: 'The product reads well in texts, shares, and donor handoffs where trust is decided fast.'
 		},
 		{
 			title: 'Explains the model clearly',
-			body: 'People immediately understand donations, sponsor packages, and recurring support without extra explanation.'
+			body: 'People quickly understand donations, sponsors, and recurring support.'
 		}
 	];
 
@@ -114,7 +114,7 @@
 			name: 'Starter',
 			price: '$49 setup',
 			badge: 'Fastest way live',
-			body: 'Best for teams and organizations that want a polished launch, a credible public page, and one clean setup path without adding sponsor complexity on day one.',
+			body: 'Best for teams and organizations that want a polished launch, a credible public page, and one clean setup path.',
 			bullets: [
 				'Branded fundraiser page',
 				'Clean launch workflow',
@@ -129,7 +129,7 @@
 			name: 'Growth',
 			price: '$79/mo',
 			badge: 'Best for revenue',
-			body: 'Best for teams and organizations that want to launch with sponsor packages, recurring support, and a fundraising model that can generate more than one-time donations.',
+			body: 'Best for teams and organizations that want sponsors, recurring support, and a stronger fundraising model from day one.',
 			bullets: [
 				'Everything in Starter',
 				'Sponsor package positioning',
@@ -147,7 +147,7 @@
 			name: 'Community sponsor',
 			amount: '$250',
 			tag: 'Visible to every donor',
-			body: 'Entry visibility tier for families, alumni, and local businesses that want to be seen by donors without committing to a larger package.',
+			body: 'Entry visibility for families, alumni, and local businesses that want donor-facing presence.',
 			bullets: [
 				'Logo or name on fundraiser',
 				'Supporter-facing visibility',
@@ -158,7 +158,7 @@
 			name: 'Featured partner',
 			amount: '$500',
 			tag: 'Featured on launch',
-			body: 'Recommended partner tier for businesses that want stronger placement, clearer sponsor value, and more attention on launch.',
+			body: 'Recommended tier for businesses that want stronger placement and clearer sponsor value.',
 			bullets: [
 				'Featured placement on fundraiser',
 				'Stronger business visibility',
@@ -169,7 +169,7 @@
 			name: 'Founding sponsor',
 			amount: '$1,000',
 			tag: 'Shown across donor shares',
-			body: 'Top-visibility tier for businesses that want premium placement, launch-day prominence, and stronger brand association across the fundraiser.',
+			body: 'Top-visibility tier for businesses that want premium placement and stronger brand association.',
 			bullets: [
 				'Priority sponsor placement',
 				'Premium brand association',
@@ -379,8 +379,7 @@
 					</h1>
 
 					<p class="ff-lead ff-mt-4">
-						A polished public fundraiser plus one dashboard for sponsors, recurring support, and
-						launch control.
+						One branded fundraiser plus one calm dashboard for launch, sponsors, and recurring support.
 					</p>
 
 					<!-- FF_CTA_HIERARCHY_VERIFIED_V2 -->
@@ -581,7 +580,7 @@
 						</p>
 
 						<h2 class="mt-3 max-w-[12ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
-							Launch clean. Upgrade when you are ready to monetize.
+							Start clean. Add sponsor revenue when it fits.
 						</h2>
 					</div>
 
@@ -647,7 +646,7 @@
 					</p>
 
 					<h2 class="mt-3 max-w-[13ch] text-4xl leading-[1.02] font-black tracking-[-0.045em]">
-						Turn supporter attention into sponsor revenue.
+						Turn attention into sponsor revenue.
 					</h2>
 
 					<p class="ff-copy ff-mt-4">

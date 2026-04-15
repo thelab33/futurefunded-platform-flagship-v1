@@ -47,9 +47,9 @@
 		headline: 'Fuel the season. Fund the future.',
 		supportingName: 'Connect ATX Elite',
 		tagline:
-			'Support travel, training, tournament fees, and shared season costs with one cleaner fundraising page built to convert donors and sponsors.',
+			'Support travel, training, tournament fees, and shared season costs with one clean fundraiser for donors and sponsors.',
 		storyLead:
-			'This fundraiser supports the shared program: travel, training, tournaments, team costs, and the season support needed to keep athletes competing together with less friction.',
+			'This fundraiser covers the shared program: travel, training, tournaments, team costs, and season support that keeps athletes competing together.',
 		raised: 5175,
 		goal: 10000,
 		donorCount: 73,
@@ -150,7 +150,7 @@
 			amount: 250,
 			badge: 'Recommended',
 			sub: 'Recommended sponsor tier',
-			fit: 'Businesses that want clear community alignment and stronger placement on the page.',
+			fit: 'Businesses that want clear community alignment and stronger placement.',
 			recognition:
 				'Logo or business name on the sponsor wall with stronger placement and cleaner visibility.',
 			cta: 'Choose Partner',
@@ -162,7 +162,7 @@
 			amount: 500,
 			badge: 'Expanded visibility',
 			sub: 'Growth sponsor tier',
-			fit: 'Sponsors ready to move the season forward with broader visibility across sponsor areas.',
+			fit: 'Sponsors ready to move the season forward with broader visibility.',
 			recognition:
 				'Featured sponsor-wall placement and stronger recognition across the campaign surface.',
 			cta: 'Choose Champion'
@@ -173,7 +173,7 @@
 			amount: 1000,
 			badge: 'Top visibility',
 			sub: 'Top visibility tier',
-			fit: 'Sponsors looking for the clearest featured placement and strongest supporter-facing visibility.',
+			fit: 'Sponsors looking for the clearest featured placement and strongest visibility.',
 			recognition:
 				'Premium placement, VIP spotlight visibility, and stronger recognition where available.',
 			cta: 'Choose VIP',
@@ -184,7 +184,7 @@
 	const faqs: FAQ[] = [
 		{
 			q: 'How fast can someone donate?',
-			a: 'Most supporters can choose an amount, add their details, and complete support in about a minute.'
+			a: 'Most supporters can choose an amount, enter details, and finish support in about a minute.'
 		},
 		{
 			q: 'Can businesses sponsor instead of donating?',
@@ -192,11 +192,11 @@
 		},
 		{
 			q: 'Is this support for one athlete or the whole program?',
-			a: 'By default this page tells the shared program story. Team cards help supporters see who the program serves while the fundraiser supports the broader season.'
+			a: 'This page tells the shared program story. Team cards show who the program serves while the fundraiser supports the broader season.'
 		},
 		{
 			q: 'Will supporters get a receipt?',
-			a: 'Yes. Supporters receive a confirmation state at checkout and a receipt by email.'
+			a: 'Yes. Supporters receive confirmation at checkout and a receipt by email.'
 		}
 	];
 

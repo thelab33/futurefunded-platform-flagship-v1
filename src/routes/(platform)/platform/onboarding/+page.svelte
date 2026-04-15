@@ -20,26 +20,26 @@
 		{
 			id: 2,
 			label: 'Brand',
-			title: 'Apply the brand quickly.',
-			body: 'Apply the brand quickly so the fundraiser looks credible the first time a supporter or sponsor opens it.'
+			title: 'Brand it clearly.',
+			body: 'Apply the brand so the fundraiser looks credible the first time someone opens it.'
 		},
 		{
 			id: 3,
 			label: 'Campaign',
-			title: 'Define the campaign story.',
-			body: 'Name the fundraiser, set the goal, and explain what support covers so donors and sponsors understand it fast.'
+			title: 'Tell the story clearly.',
+			body: 'Name the fundraiser, set the goal, and explain what support covers so people understand it fast.'
 		},
 		{
 			id: 4,
 			label: 'Revenue',
-			title: 'Choose your support lanes.',
-			body: 'Choose the revenue lanes: donations, sponsor packages, and recurring support when you want the fundraiser to monetize more than one way.'
+			title: 'Choose revenue lanes.',
+			body: 'Choose donations, sponsors, and recurring support when you want more than one revenue lane.'
 		},
 		{
 			id: 5,
 			label: 'Review',
-			title: 'Review before launch.',
-			body: 'Check the preview, confirm the setup, and publish with confidence once the page is ready to share.'
+			title: 'Review and publish.',
+			body: 'Review the preview, confirm the setup, and publish when the page is ready.'
 		}
 	];
 
@@ -59,7 +59,7 @@
 	let campaignTitle = $state('Spring Fundraiser');
 	let fundraisingGoal = $state('10000');
 	let shortStory = $state(
-		'Support travel, training, tournament fees, and shared season costs with one cleaner, sponsor-ready fundraising page.'
+		'Support travel, training, tournament fees, and shared season costs with one clean, sponsor-ready fundraiser.'
 	);
 
 	let donationLane = $state(true);
@@ -103,7 +103,7 @@
 
 	function launchWorkspace() {
 		launchNotice =
-			'Launch workspace is ready. Next step: connect payments, confirm sponsor offers, and publish the live fundraiser.';
+			'Setup is ready. Next: connect payments, confirm sponsor offers, and publish.';
 	}
 
 	onMount(() => {
@@ -182,7 +182,7 @@
 						</button>
 
 						<button type="button" class="ff-btn ff-btn--primary" onclick={launchWorkspace}>
-							Publish live fundraiser
+							Publish fundraiser
 						</button>
 					</nav>
 
@@ -198,7 +198,7 @@
 						</button>
 
 						<button type="button" class="ff-btn ff-btn--primary" onclick={launchWorkspace}>
-							Publish live
+							Publish
 						</button>
 
 						<button
@@ -289,7 +289,7 @@
 						launchWorkspace();
 					}}
 				>
-					Publish live fundraiser
+					Publish fundraiser
 				</button>
 			</nav>
 		</aside>
@@ -309,8 +309,7 @@
 				</h1>
 
 				<p class="ff-copy ff-mt-3">
-					Keep setup calm: define the organization, apply the brand, set the fundraiser story, and
-					review before launch.
+					Keep setup calm: define the organization, apply the brand, set the fundraiser story, and review before launch.
 				</p>
 
 				<div class="mt-5 grid gap-3">
@@ -355,7 +354,7 @@
 							{steps[activeStep - 1].body}
 						</p>
 
-						<p class="ff-help ff-mutedStrong ff-mt-2">This setup drives the public page, sponsor offers, and launch workflow.</p>
+						<p class="ff-help ff-mutedStrong ff-mt-2">These choices shape the public page, sponsor offers, and publish flow.</p>
 					</div>
 
 					<span class="ff-pill ff-pill--ghost">{activeStep} / {steps.length}</span>
@@ -539,7 +538,7 @@
 						</div>
 
 						<div class="ff-card ff-card--soft">
-							<p class="ff-kicker">Publish live note</p>
+							<p class="ff-kicker">Publish note</p>
 							<p class="ff-copy ff-mt-3">
 								This is the operator checkpoint before connecting payments, confirming sponsor
 								tiers, and making the live page public.
@@ -569,7 +568,7 @@
 							</button>
 						{:else}
 							<button type="button" class="ff-btn ff-btn--primary" onclick={launchWorkspace}>
-								Publish live fundraiser
+								Publish fundraiser
 							</button>
 						{/if}
 					</div>

@@ -69,17 +69,17 @@
 		{
 			title: 'Fundraiser surface is live in preview mode',
 			meta: 'Today • Public page',
-			body: 'The campaign page is rendering, sponsor lanes are visible, and the donor journey is ready for payment wiring.'
+			body: 'The campaign page is rendering, sponsor lanes are visible, and the donor path is ready for payment wiring.'
 		},
 		{
 			title: 'Onboarding workspace was updated',
 			meta: 'Today • Operator flow',
-			body: 'Organization setup, campaign basics, brand controls, and preview routing are now connected into one launch path.'
+			body: 'Organization setup, campaign basics, brand controls, and preview routing now live in one launch path.'
 		},
 		{
 			title: 'Platform landing page is aligned',
 			meta: 'Today • Marketing surface',
-			body: 'The platform page now feels like the right software-first companion to the fundraiser.'
+			body: 'The platform page now supports the fundraiser with a cleaner software-first story.'
 		}
 	];
 
@@ -93,14 +93,14 @@
 	const actions = $derived<Action[]>([
 		{
 			title: 'Open live preview',
-			body: 'Open the public page instantly and review exactly what supporters will see before you share it.',
+			body: 'Open the public page and review exactly what supporters will see.',
 			cta: 'Preview live page',
 			action: () => goto(publicPath),
 			primary: true
 		},
 		{
 			title: 'Return to setup',
-			body: 'Tighten branding, story, payments, or sponsor setup before you push the fundraiser further.',
+			body: 'Tighten branding, story, payments, or sponsor setup before you share.',
 			cta: 'Update setup',
 			action: () => goto('/platform/onboarding')
 		},
@@ -108,8 +108,8 @@
 			title: dataMode === 'preview' ? 'Publish setup' : 'Set back to preview',
 			body:
 				dataMode === 'preview'
-					? 'Mark the workspace as live once the public surface and payments are ready.'
-					: 'Move back into preview mode when you want to make changes before sharing more broadly.',
+					? 'Mark the workspace live once the public page and payments are ready.'
+					: 'Move back to preview when you need to make changes.',
 			cta: dataMode === 'preview' ? 'Go live' : 'Set preview',
 			action: () => {
 				dataMode = dataMode === 'preview' ? 'live' : 'preview';
@@ -156,7 +156,7 @@
 		}
 
 		await navigator.clipboard.writeText(publicUrl);
-		copyNotice = 'Public fundraiser link copied.';
+		copyNotice = 'Fundraiser link copied.';
 	}
 
 	$effect(() => {
@@ -385,8 +385,7 @@
 						</h1>
 
 						<p class="ff-lead ff-mt-4">
-							Track launch readiness, campaign progress, sponsor support, and next actions without
-							jumping between scattered tools.
+							See what is ready, what is blocked, and what to do next without jumping between tools.
 						</p>
 					</div>
 
@@ -434,7 +433,7 @@
 				<p class="ff-kicker">Launch diagnostics</p>
 
 				<h2 class="ff-h2 ff-mt-4">
-					Keep the product honest.
+					Know what is real before you publish.
 				</h2>
 
 				<p class="ff-copy ff-mt-3">
