@@ -28,3 +28,17 @@ test-results
 *.bak
 .CANONICAL_REPO
 .vscode/
+
+# --- repo hygiene reset ---
+*.bak
+*.bak.*
+*backup*
+*.old*
+archive/
+sales_mode_audit.json
+sales_mode_audit_grep.txt
+# --- end repo hygiene reset ---
+.backup_runes_wave_*/
+artifacts/css_audit/
+src/lib/styles/_archive/
+data/*.jsonl
