@@ -42,3 +42,6 @@ sales_mode_audit_grep.txt
 artifacts/css_audit/
 src/lib/styles/_archive/
 data/*.jsonl
+
+.dev.vars*
+!.dev.vars.example
