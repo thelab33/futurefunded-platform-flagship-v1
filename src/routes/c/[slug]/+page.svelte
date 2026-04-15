@@ -582,7 +582,7 @@
 					</div>
 
 					<section
-						class="ff-topbarGoal ff-campaignHeader__goal"
+						class="ff-topbarGoal ff-campaignHeader__goal ff-densityGoalbar"
 						data-ff-goalbar=""
 						role="group"
 						aria-label="Fundraising progress"
@@ -788,7 +788,7 @@
 				<div class="ff-hero__grid">
 					<div class="ff-minw-0">
 						<article
-							class="ff-hero__capsule ff-glass ff-surface ff-campaignHero__story"
+							class="ff-hero__capsule ff-glass ff-surface ff-campaignHero__story ff-densityStory"
 							data-ff-animate="rise"
 						>
 							<div class="ff-hero__capsuleInner">
@@ -923,7 +923,7 @@
 						aria-labelledby="heroPanelTitle"
 					>
 						<article
-							class="ff-card ff-card--premium ff-card--lift ff-glass ff-pad ff-campaignHero__checkout"
+							class="ff-card ff-card--premium ff-card--lift ff-glass ff-pad ff-campaignHero__checkout ff-densityCheckout"
 							data-ff-animate="rise"
 							id="checkout"
 						>

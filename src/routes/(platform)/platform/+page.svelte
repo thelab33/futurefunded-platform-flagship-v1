@@ -365,7 +365,7 @@
 			<div class="ff-container">
 			<section id="home" class="ff-section">
 				<div class="ff-heroGrid">
-				<article class="ff-card ff-platformHero">
+				<article class="ff-card ff-platformHero ff-densityHero">
 					<p
 						class="ff-kicker"
 					>
@@ -422,7 +422,7 @@
 					</div>
 				</article>
 
-				<aside class="ff-card ff-platformSnapshot">
+				<aside class="ff-card ff-platformSnapshot ff-densityAside">
 					<p
 						class="ff-kicker"
 					>

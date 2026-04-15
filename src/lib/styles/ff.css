@@ -3707,3 +3707,406 @@ html.ff-root[data-theme="dark"] .ff-btn--heroSecondary {
   }
 }
 /* FF_CORE_SURFACE_MICRO_UX_V1_END */
+
+/* FF_FINAL_DENSITY_RHYTHM_V1_START */
+
+/* ---------------------------------------
+   shared density rhythm
+--------------------------------------- */
+
+.ff-platformPage .ff-main,
+.ff-dashboardPage .ff-main,
+.ff-onboardingPage .ff-main {
+  padding-top: 0.78rem;
+  padding-bottom: 3.05rem;
+}
+
+.ff-platformPage .ff-section,
+.ff-dashboardPage .ff-section,
+.ff-onboardingPage .ff-section {
+  padding-block: 0.92rem;
+}
+
+.ff-platformPage .ff-densityHero,
+.ff-platformPage .ff-densityAside,
+.ff-dashboardPage .ff-densityHero,
+.ff-dashboardPage .ff-densityBlock,
+.ff-dashboardPage .ff-densityClose,
+.ff-onboardingPage .ff-densityRail,
+.ff-onboardingPage .ff-densityMain,
+.ff-onboardingPage .ff-densityPreview {
+  padding: clamp(0.9rem, 0.86rem + 0.24vw, 1.02rem) !important;
+}
+
+.ff-platformPage .ff-btn--quiet,
+.ff-dashboardPage .ff-btn--quiet,
+.ff-onboardingPage .ff-btn--quiet,
+.ff-campaignHeader__utility .ff-btn--quiet {
+  color: var(--ff-text-muted);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding-inline: 0.55rem;
+}
+
+.ff-platformPage .ff-btn--quiet:hover,
+.ff-dashboardPage .ff-btn--quiet:hover,
+.ff-onboardingPage .ff-btn--quiet:hover,
+.ff-campaignHeader__utility .ff-btn--quiet:hover {
+  background: rgb(15 23 42 / 0.05);
+  color: var(--ff-text-strong);
+  box-shadow: none;
+  transform: none;
+}
+
+html.ff-root[data-theme="dark"] .ff-platformPage .ff-btn--quiet:hover,
+html.ff-root[data-theme="dark"] .ff-dashboardPage .ff-btn--quiet:hover,
+html.ff-root[data-theme="dark"] .ff-onboardingPage .ff-btn--quiet:hover,
+html.ff-root[data-theme="dark"] .ff-campaignHeader__utility .ff-btn--quiet:hover {
+  background: rgb(255 255 255 / 0.06);
+}
+
+/* ---------------------------------------
+   platform density
+--------------------------------------- */
+
+.ff-platformPage #home .ff-heroGrid {
+  gap: 0.82rem;
+  align-items: start;
+}
+
+@media (min-width: 72rem) {
+  .ff-platformPage #home .ff-heroGrid {
+    grid-template-columns: minmax(0, 1.06fr) minmax(21rem, 0.94fr);
+  }
+}
+
+@media (max-width: 71.99rem) {
+  .ff-platformPage #home .ff-heroGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ff-platformPage #home .ff-display {
+  max-width: 7.35ch !important;
+  line-height: 0.87;
+}
+
+.ff-platformPage #home .ff-lead {
+  max-width: 46ch !important;
+  margin-top: 0.72rem !important;
+  font-size: 0.98rem;
+  line-height: 1.56;
+}
+
+.ff-platformPage .ff-densityHero .ff-coreCtaRow {
+  gap: 0.62rem;
+  margin-top: 0.82rem !important;
+}
+
+.ff-platformPage .ff-densityHero .mt-5.flex.flex-wrap.gap-2,
+.ff-platformPage .ff-densityHero .mt-6.grid,
+.ff-platformPage .ff-densityAside .mt-5.grid,
+.ff-platformPage .ff-densityAside .mt-6.grid {
+  margin-top: 0.74rem !important;
+  gap: 0.72rem !important;
+}
+
+.ff-platformPage .ff-densityHero .ff-card--soft,
+.ff-platformPage .ff-densityAside .ff-card--soft,
+.ff-platformPage #pricing .ff-card,
+.ff-platformPage #sponsor-revenue .ff-card--soft,
+.ff-platformPage footer > .ff-card {
+  padding: 0.88rem 0.92rem !important;
+}
+
+.ff-platformPage #pricing .mt-5.grid,
+.ff-platformPage #pricing .mt-6.grid,
+.ff-platformPage #sponsor-revenue .mt-5.grid,
+.ff-platformPage #sponsor-revenue .mt-6.grid,
+.ff-platformPage footer .grid.gap-3 {
+  gap: 0.72rem !important;
+}
+
+.ff-platformPage footer .ff-btn--quiet {
+  opacity: 0.84;
+}
+
+/* ---------------------------------------
+   dashboard density
+--------------------------------------- */
+
+.ff-dashboardPage .ff-densityHero .ff-display {
+  max-width: 7.15ch !important;
+  line-height: 0.88;
+}
+
+.ff-dashboardPage .ff-densityHero .ff-lead {
+  max-width: 48ch !important;
+  margin-top: 0.7rem !important;
+  font-size: 0.98rem;
+  line-height: 1.56;
+}
+
+.ff-dashboardPage .ff-densityHero .mt-5.grid,
+.ff-dashboardPage .ff-densityBlock .mt-5.grid,
+.ff-dashboardPage .ff-densityClose .mt-5.grid {
+  margin-top: 0.78rem !important;
+  gap: 0.72rem !important;
+}
+
+.ff-dashboardPage .ff-densityBlock .ff-card--soft {
+  padding: 0.78rem 0.84rem !important;
+  border-radius: 0.95rem;
+}
+
+.ff-dashboardPage .ff-densityBlock .ff-copy,
+.ff-dashboardPage .ff-densityBlock .ff-dashboardBody {
+  max-width: 52ch;
+}
+
+.ff-dashboardPage .ff-densityBlock .ff-row,
+.ff-dashboardPage .ff-densityClose .ff-row {
+  gap: 0.58rem !important;
+}
+
+.ff-dashboardPage .ff-densityBlock .ff-btn--topCtaMuted {
+  min-height: 2.02rem;
+  padding-inline: 0.8rem;
+}
+
+.ff-dashboardPage .ff-densityBlock .ff-btn--secondary.ff-btn--sm.ff-btn--quiet,
+.ff-dashboardPage .ff-densityClose .ff-btn--secondary.ff-btn--sm.ff-btn--quiet {
+  padding-inline: 0.45rem;
+}
+
+/* ---------------------------------------
+   onboarding density
+--------------------------------------- */
+
+.ff-onboardingPage .ff-onboardingWorkspaceGrid {
+  gap: 0.82rem !important;
+}
+
+.ff-onboardingPage .ff-densityRail .ff-h1 {
+  max-width: 7.05ch !important;
+  line-height: 0.88;
+}
+
+.ff-onboardingPage .ff-densityMain .ff-h2 {
+  max-width: 9.8ch !important;
+  line-height: 0.94;
+}
+
+.ff-onboardingPage .ff-densityRail .ff-copy,
+.ff-onboardingPage .ff-densityMain .ff-copy {
+  max-width: 50ch;
+}
+
+.ff-onboardingPage .ff-onboardingStepCard,
+.ff-onboardingPage .ff-card.ff-card--soft {
+  padding: 0.82rem 0.88rem !important;
+}
+
+.ff-onboardingPage .ff-densityMain .mt-6.grid,
+.ff-onboardingPage .ff-densityMain .mt-6.flex,
+.ff-onboardingPage .ff-densityPreview .mt-5.grid {
+  margin-top: 0.82rem !important;
+  gap: 0.72rem !important;
+}
+
+.ff-onboardingPage .ff-onboardingPreviewShell {
+  padding: 0.94rem !important;
+}
+
+/* ---------------------------------------
+   campaign density
+--------------------------------------- */
+
+.ff-chrome {
+  padding-top: 0.36rem !important;
+}
+
+.ff-campaignHeader__shell {
+  padding: 0.58rem !important;
+  border-radius: 1rem !important;
+}
+
+.ff-campaignHeader__row {
+  gap: 0.56rem !important;
+}
+
+.ff-campaignHeader__goal.ff-densityGoalbar {
+  margin-top: 0.46rem !important;
+  padding: 0.56rem 0.68rem !important;
+}
+
+.ff-topbarGoal__summary {
+  gap: 0.48rem !important;
+}
+
+.ff-topbarGoal__progressWrap {
+  margin-top: 0.36rem !important;
+  gap: 0.36rem !important;
+}
+
+.ff-topbarGoal__label,
+.ff-topbarGoal__progressLabel {
+  font-size: 0.61rem !important;
+  letter-spacing: 0.12em;
+}
+
+.ff-topbarGoal__raised,
+.ff-topbarGoal__goal,
+.ff-topbarGoal__percent {
+  font-size: 0.88rem !important;
+}
+
+.ff-shell .ff-hero__grid {
+  gap: 0.78rem !important;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+}
+
+.ff-shell .ff-densityStory,
+.ff-shell .ff-densityCheckout,
+.ff-shell .ff-campaignHero__story,
+.ff-shell .ff-campaignHero__checkout {
+  padding: 0.82rem 0.86rem !important;
+}
+
+.ff-shell .ff-hero__capsuleInner {
+  padding: 0.88rem !important;
+  gap: 0.68rem !important;
+}
+
+.ff-shell .ff-heroHeader {
+  gap: 0.58rem !important;
+}
+
+.ff-shell .ff-heroTitle,
+.ff-shell .ff-display {
+  max-width: 5.95ch !important;
+  font-size: clamp(2.6rem, 4.35vw, 4.45rem) !important;
+  line-height: 0.84 !important;
+  letter-spacing: -0.062em !important;
+}
+
+.ff-shell .ff-heroAccent {
+  display: block;
+  max-width: 4.9ch;
+}
+
+.ff-shell .ff-heroName {
+  display: block;
+}
+
+.ff-shell .ff-heroLead {
+  max-width: 45ch !important;
+  font-size: 0.94rem !important;
+  line-height: 1.52 !important;
+  margin-top: 0.32rem !important;
+}
+
+.ff-shell .ff-heroSnapshotGrid,
+.ff-shell .ff-heroFooter,
+.ff-shell .ff-grid.ff-grid--2.ff-gap-2.ff-mt-3,
+.ff-shell .ff-grid.ff-grid--3.ff-gap-2.ff-mt-3 {
+  margin-top: 0.62rem !important;
+  gap: 0.62rem !important;
+}
+
+.ff-shell .ff-proofMini,
+.ff-shell .ff-proofMini--hero,
+.ff-shell .ff-proofMini--checkout {
+  padding: 0.74rem 0.78rem !important;
+}
+
+.ff-shell #impact .ff-grid.ff-grid--2,
+.ff-shell .ff-teamGrid,
+.ff-shell .ff-campaignTeamsGrid,
+.ff-shell .ff-impactTierGrid,
+.ff-shell .ff-campaignSponsorGrid,
+.ff-shell .ff-faqList {
+  gap: 0.72rem !important;
+}
+
+.ff-teamCard__inner {
+  padding: 0.82rem !important;
+  gap: 0.68rem !important;
+}
+
+.ff-impactTier {
+  padding: 0.82rem !important;
+  gap: 0.68rem !important;
+}
+
+.ff-teamCard__media {
+  min-height: 7.75rem !important;
+}
+
+.ff-disclosure__sum {
+  padding: 0.8rem 0.88rem !important;
+}
+
+.ff-campaignFooterShell {
+  padding: 0.96rem 1rem !important;
+}
+
+@media (max-width: 980px) {
+  .ff-shell .ff-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ff-shell .ff-heroTitle,
+  .ff-shell .ff-display {
+    max-width: 7.5ch !important;
+    font-size: clamp(2.35rem, 8vw, 3.85rem) !important;
+  }
+
+  .ff-shell .ff-heroAccent {
+    max-width: none;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-platformPage .ff-main,
+  .ff-dashboardPage .ff-main,
+  .ff-onboardingPage .ff-main {
+    padding-top: 0.72rem;
+    padding-bottom: 2.8rem;
+  }
+
+  .ff-platformPage .ff-section,
+  .ff-dashboardPage .ff-section,
+  .ff-onboardingPage .ff-section {
+    padding-block: 0.82rem;
+  }
+
+  .ff-platformPage .ff-densityHero,
+  .ff-platformPage .ff-densityAside,
+  .ff-dashboardPage .ff-densityHero,
+  .ff-dashboardPage .ff-densityBlock,
+  .ff-dashboardPage .ff-densityClose,
+  .ff-onboardingPage .ff-densityRail,
+  .ff-onboardingPage .ff-densityMain,
+  .ff-onboardingPage .ff-densityPreview,
+  .ff-shell .ff-densityStory,
+  .ff-shell .ff-densityCheckout {
+    padding: 0.84rem !important;
+  }
+
+  .ff-platformPage #home .ff-display,
+  .ff-dashboardPage .ff-densityHero .ff-display,
+  .ff-onboardingPage .ff-densityRail .ff-h1 {
+    max-width: 7.8ch !important;
+  }
+
+  .ff-shell .ff-campaignHeader__shell {
+    padding: 0.54rem !important;
+  }
+
+  .ff-shell .ff-campaignHeader__goal.ff-densityGoalbar {
+    padding: 0.52rem 0.62rem !important;
+  }
+}
+/* FF_FINAL_DENSITY_RHYTHM_V1_END */

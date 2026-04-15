@@ -373,7 +373,7 @@
 		<div class="ff-container">
 		<section class="ff-section">
 			<div class="ff-heroGrid">
-			<article class="ff-card ff-dashboardHero">
+			<article class="ff-card ff-dashboardHero ff-densityHero">
 				<div class="flex flex-wrap items-start justify-between gap-4">
 					<div class="max-w-4xl">
 						<p class="ff-kicker">Workspace status</p>
@@ -485,7 +485,7 @@
 
 		<section class="ff-section ff-dashboardSectionWrap">
 			<div class="grid gap-4 xl:grid-cols-[1fr_0.8fr]">
-				<article class="ff-card ff-dashboardHero">
+				<article class="ff-card ff-dashboardHero ff-densityHero">
 					<div class="flex flex-wrap items-end justify-between gap-4">
 						<div class="max-w-3xl">
 							<p class="ff-kicker">Recent activity</p>
@@ -513,7 +513,7 @@
 					</div>
 				</article>
 
-				<aside class="ff-card ff-dashboardSection">
+				<aside class="ff-card ff-dashboardSection ff-densityBlock">
 					<p class="ff-kicker">Sponsor lane</p>
 
 					<h2
@@ -557,7 +557,7 @@
 		</section>
 
 		<footer class="ff-section ff-dashboardFooterWrap">
-			<div class="ff-card ff-dashboardFooter">
+			<div class="ff-card ff-dashboardFooter ff-densityClose">
 				<div class="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
 					<div class="max-w-3xl">
 						<p class="ff-kicker">Operator close</p>

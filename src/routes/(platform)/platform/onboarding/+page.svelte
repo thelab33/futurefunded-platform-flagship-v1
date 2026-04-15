@@ -299,7 +299,7 @@
 		<div class="ff-container">
 		<section class="ff-section">
 			<div class="ff-grid ff-onboardingWorkspaceGrid">
-			<aside class="ff-card ff-onboardingRail">
+			<aside class="ff-card ff-onboardingRail ff-densityRail">
 				<p class="ff-kicker">Launch steps</p>
 
 				<h1
@@ -339,7 +339,7 @@
 				</div>
 			</aside>
 
-			<section class="ff-card ff-onboardingMain">
+			<section class="ff-card ff-onboardingMain ff-densityMain">
 				<div class="flex flex-wrap items-start justify-between gap-4">
 					<div class="max-w-3xl">
 						<p class="ff-kicker">Step {activeStep}</p>
@@ -581,7 +581,7 @@
 				{/if}
 			</section>
 
-			<aside class="ff-card ff-onboardingPreview xl:sticky xl:top-24">
+			<aside class="ff-card ff-onboardingPreview ff-densityPreview xl:sticky xl:top-24">
 				<p class="ff-kicker">Live preview</p>
 
 				<h3 class="ff-h2 ff-mt-3">{orgName}</h3>
