@@ -44,6 +44,11 @@
 	let actions: any = null;
 	let paymentElement: any = null;
 
+	const usd = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD'
+	});
+
 	const mountId = `ff-payment-element-${Math.random().toString(36).slice(2)}`;
 
 	async function initialize() {
@@ -178,7 +183,7 @@
 	});
 </script>
 
-<div class="ff-stack ff-mt-3">
+<div class="ff-stack ff-mt-3 ff-checkoutPanel">
 	<div class="ff-proofMini ff-proofMini--checkout">
 		<p class="ff-kicker">Embedded payment</p>
 		<p class="ff-help ff-mutedStrong ff-mt-1 ff-mb-0">
@@ -186,20 +191,38 @@
 		</p>
 	</div>
 
+	<div class="ff-proofMini ff-proofMini--checkout ff-checkoutSummary">
+		<p class="ff-kicker">Payment summary</p>
+		<div class="ff-stack ff-stack--tight ff-mt-2">
+			<div class="ff-checkoutSummary__row">
+				<span class="ff-help ff-muted">Amount</span>
+				<strong>{usd.format(amount)}</strong>
+			</div>
+			<div class="ff-checkoutSummary__row">
+				<span class="ff-help ff-muted">Supporter</span>
+				<strong>{donorName}</strong>
+			</div>
+			<div class="ff-checkoutSummary__row">
+				<span class="ff-help ff-muted">Receipt email</span>
+				<strong>{donorEmail}</strong>
+			</div>
+		</div>
+	</div>
+
 	{#if loading}
-		<div class="ff-proofMini ff-proofMini--checkout">
+		<div class="ff-proofMini ff-proofMini--checkout ff-checkoutStatus">
 			<p class="ff-help ff-m-0">Preparing secure payment…</p>
 		</div>
 	{/if}
 
 	{#if info}
-		<div class="ff-alert ff-alert--info">
+		<div class="ff-alert ff-alert--info ff-checkoutStatus">
 			{info}
 		</div>
 	{/if}
 
 	{#if error}
-		<div class="ff-alert ff-alert--info">
+		<div class="ff-alert ff-alert--info ff-checkoutStatus ff-checkoutError">
 			{error}
 		</div>
 	{/if}
@@ -208,19 +231,23 @@
 		<div id={mountId}></div>
 	</div>
 
-	<div class="ff-row ff-wrap ff-gap-2">
+	<div class="ff-row ff-wrap ff-gap-2 ff-checkoutActions">
 		<button
 			type="button"
-			class="ff-btn ff-btn--primary ff-btn--lg"
+			class="ff-btn ff-btn--primary ff-btn--lg ff-btn--pill ff-checkoutPrimaryCta"
 			onclick={confirmPayment}
 			disabled={!initialized || submitting}
 			aria-disabled={!initialized || submitting}
 		>
-			{submitting ? 'Confirming…' : 'Complete secure donation'}
+			{submitting ? 'Confirming secure payment…' : 'Complete secure donation'}
 		</button>
 	</div>
 
+	<p class="ff-checkoutReassurance ff-help ff-muted ff-mt-2 ff-mb-0" aria-live="polite">
+		Secure payment • Receipt-ready confirmation • No account required
+	</p>
+
 	<p class="ff-help ff-mutedStrong ff-mb-0">
-		For live payments, Stripe recommends HTTPS and webhook handling for final confirmation.
+		Payments are processed securely by Stripe, and the receipt will be sent to {donorEmail}.
 	</p>
 </div>
