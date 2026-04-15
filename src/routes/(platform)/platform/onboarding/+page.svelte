@@ -159,7 +159,7 @@
 						</button>
 
 						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={openPreview}>
-							Preview live page
+							View live fundraiser
 						</button>
 
 						<button
@@ -254,7 +254,7 @@
 						openPreview();
 					}}
 				>
-					Preview live page
+					View live fundraiser
 				</button>
 
 				<button
@@ -559,7 +559,7 @@
 
 					<div class="flex flex-wrap gap-3">
 						<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={openPreview}>
-							Preview live page
+							View live fundraiser
 						</button>
 
 						{#if activeStep < steps.length}
@@ -661,7 +661,7 @@
 								class="ff-btn ff-btn--secondary"
 								onclick={() => goto('/platform/dashboard')}
 							>
-								Open operator dashboard
+								Open dashboard
 							</button>
 						</div>
 					</div>

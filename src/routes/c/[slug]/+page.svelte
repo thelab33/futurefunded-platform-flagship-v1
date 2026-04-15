@@ -161,7 +161,7 @@
 			label: 'Champion',
 			amount: 500,
 			badge: 'Expanded visibility',
-			sub: 'Growth sponsor tier',
+			sub: 'Featured Partner tier',
 			fit: 'Sponsors ready to move the season forward with broader visibility.',
 			recognition:
 				'Featured sponsor-wall placement and stronger recognition across the campaign surface.',
@@ -410,7 +410,7 @@
 				})
 			});
 
-			const body = await response.json();
+			const body = (await response.json()) as { url?: string; error?: string };
 
 			if (!response.ok) {
 				throw new Error(body?.error || 'Sponsor checkout could not start.');

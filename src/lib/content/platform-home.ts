@@ -1,3 +1,4 @@
+import { pricingCards, sponsorCards, marketingHero, marketingNav, marketingLinks } from '$lib/content/offer-presenters';
 export type Cta = {
   label: string;
   href: string;
@@ -311,7 +312,7 @@ export const platformSponsorCommerce = {
   },
   tiers: [
     {
-      label: 'Community sponsor',
+      label: 'Community Sponsor',
       priceLabel: '$250',
       body: 'Entry-level visibility for local supporters and community partners.',
       perks: ['Business name listed', 'Community visibility', 'Simple sponsor entry'],

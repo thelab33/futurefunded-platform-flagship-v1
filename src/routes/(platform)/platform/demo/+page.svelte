@@ -1,3 +1,4 @@
+import { demoJourney, pricingCards, sponsorCards, marketingHero, marketingLinks } from '$lib/content/offer-presenters';
 <svelte:head><title>FutureFunded Demo</title></svelte:head>
 <main class="min-h-screen bg-[#061425] px-6 py-16 text-white">
   <div class="mx-auto max-w-5xl rounded-[28px] border border-white/10 bg-white/[0.03] p-8">

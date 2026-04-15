@@ -1,0 +1,6 @@
+
+URL: https://getfuturefunded.com
+ERROR: HTTP Error 403: Forbidden
+
+URL: https://getfuturefunded.com/c/connect-atx-elite
+ERROR: HTTP Error 403: Forbidden

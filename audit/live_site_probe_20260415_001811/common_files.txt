@@ -1,0 +1,6 @@
+  /robots.txt
+  /sitemap.xml
+  /favicon.ico
+  /manifest.webmanifest
+  /_headers
+  /_redirects

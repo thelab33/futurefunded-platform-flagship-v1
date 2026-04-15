@@ -95,7 +95,7 @@
 				})
 			});
 
-			const payload = await response.json();
+			const payload = (await response.json()) as { clientSecret?: string; error?: string };
 
 			if (!response.ok) {
 				throw new Error(payload?.error || 'Could not initialize payment.');

@@ -94,7 +94,7 @@
 		{
 			title: 'Open live preview',
 			body: 'Open the public page and review exactly what supporters will see.',
-			cta: 'Preview live page',
+			cta: 'View live fundraiser',
 			action: () => goto(publicPath),
 			primary: true
 		},
@@ -126,10 +126,10 @@
 		},
 		{
 			label: 'Payments',
-			value: paymentsConnected ? 'Connected' : 'Stripe not connected',
+			value: paymentsConnected ? 'Connected' : 'Setup needed',
 			tone: paymentsConnected ? 'good' : 'warn'
 		},
-		{ label: 'Build lane', value: 'wave-4-scroll-compression', tone: 'muted' },
+		{ label: 'Build lane', value: 'production-prep', tone: 'muted' },
 		{ label: 'Public route', value: publicPath, tone: 'muted' }
 	]);
 
@@ -462,7 +462,7 @@
 					</button>
 
 					<button type="button" class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet" onclick={() => goto(publicPath)}>
-						Open public page
+						View live fundraiser
 					</button>
 
 					<button type="button" class="ff-btn ff-btn--ghost">
@@ -576,7 +576,7 @@
 
 					<div class="grid gap-3">
 						<button type="button" class="ff-btn ff-btn--primary" onclick={() => goto(publicPath)}>
-							Open public page
+							View live fundraiser
 						</button>
 
 						<button

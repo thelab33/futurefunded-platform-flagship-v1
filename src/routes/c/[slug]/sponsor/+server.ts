@@ -14,7 +14,7 @@ const SPONSOR_AMOUNTS: Record<string, number> = {
 
 export async function POST({ request, params, url }) {
   try {
-    const body = await request.json();
+    const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
 
     const sponsorTier = asString(body?.sponsorTier || 'partner').toLowerCase();
     const sponsorBusiness = asString(body?.sponsorBusiness);

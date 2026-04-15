@@ -1,3 +1,4 @@
+import { marketingHero, marketingNav, pricingCards, sponsorCards, marketingLinks } from '$lib/content/offer-presenters';
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
@@ -112,7 +113,7 @@
 		{
 			key: 'starter',
 			name: 'Starter',
-			price: '$49 setup',
+			price: pricingCards[0].price,
 			badge: 'Fastest way live',
 			body: 'Best for teams and organizations that want a polished launch, a credible public page, and one clean setup path.',
 			bullets: [
@@ -122,12 +123,12 @@
 				'Core operator access',
 				'Fastest way live with one clear setup path'
 			],
-			cta: 'Choose Starter'
+			cta: 'Start Starter'
 		},
 		{
 			key: 'growth',
 			name: 'Growth',
-			price: '$79/mo',
+			price: pricingCards[1].price,
 			badge: 'Best for revenue',
 			body: 'Best for teams and organizations that want sponsors, recurring support, and a stronger fundraising model from day one.',
 			bullets: [
@@ -138,14 +139,14 @@
 				'Stronger sponsor revenue model'
 			],
 			featured: true,
-			cta: 'Choose Growth'
+			cta: 'Start Growth'
 		}
 	];
 
 	const sponsorLanes: (SponsorLane & { bullets: string[] })[] = [
 		{
-			name: 'Community sponsor',
-			amount: '$250',
+			name: 'Community Sponsor',
+			amount: sponsorCards[0].amount,
 			tag: 'Visible to every donor',
 			body: 'Entry visibility for families, alumni, and local businesses that want donor-facing presence.',
 			bullets: [
@@ -155,8 +156,8 @@
 			]
 		},
 		{
-			name: 'Featured partner',
-			amount: '$500',
+			name: 'Featured Partner',
+			amount: sponsorCards[1].amount,
 			tag: 'Featured on launch',
 			body: 'Recommended tier for businesses that want stronger placement and clearer sponsor value.',
 			bullets: [
@@ -166,8 +167,8 @@
 			]
 		},
 		{
-			name: 'Founding sponsor',
-			amount: '$1,000',
+			name: 'Founding Sponsor',
+			amount: sponsorCards[2].amount,
 			tag: 'Shown across donor shares',
 			body: 'Top-visibility tier for businesses that want premium placement and stronger brand association.',
 			bullets: [
@@ -267,7 +268,7 @@
 								class="ff-btn ff-btn--primary ff-btn--sm ff-btn--topCta"
 								onclick={() => goto('/platform/onboarding')}
 							>
-								Launch your fundraiser
+								Start guided launch
 							</button>
 						</nav>
 
@@ -355,7 +356,7 @@
 							goto('/platform/onboarding');
 						}}
 					>
-						Launch your fundraiser
+						Start guided launch
 					</button>
 				</nav>
 			</aside>
@@ -389,7 +390,7 @@
 							class="ff-btn ff-btn--primary ff-btn--lg ff-btn--heroPrimary"
 							onclick={() => goto('/platform/onboarding')}
 						>
-							Launch your fundraiser
+							Start guided launch
 						</button>
 
 						<button
@@ -397,7 +398,7 @@
 							class="ff-btn ff-btn--secondary ff-btn--lg ff-btn--heroSecondary"
 							onclick={() => goto('/c/connect-atx-elite')}
 						>
-							Preview live page
+							View live fundraiser
 						</button>
 					</div>
 
@@ -497,7 +498,7 @@
 							class="ff-btn ff-btn--secondary"
 							onclick={() => goto('/platform/dashboard')}
 						>
-							Open operator dashboard
+							Open dashboard
 						</button>
 					</div>
 				</aside>
@@ -661,7 +662,7 @@
 							class="ff-btn ff-btn--primary ff-btn--lg ff-btn--heroPrimary"
 							onclick={() => goto('/platform/onboarding')}
 						>
-							Start sponsor outreach
+							See pricing
 						</button>
 					</div>
 
@@ -720,7 +721,7 @@
 								class="ff-btn ff-btn--primary ff-btn--sm ff-btn--topCta"
 								onclick={() => goto('/platform/onboarding')}
 							>
-								Launch your fundraiser
+								Start guided launch
 							</button>
 
 							<button
@@ -728,7 +729,7 @@
 								class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
 								onclick={() => goto('/platform/dashboard')}
 							>
-								Open operator dashboard
+								Open dashboard
 							</button>
 						</div>
 					</div>

@@ -9,7 +9,7 @@ function asString(value: unknown): string {
 
 export const POST: RequestHandler = async ({ request, params, url }) => {
   try {
-    const body = await request.json();
+    const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
 
     const amount = Number(body?.amount);
     const donorName = asString(body?.donorName);
