@@ -4,6 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { onMount, tick } from 'svelte';
 	import { mountFFPage, toggleFFTheme } from '$lib/utils/ff-theme';
+	import { loadLaunchState, saveLaunchState, slugifyOrgName } from '$lib/config/ff-launch-state';
 
 	type Step = {
 		id: number;
@@ -15,6 +16,13 @@
 	type PromiseItem = {
 		title: string;
 		body: string;
+	};
+
+	type LaneCard = {
+		key: 'donation' | 'sponsor' | 'recurring';
+		title: string;
+		body: string;
+		active: boolean;
 	};
 
 	const steps: Step[] = [
@@ -52,8 +60,8 @@
 
 	const setupProof: PromiseItem[] = [
 		{
-			title: 'Provider-ready structure',
-			body: 'Organization, brand, campaign, revenue, and review stay in one guided launch flow.'
+			title: 'Guided launch flow',
+			body: 'Organization, brand, campaign, revenue, and review stay in one calmer workspace.'
 		},
 		{
 			title: 'Preview before publish',
@@ -95,12 +103,16 @@
 		}
 	];
 
+	const launch = loadLaunchState();
+
 	let drawerOpen = $state(false);
 	let activeStep = $state(1);
 	let theme = $state<'dark' | 'light'>('dark');
 	let launchNotice = $state('');
+	let drawerPanel = $state<HTMLDivElement | null>(null);
+	let drawerTrigger = $state<HTMLButtonElement | null>(null);
 
-	let orgName = $state('Connect ATX Elite');
+	let orgName = $state(launch.orgName || 'Connect ATX Elite');
 	let orgType = $state('Youth team');
 	let location = $state('Austin, TX');
 
@@ -109,27 +121,63 @@
 	let accentColor = $state('#38bdf8');
 
 	let campaignTitle = $state('Spring Fundraiser');
-	let fundraisingGoal = $state('10000');
+	let fundraisingGoal = $state(launch.fundraisingGoal || '10000');
 	let shortStory = $state(
 		'Support travel, training, tournament fees, and shared season costs with one clean, sponsor-ready fundraiser.'
 	);
 
 	let donationLane = $state(true);
-	let sponsorLane = $state(true);
-	let recurringLane = $state(false);
-
-	let drawerPanel = $state<HTMLDivElement | null>(null);
-	let drawerTrigger = $state<HTMLButtonElement | null>(null);
+	let sponsorLane = $state(launch.sponsorLane ?? true);
+	let recurringLane = $state(launch.recurringLane ?? false);
 
 	const selectedStep = $derived(steps[activeStep - 1] ?? steps[0]);
-	const previewGoal = $derived(Math.max(0, Number(fundraisingGoal || '0') || 0));
-	const previewSlug = $derived(
-		orgName
-			.toLowerCase()
-			.trim()
-			.replace(/[^a-z0-9]+/g, '-')
-			.replace(/^-|-$/g, '') || 'connect-atx-elite'
+
+	const previewGoalValue = $derived(Math.max(0, Number(fundraisingGoal || '0') || 0));
+
+	const previewGoalLabel = $derived(
+		new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: 'USD',
+			maximumFractionDigits: 0
+		}).format(previewGoalValue)
 	);
+
+	const previewSlug = $derived(slugifyOrgName(orgName || 'connect-atx-elite'));
+
+	const previewUrl = $derived(`/c/${previewSlug}`);
+
+	const liveLaneCount = $derived(
+		Number(donationLane) + Number(sponsorLane) + Number(recurringLane)
+	);
+
+	const publishReady = $derived(
+		orgName.trim().length > 1 &&
+			campaignTitle.trim().length > 1 &&
+			previewGoalValue > 0 &&
+			shortStory.trim().length > 20 &&
+			liveLaneCount > 0
+	);
+
+	const laneCards = $derived<LaneCard[]>([
+		{
+			key: 'donation',
+			title: 'Donations',
+			body: 'One-time supporter contributions on the public page.',
+			active: donationLane
+		},
+		{
+			key: 'sponsor',
+			title: 'Sponsors',
+			body: 'Business-facing packages with clearer public recognition.',
+			active: sponsorLane
+		},
+		{
+			key: 'recurring',
+			title: 'Recurring support',
+			body: 'Optional monthly support for organizations with a longer revenue plan.',
+			active: recurringLane
+		}
+	]);
 
 	function nextStep() {
 		activeStep = Math.min(activeStep + 1, steps.length);
@@ -154,10 +202,31 @@
 	}
 
 	function openPreview() {
-		goto(`/c/${previewSlug}`);
+		goto(previewUrl);
+	}
+
+	function openDashboard() {
+		goto('/platform/dashboard');
 	}
 
 	function launchWorkspace() {
+		if (!publishReady) {
+			launchNotice =
+				'Finish the organization basics, campaign title, fundraising goal, story, and at least one revenue lane before publishing.';
+			activeStep = 1;
+			return;
+		}
+
+		saveLaunchState({
+			...loadLaunchState(),
+			orgName,
+			fundraisingGoal,
+			sponsorLane,
+			recurringLane,
+			dataMode: 'preview',
+			updatedAt: new Date().toISOString()
+		});
+
 		launchNotice =
 			'Setup is launch-ready. Next: confirm payments, validate sponsor lanes, and publish with confidence.';
 	}
@@ -178,6 +247,24 @@
 			closeDrawer();
 		}
 	}
+
+	function toggleLane(key: LaneCard['key']) {
+		if (key === 'donation') donationLane = !donationLane;
+		if (key === 'sponsor') sponsorLane = !sponsorLane;
+		if (key === 'recurring') recurringLane = !recurringLane;
+	}
+
+	$effect(() => {
+		saveLaunchState({
+			...loadLaunchState(),
+			orgName,
+			fundraisingGoal,
+			sponsorLane,
+			recurringLane,
+			dataMode: 'preview',
+			updatedAt: new Date().toISOString()
+		});
+	});
 
 	$effect(() => {
 		if (!browser) return;
@@ -250,7 +337,7 @@
 							<button
 								type="button"
 								class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet"
-								onclick={() => goto('/platform/dashboard')}
+								onclick={openDashboard}
 							>
 								Dashboard
 							</button>
@@ -297,7 +384,7 @@
 							<button
 								bind:this={drawerTrigger}
 								type="button"
-								class="ff-btn ff-btn--secondary"
+								class="ff-btn ff-btn--secondary ff-btn--sm"
 								aria-label="Open menu"
 								aria-controls="ffOnboardingDrawer"
 								aria-expanded={drawerOpen}
@@ -330,7 +417,7 @@
 
 						<button
 							type="button"
-							class="ff-btn ff-btn--secondary"
+							class="ff-btn ff-btn--secondary ff-btn--sm"
 							aria-label="Close menu"
 							onclick={closeDrawer}
 						>
@@ -366,7 +453,7 @@
 							class="ff-btn ff-btn--secondary"
 							onclick={() => {
 								closeDrawer();
-								goto('/platform/dashboard');
+								openDashboard();
 							}}
 						>
 							Dashboard
@@ -421,25 +508,7 @@
 								and review before launch.
 							</p>
 
-							<div class="ff-onboardingProofStrip ff-mt-4">
-								{#each setupProof as item (item.title)}
-									<div class="ff-onboardingProofItem">
-										<p class="ff-kicker">{item.title}</p>
-										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">{item.body}</p>
-									</div>
-								{/each}
-							</div>
-
-							<div class="ff-onboardingLaunchStrip">
-								{#each publishChecks as item (item.title)}
-									<div class="ff-onboardingLaunchItem">
-										<p class="ff-kicker">{item.title}</p>
-										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">{item.body}</p>
-									</div>
-								{/each}
-							</div>
-
-							<div class="mt-5 grid gap-3">
+							<div class="ff-grid ff-mt-4">
 								{#each steps as step (step.id)}
 									<button
 										type="button"
@@ -448,13 +517,13 @@
 										aria-pressed={activeStep === step.id}
 										onclick={() => goToStep(step.id)}
 									>
-										<div class="flex items-center justify-between gap-3">
+										<div class="ff-row ff-row--between ff-ais ff-wrap">
 											<span class="ff-pill ff-pill--ghost">
 												{step.id < 10 ? `0${step.id}` : `${step.id}`}
 											</span>
 
 											{#if activeStep === step.id}
-												<span class="ff-pill ff-platformTag ff-platformTag--soft">Active</span>
+												<span class="ff-pill ff-pill--soft">Active</span>
 											{/if}
 										</div>
 
@@ -463,352 +532,357 @@
 									</button>
 								{/each}
 							</div>
+
+							<div class="ff-grid ff-mt-4">
+								{#each setupProof as item (item.title)}
+									<div class="ff-card ff-card--soft ff-onboardingProofItem">
+										<p class="ff-kicker">{item.title}</p>
+										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">{item.body}</p>
+									</div>
+								{/each}
+							</div>
 						</aside>
 
-						<section class="ff-card ff-onboardingMain" aria-labelledby="onboardingStepTitle">
-							<div class="flex flex-wrap items-start justify-between gap-4">
-								<div class="max-w-3xl">
-									<p class="ff-kicker">Step {activeStep}</p>
+						<div class="ff-stack">
+							<section class="ff-card ff-onboardingMain" aria-labelledby="onboardingStepTitle">
+								<div class="ff-row ff-row--between ff-wrap ff-gap-3">
+									<div class="ff-minw-0">
+										<p class="ff-kicker">Step {activeStep}</p>
 
-									<h2 class="ff-h2 ff-mt-3 ff-onboardingSectionTitle" id="onboardingStepTitle">
-										{selectedStep.title}
-									</h2>
+										<h2 class="ff-h2 ff-mt-3 ff-onboardingSectionTitle" id="onboardingStepTitle">
+											{selectedStep.title}
+										</h2>
 
-									<p class="ff-copy ff-mt-3">{selectedStep.body}</p>
+										<p class="ff-copy ff-mt-3">{selectedStep.body}</p>
 
-									<p class="ff-help ff-mutedStrong ff-mt-2">
-										These choices shape the public page, sponsor offers, and publish flow.
-									</p>
+										<p class="ff-help ff-mutedStrong ff-mt-2">
+											These choices shape the public page, sponsor offers, and publish flow.
+										</p>
+									</div>
+
+									<span class="ff-pill ff-pill--ghost">{activeStep} / {steps.length}</span>
 								</div>
 
-								<span class="ff-pill ff-pill--ghost">{activeStep} / {steps.length}</span>
-							</div>
-
-							{#if activeStep === 1}
-								<div class="mt-6 grid gap-4 md:grid-cols-2">
-									<div>
-										<label class="ff-label ff-mb-0" for="orgName">Organization name</label>
-										<input
-											id="orgName"
-											class="ff-input"
-											bind:value={orgName}
-											placeholder="Connect ATX Elite"
-										/>
-									</div>
-
-									<div>
-										<label class="ff-label ff-mb-0" for="orgType">Organization type</label>
-										<select id="orgType" class="ff-input" bind:value={orgType}>
-											<option>Youth team</option>
-											<option>School</option>
-											<option>Nonprofit</option>
-											<option>Club</option>
-											<option>Community group</option>
-										</select>
-									</div>
-
-									<div class="md:col-span-2">
-										<label class="ff-label ff-mb-0" for="location">Location</label>
-										<input
-											id="location"
-											class="ff-input"
-											bind:value={location}
-											placeholder="Austin, TX"
-										/>
-									</div>
-								</div>
-							{/if}
-
-							{#if activeStep === 2}
-								<div class="mt-6 grid gap-4 md:grid-cols-2">
-									<div>
-										<label class="ff-label ff-mb-0" for="logoText">Logo initials</label>
-										<input
-											id="logoText"
-											class="ff-input"
-											bind:value={logoText}
-											maxlength="3"
-											placeholder="CA"
-										/>
-									</div>
-
-									<div>
-										<label class="ff-label ff-mb-0" for="brandColorText">Primary brand color</label>
-
-										<div class="flex gap-3">
+								{#if activeStep === 1}
+									<div class="ff-grid ff-grid--2 ff-mt-4">
+										<div class="ff-stack">
+											<label class="ff-label" for="orgName">Organization name</label>
 											<input
-												aria-label="Primary brand color swatch"
-												class="ff-onboardingSwatch"
-												type="color"
-												bind:value={brandColor}
+												id="orgName"
+												class="ff-input"
+												bind:value={orgName}
+												placeholder="Connect ATX Elite"
 											/>
-											<input id="brandColorText" class="ff-input" bind:value={brandColor} />
+										</div>
+
+										<div class="ff-stack">
+											<label class="ff-label" for="orgType">Organization type</label>
+											<select id="orgType" class="ff-input" bind:value={orgType}>
+												<option>Youth team</option>
+												<option>School</option>
+												<option>Nonprofit</option>
+												<option>Club</option>
+												<option>Community group</option>
+											</select>
+										</div>
+
+										<div class="ff-stack">
+											<label class="ff-label" for="location">Location</label>
+											<input
+												id="location"
+												class="ff-input"
+												bind:value={location}
+												placeholder="Austin, TX"
+											/>
+										</div>
+
+										<div class="ff-card ff-card--soft">
+											<p class="ff-kicker">Why this matters</p>
+											<p class="ff-copy ff-mt-2">
+												Name, org type, and location are what make the fundraiser feel real on first open.
+											</p>
 										</div>
 									</div>
+								{/if}
 
-									<div class="md:col-span-2">
-										<label class="ff-label ff-mb-0" for="accentColorText">Accent color</label>
-
-										<div class="flex gap-3">
+								{#if activeStep === 2}
+									<div class="ff-grid ff-grid--2 ff-mt-4">
+										<div class="ff-stack">
+											<label class="ff-label" for="logoText">Logo initials</label>
 											<input
-												aria-label="Accent color swatch"
-												class="ff-onboardingSwatch"
-												type="color"
-												bind:value={accentColor}
+												id="logoText"
+												class="ff-input"
+												bind:value={logoText}
+												maxlength="3"
+												placeholder="CA"
 											/>
-											<input id="accentColorText" class="ff-input" bind:value={accentColor} />
+										</div>
+
+										<div class="ff-stack">
+											<label class="ff-label" for="brandColorText">Primary brand color</label>
+											<div class="ff-row ff-ais">
+												<input
+													aria-label="Primary brand color swatch"
+													class="ff-onboardingSwatch"
+													type="color"
+													bind:value={brandColor}
+												/>
+												<input id="brandColorText" class="ff-input" bind:value={brandColor} />
+											</div>
+										</div>
+
+										<div class="ff-stack">
+											<label class="ff-label" for="accentColorText">Accent color</label>
+											<div class="ff-row ff-ais">
+												<input
+													aria-label="Accent color swatch"
+													class="ff-onboardingSwatch"
+													type="color"
+													bind:value={accentColor}
+												/>
+												<input id="accentColorText" class="ff-input" bind:value={accentColor} />
+											</div>
+										</div>
+
+										<div class="ff-card ff-card--soft">
+											<p class="ff-kicker">Brand outcome</p>
+											<p class="ff-copy ff-mt-2">
+												Clean initials, primary color, and accent color make the public page feel intentional faster.
+											</p>
 										</div>
 									</div>
-								</div>
-							{/if}
+								{/if}
 
-							{#if activeStep === 3}
-								<div class="mt-6 grid gap-4">
-									<div>
-										<label class="ff-label ff-mb-0" for="campaignTitle">Campaign title</label>
-										<input
-											id="campaignTitle"
-											class="ff-input"
-											bind:value={campaignTitle}
-											placeholder="Spring Fundraiser"
-										/>
+								{#if activeStep === 3}
+									<div class="ff-grid ff-mt-4">
+										<div class="ff-stack">
+											<label class="ff-label" for="campaignTitle">Campaign title</label>
+											<input
+												id="campaignTitle"
+												class="ff-input"
+												bind:value={campaignTitle}
+												placeholder="Spring Fundraiser"
+											/>
+										</div>
+
+										<div class="ff-stack">
+											<label class="ff-label" for="fundraisingGoal">Fundraising goal</label>
+											<input
+												id="fundraisingGoal"
+												class="ff-input"
+												bind:value={fundraisingGoal}
+												inputmode="numeric"
+												placeholder="10000"
+											/>
+										</div>
+
+										<div class="ff-stack">
+											<label class="ff-label" for="shortStory">Short story</label>
+											<textarea
+												id="shortStory"
+												class="ff-input"
+												rows="5"
+												bind:value={shortStory}
+											></textarea>
+										</div>
+									</div>
+								{/if}
+
+								{#if activeStep === 4}
+									<div class="ff-grid ff-grid--3 ff-mt-4">
+										{#each laneCards as lane (lane.key)}
+											<button
+												type="button"
+												class="ff-card ff-card--soft ff-onboardingStepCard"
+												data-active={lane.active ? 'true' : 'false'}
+												aria-pressed={lane.active}
+												onclick={() => toggleLane(lane.key)}
+											>
+												<div class="ff-row ff-row--between ff-ais ff-wrap">
+													<p class="ff-h3">{lane.title}</p>
+													<span class={`ff-pill ${lane.active ? 'ff-pill--soft' : 'ff-pill--ghost'}`}>
+														{lane.active ? 'On' : 'Off'}
+													</span>
+												</div>
+
+												<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">{lane.body}</p>
+											</button>
+										{/each}
+									</div>
+								{/if}
+
+								{#if activeStep === 5}
+									<div class="ff-grid ff-grid--3 ff-mt-4">
+										{#each publishChecks as item (item.title)}
+											<div class="ff-card ff-card--soft ff-onboardingLaunchItem">
+												<p class="ff-kicker">{item.title}</p>
+												<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">{item.body}</p>
+											</div>
+										{/each}
 									</div>
 
-									<div>
-										<label class="ff-label ff-mb-0" for="fundraisingGoal">Fundraising goal</label>
-										<input
-											id="fundraisingGoal"
-											class="ff-input"
-											bind:value={fundraisingGoal}
-											inputmode="numeric"
-											placeholder="10000"
-										/>
-									</div>
+									<div class="ff-card ff-card--soft ff-mt-4">
+										<div class="ff-row ff-row--between ff-wrap ff-ais">
+											<div class="ff-minw-0">
+												<p class="ff-kicker">Launch readiness</p>
+												<h3 class="ff-h3 ff-mt-2">
+													{publishReady ? 'Ready for launch review' : 'Needs a little more setup'}
+												</h3>
+											</div>
 
-									<div>
-										<label class="ff-label ff-mb-0" for="shortStory">Short story</label>
-										<textarea
-											id="shortStory"
-											class="ff-input"
-											rows="5"
-											bind:value={shortStory}
-										></textarea>
-									</div>
-								</div>
-							{/if}
+											<span class={`ff-pill ${publishReady ? 'ff-pill--soft' : 'ff-pill--ghost'}`}>
+												{publishReady ? 'Ready' : 'Review needed'}
+											</span>
+										</div>
 
-							{#if activeStep === 4}
-								<fieldset class="mt-6 grid gap-4 md:grid-cols-3">
-									<legend class="ff-sr">Revenue lane selection</legend>
-
-									<button
-										type="button"
-										class="ff-card ff-card--soft ff-onboardingStepCard"
-										data-active={donationLane ? 'true' : 'false'}
-										aria-pressed={donationLane}
-										onclick={() => (donationLane = !donationLane)}
-									>
-										<p class="ff-h3">Donations</p>
-										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">
-											One-time supporter contributions on the public page.
-										</p>
-									</button>
-
-									<button
-										type="button"
-										class="ff-card ff-card--soft ff-onboardingStepCard"
-										data-active={sponsorLane ? 'true' : 'false'}
-										aria-pressed={sponsorLane}
-										onclick={() => (sponsorLane = !sponsorLane)}
-									>
-										<p class="ff-h3">Sponsor packages</p>
-										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">
-											Visible sponsor offers for local businesses, partners, and community backing.
-										</p>
-									</button>
-
-									<button
-										type="button"
-										class="ff-card ff-card--soft ff-onboardingStepCard"
-										data-active={recurringLane ? 'true' : 'false'}
-										aria-pressed={recurringLane}
-										onclick={() => (recurringLane = !recurringLane)}
-									>
-										<p class="ff-h3">Recurring support</p>
-										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">
-											Monthly or seasonal support when you want steadier fundraising beyond one-time gifts.
-										</p>
-									</button>
-								</fieldset>
-							{/if}
-
-							{#if activeStep === 5}
-								<div class="mt-6 grid gap-4">
-									<div class="ff-card ff-card--soft">
-										<p class="ff-kicker">Launch checklist</p>
-										<ul class="ff-stack ff-mt-3 ff-onboardingBody ff-onboardingBody--sm">
-											<li>• Organization details look right</li>
-											<li>• Campaign title and goal are filled in</li>
-											<li>• Brand colors and initials are set</li>
-											<li>• Revenue lanes match the launch plan</li>
-											<li>• Preview is ready for stakeholder review</li>
-										</ul>
-									</div>
-
-									<div class="ff-card ff-card--soft">
-										<p class="ff-kicker">Publish note</p>
 										<p class="ff-copy ff-mt-3">
-											This is the operator checkpoint before connecting payments, confirming sponsor
-											tiers, and making the live page public.
+											{publishReady
+												? 'The setup is in good shape. Next step: confirm payments and final launch checks from the dashboard.'
+												: 'Finish the basics, campaign story, and at least one revenue lane before you publish.'}
 										</p>
 									</div>
-								</div>
-							{/if}
+								{/if}
 
-							<div class="mt-6 ff-onboardingStepActions">
-								<button
-									type="button"
-									class="ff-btn ff-btn--ghost ff-onboardingBackBtn"
-									onclick={prevStep}
-									disabled={activeStep === 1}
-								>
-									Back
-								</button>
-
-								<div class="ff-onboardingStepActionGroup">
+								<div class="ff-actions ff-mt-4">
 									<button
 										type="button"
-										class="ff-btn ff-btn--secondary ff-btn--sm ff-btn--quiet ff-onboardingPreviewBtn"
+										class="ff-btn ff-btn--secondary ff-btn--pill"
+										onclick={prevStep}
+										disabled={activeStep === 1}
+									>
+										Back
+									</button>
+
+									<button
+										type="button"
+										class="ff-btn ff-btn--secondary ff-btn--pill"
 										onclick={openPreview}
 									>
 										View live fundraiser
 									</button>
 
 									{#if activeStep < steps.length}
-										<button type="button" class="ff-btn ff-btn--primary ff-onboardingContinueBtn" onclick={nextStep}>
+										<button
+											type="button"
+											class="ff-btn ff-btn--primary ff-btn--pill"
+											onclick={nextStep}
+										>
 											Continue
 										</button>
 									{:else}
 										<button
 											type="button"
-											class="ff-btn ff-btn--primary ff-onboardingPublishBtn"
+											class="ff-btn ff-btn--primary ff-btn--pill"
 											onclick={launchWorkspace}
 										>
-											Publish setup
+											Publish ready
 										</button>
 									{/if}
 								</div>
-							</div>
 
-							{#if launchNotice}
-								<div class="ff-alert ff-alert--info mt-5" role="status" aria-live="polite">
-									{launchNotice}
-								</div>
-							{/if}
-						</section>
-
-						<aside class="ff-card ff-onboardingPreview xl:sticky xl:top-24">
-							<p class="ff-kicker">Live preview</p>
-
-							<h3 class="ff-h2 ff-mt-3">{orgName}</h3>
-							<p class="ff-onboardingMeta ff-mt-2">{location}</p>
-
-							<div class="mt-5 flex flex-wrap gap-2">
-								<span class="ff-pill ff-pill--ghost">{orgType}</span>
-								{#if donationLane}
-									<span class="ff-pill ff-pill--ghost">Donations</span>
-								{/if}
-								{#if sponsorLane}
-									<span class="ff-pill ff-pill--ghost">Sponsors</span>
-								{/if}
-								{#if recurringLane}
-									<span class="ff-pill ff-pill--ghost">Recurring</span>
-								{/if}
-							</div>
-
-							<div class="ff-onboardingPreviewBenefits">
-								{#each previewBenefits as item (item.title)}
-									<div class="ff-onboardingPreviewBenefit">
-										<p class="ff-onboardingPreviewBenefitTitle">{item.title}</p>
-										<p class="ff-onboardingBody ff-onboardingBody--sm ff-mt-2">{item.body}</p>
+								{#if launchNotice}
+									<div class="ff-alert ff-alert--info ff-mt-4" role="status" aria-live="polite">
+										{launchNotice}
 									</div>
-								{/each}
-							</div>
+								{/if}
+							</section>
 
-							<div class="ff-onboardingPreviewShell">
-								<div class="flex items-center gap-3">
-									<div
-										class="ff-onboardingPreviewMark"
-										style={`background: linear-gradient(180deg, ${brandColor}, ${accentColor});`}
-									>
-										{logoText}
-									</div>
+							<aside class="ff-card">
+								<p class="ff-kicker">Live preview</p>
+								<h2 class="ff-h2 ff-mt-3">{orgName}</h2>
+								<p class="ff-copy ff-mt-2">{location}</p>
 
-									<div>
-										<p class="text-sm font-semibold">{orgName}</p>
-										<p class="ff-onboardingMeta">{location}</p>
-									</div>
+								<div class="ff-row ff-wrap ff-gap-2 ff-mt-3">
+									<span class="ff-pill ff-pill--ghost">{orgType}</span>
+									{#if donationLane}
+										<span class="ff-pill ff-pill--ghost">Donations</span>
+									{/if}
+									{#if sponsorLane}
+										<span class="ff-pill ff-pill--ghost">Sponsors</span>
+									{/if}
+									{#if recurringLane}
+										<span class="ff-pill ff-pill--ghost">Recurring</span>
+									{/if}
 								</div>
 
-								<p class="mt-5 text-4xl leading-[0.94] font-black tracking-[-0.05em]">
-									{campaignTitle}
-								</p>
-
-								<p class="ff-copy ff-mt-3">{shortStory}</p>
-
-								<div class="mt-5 grid gap-3 sm:grid-cols-3">
-									<div class="ff-onboardingPreviewStat">
-										<p class="ff-kicker">Goal</p>
-										<p class="mt-2 text-lg font-black">${previewGoal.toLocaleString()}</p>
-									</div>
-
-									<div class="ff-onboardingPreviewStat">
-										<p class="ff-kicker">Progress</p>
-										<p class="mt-2 text-lg font-black">0%</p>
-									</div>
-
-									<div class="ff-onboardingPreviewStat">
-										<p class="ff-kicker">Slug</p>
-										<p class="mt-2 truncate text-sm font-black">{previewSlug}</p>
-									</div>
+								<div class="ff-grid ff-mt-4">
+									{#each previewBenefits as item (item.title)}
+										<div class="ff-card ff-card--soft">
+											<p class="ff-h3">{item.title}</p>
+											<p class="ff-copy ff-mt-2">{item.body}</p>
+										</div>
+									{/each}
 								</div>
-							</div>
 
-							<div class="mt-5 ff-onboardingPreviewActionStack">
-								<div class="ff-card ff-card--soft ff-onboardingPreviewActionCard">
-									<p class="ff-kicker">Preview actions</p>
-
-									<div class="mt-4 grid gap-3">
-										<button type="button" class="ff-btn ff-btn--primary ff-onboardingPreviewPrimaryBtn" onclick={openPreview}>
-											Preview public page
-										</button>
-
-										<button
-											type="button"
-											class="ff-btn ff-btn--secondary ff-onboardingPreviewSecondaryBtn"
-											onclick={() => goto('/platform/dashboard')}
+								<div class="ff-card ff-card--soft ff-mt-4">
+									<div class="ff-inline">
+										<div
+											class="ff-brand__mark"
+											aria-hidden="true"
+											style={`background:${brandColor};color:#fff;border-color:transparent;`}
 										>
-											Open dashboard
-										</button>
+											{logoText || 'FF'}
+										</div>
+
+										<div class="ff-minw-0">
+											<p class="ff-brand__title">{orgName}</p>
+											<p class="ff-brand__sub">{location}</p>
+										</div>
+									</div>
+
+									<h3 class="ff-display ff-mt-4">{campaignTitle}</h3>
+									<p class="ff-copy ff-mt-3">{shortStory}</p>
+
+									<div class="ff-grid ff-grid--3 ff-mt-4">
+										<div class="ff-card ff-card--soft">
+											<p class="ff-kicker">Goal</p>
+											<p class="ff-h3 ff-mt-2">{previewGoalLabel}</p>
+										</div>
+
+										<div class="ff-card ff-card--soft">
+											<p class="ff-kicker">Revenue lanes</p>
+											<p class="ff-h3 ff-mt-2">{liveLaneCount}</p>
+										</div>
+
+										<div class="ff-card ff-card--soft">
+											<p class="ff-kicker">Slug</p>
+											<p class="ff-h3 ff-mt-2">{previewSlug}</p>
+										</div>
 									</div>
 								</div>
 
-								<div class="ff-card ff-card--soft ff-onboardingPreviewSummaryCard">
-									<p class="ff-kicker">What goes live from here</p>
+								<div class="ff-actions ff-mt-4">
+									<button
+										type="button"
+										class="ff-btn ff-btn--primary ff-btn--pill"
+										onclick={openPreview}
+									>
+										Preview public page
+									</button>
 
-									<ul class="ff-stack ff-mt-3 ff-onboardingBody ff-onboardingBody--sm">
-										<li>• branded public fundraiser</li>
-										<li>• launch-ready revenue lanes</li>
-										<li>• operator-ready launch workflow</li>
-										<li>• preview path before you publish</li>
+									<button
+										type="button"
+										class="ff-btn ff-btn--secondary ff-btn--pill"
+										onclick={openDashboard}
+									>
+										Open dashboard
+									</button>
+								</div>
+
+								<div class="ff-card ff-card--soft ff-mt-4">
+									<p class="ff-kicker">What goes live from here</p>
+									<ul class="ff-stack ff-mt-3" style="padding-left: 1rem; margin: 0;">
+										<li>branded public fundraiser</li>
+										<li>launch-ready revenue lanes</li>
+										<li>operator-ready launch workflow</li>
+										<li>preview path before you publish</li>
 									</ul>
 								</div>
-							</div>
-						</aside>
+							</aside>
+						</div>
 					</div>
 				</section>
 			</div>
 		</main>
 	</div>
 </div>
-
