@@ -217,6 +217,21 @@
 		}
 	];
 
+	const pricingReasons: PromiseItem[] = [
+		{
+			title: 'Start lean',
+			body: 'Get a polished public page live fast without dragging in extra setup overhead.'
+		},
+		{
+			title: 'Power up later',
+			body: 'Move into sponsor revenue and recurring support when the organization is ready.'
+		},
+		{
+			title: 'Stay in one system',
+			body: 'You do not need one tool for setup, one for sponsors, and another for launch ops.'
+		}
+	];
+
 	const tiers: PricingTier[] = [
 		{
 			key: 'starter',
@@ -297,6 +312,21 @@
 		{ label: 'Surface', value: 'Preview ready' },
 		{ label: 'Revenue', value: 'Sponsors + support' },
 		{ label: 'Operator', value: 'Dashboard included' }
+	];
+
+	const controlProof: PromiseItem[] = [
+		{
+			title: 'Provider ready',
+			body: 'Launch with a credible public page that feels intentional from the first open.'
+		},
+		{
+			title: 'Sponsors + support',
+			body: 'Monetize beyond one-time giving with clearer sponsor and recurring lanes.'
+		},
+		{
+			title: 'Dashboard included',
+			body: 'Keep preview mode, launch actions, and operator control inside the same product.'
+		}
 	];
 
 	const routeCards = [
@@ -987,6 +1017,15 @@
 					>
 						Compare plans
 					</button>
+				</div>
+
+				<div class="ff-platformCompareBar ff-mt-4">
+					{#each pricingReasons as item (item.title)}
+						<div class="ff-platformCompareItem">
+							<p class="ff-platformCompareTitle">{item.title}</p>
+							<p class="ff-platformCompareBody">{item.body}</p>
+						</div>
+					{/each}
 				</div>
 
 				<div class="ff-platformPricingGrid">

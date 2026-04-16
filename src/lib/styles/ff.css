@@ -3825,3 +3825,282 @@ html.ff-root[data-theme="dark"] .ff-platformSection--pricing .ff-platformTier--f
 }
 /* FF_PLATFORM_HOMEPAGE_PRESTIGE_WAVE3_END */
 
+/* FF_PLATFORM_HOMEPAGE_COMMERCIAL_FINISH_START */
+.ff-platformAppbar {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ff-platformHeroCard,
+.ff-platformControlCard,
+.ff-platformLaneWrap,
+.ff-platformFooterCard {
+  box-shadow: var(--ff-shadow-lg);
+}
+
+.ff-platformHeroCard {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.12), transparent 32%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.10), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformHeroCard::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -24% auto;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(249 115 22 / 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.ff-platformHeroLead {
+  max-width: 34rem;
+}
+
+.ff-platformControlCard {
+  background:
+    radial-gradient(circle at top right, rgb(14 165 233 / 0.09), transparent 36%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformControlProof,
+.ff-platformCompareBar {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ff-platformControlProofItem,
+.ff-platformCompareItem {
+  min-width: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformCompareTitle,
+.ff-platformControlProofItem__label {
+  display: block;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ff-text-muted);
+}
+
+.ff-platformCompareBody,
+.ff-platformControlProofItem__value {
+  margin: 0.42rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ff-text-soft);
+}
+
+.ff-platformRevenueRibbon {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ff-platformRevenueBadge {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.08), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformRevenueBadge__title {
+  font-weight: 820;
+}
+
+.ff-platformSectionHeader {
+  max-width: 44rem;
+}
+
+.ff-platformSection--flow .ff-platformSectionHeader,
+.ff-platformSection--pricing .ff-platformSectionHeader {
+  max-width: 40rem;
+}
+
+.ff-platformSection--pricing .ff-platformTier {
+  min-height: 100%;
+}
+
+.ff-platformSection--pricing .ff-platformTierActions {
+  margin-top: auto;
+}
+
+.ff-platformSection--pricing .ff-platformTierActions .ff-btn {
+  width: 100%;
+}
+
+.ff-platformSection--pricing .ff-platformTier--featured {
+  position: relative;
+  isolation: isolate;
+  border-color: rgb(249 115 22 / 0.26);
+  box-shadow: var(--ff-shadow-lg), 0 0 0 1px rgb(249 115 22 / 0.10);
+}
+
+.ff-platformSection--pricing .ff-platformTier--featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.12), transparent 34%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.08), transparent 34%);
+}
+
+.ff-platformSection--pricing .ff-platformTier--featured .ff-btn {
+  box-shadow: 0 18px 38px rgb(249 115 22 / 0.22);
+}
+
+.ff-platformSection--pricing .ff-platformTierCallout {
+  font-weight: 700;
+}
+
+.ff-platformFooterCard {
+  border-radius: 1.45rem;
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.10), transparent 30%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.08), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformHeroActions .ff-btn--primary,
+.ff-platformFooterActions .ff-btn--primary {
+  box-shadow: 0 18px 38px rgb(249 115 22 / 0.22);
+}
+
+.ff-platformControlRailItem,
+.ff-platformSignal,
+.ff-platformStoryCard,
+.ff-platformIncludeCard,
+.ff-platformRouteCard,
+.ff-platformLane,
+.ff-platformTier,
+.ff-platformRevenueBadge,
+.ff-platformCompareItem,
+.ff-platformControlProofItem {
+  transition:
+    transform var(--ff-ease),
+    box-shadow var(--ff-ease),
+    border-color var(--ff-ease),
+    background-color var(--ff-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ff-platformControlRailItem:hover,
+  .ff-platformSignal:hover,
+  .ff-platformStoryCard:hover,
+  .ff-platformIncludeCard:hover,
+  .ff-platformRouteCard:hover,
+  .ff-platformLane:hover,
+  .ff-platformTier:hover,
+  .ff-platformRevenueBadge:hover,
+  .ff-platformCompareItem:hover,
+  .ff-platformControlProofItem:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ff-shadow-md);
+  }
+}
+
+html.ff-root:not([data-theme="dark"]) {
+  --ff-bg: #edf3fa;
+  --ff-bg-soft: #f7faff;
+  --ff-panel: rgb(255 255 255 / 0.92);
+  --ff-panel-strong: rgb(255 255 255 / 0.99);
+  --ff-text: #0b1828;
+  --ff-text-strong: #07111f;
+  --ff-text-soft: #17283c;
+  --ff-text-muted: #53667c;
+  --ff-border: rgb(15 23 42 / 0.12);
+  --ff-border-strong: rgb(15 23 42 / 0.17);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformRevenueBadge,
+html.ff-root:not([data-theme="dark"]) .ff-platformCompareItem,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlProofItem,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.09), transparent 32%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.08), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(247 250 255 / 0.94));
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformTier--featured {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.11), transparent 34%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.09), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 1), rgb(248 251 255 / 0.95));
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformTierCallout {
+  background: #fff7ed;
+  border-color: rgb(249 115 22 / 0.14);
+  color: #9a3412;
+}
+
+@media (max-width: 63.99rem) {
+  .ff-platformControlProof,
+  .ff-platformCompareBar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-platformHeroCard,
+  .ff-platformControlCard,
+  .ff-platformLaneWrap,
+  .ff-platformPreviewShell,
+  .ff-platformTier,
+  .ff-platformFooterCard {
+    border-radius: 1.18rem;
+  }
+
+  .ff-platformHeroActions,
+  .ff-platformProofRow--preview,
+  .ff-platformFooterActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ff-platformHeroActions .ff-btn,
+  .ff-platformProofRow--preview .ff-btn,
+  .ff-platformFooterActions .ff-btn {
+    width: 100%;
+  }
+
+  .ff-platformHeroPromise,
+  .ff-platformControlProofItem,
+  .ff-platformRevenueBadge,
+  .ff-platformCompareItem,
+  .ff-platformPreviewOutcome {
+    padding: 0.9rem;
+  }
+
+  .ff-platformSectionHeader {
+    gap: 0.35rem;
+  }
+
+  .ff-platformSectionTitle {
+    text-wrap: pretty;
+  }
+}
+/* FF_PLATFORM_HOMEPAGE_COMMERCIAL_FINISH_END */
+
+
