@@ -1951,3 +1951,1877 @@ html.ff-root:not([data-theme="dark"]) .ff-leaderboardRow--top {
 }
 /* FF_FINAL_LAUNCH_MICROPOLISH_V3_END */
 
+/* =========================================================
+   PLATFORM FLAGSHIP SURFACE
+   ========================================================= */
+.ff-appbar {
+  position: sticky;
+  top: 0;
+  z-index: 75;
+  padding-top: 0.75rem;
+}
+
+.ff-appbar__inner {
+  padding: 0.9rem 1rem;
+}
+
+.ff-brand__mark {
+  display: grid;
+  place-items: center;
+  inline-size: 2.45rem;
+  block-size: 2.45rem;
+  min-inline-size: 2.45rem;
+  min-block-size: 2.45rem;
+  border-radius: 0.95rem;
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, var(--ff-brand), var(--ff-brand-strong));
+  color: var(--ff-inverse);
+  box-shadow: 0 12px 24px rgb(249 115 22 / 0.22);
+  font-size: 0.92rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.ff-platformPage,
+.ff-platformPage__inner,
+.ff-platformSurface {
+  min-height: 100dvh;
+}
+
+.ff-platformTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.ff-platformTopbar__brand,
+.ff-platformTopbar__actions,
+.ff-platformDrawer__head,
+.ff-platformDrawer__brand,
+.ff-platformFooterActions,
+.ff-platformHeroActions,
+.ff-platformHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ff-platformTopbar__brand,
+.ff-platformDrawer__brand {
+  min-width: 0;
+}
+
+.ff-platformTopbar__copy,
+.ff-platformDrawer__copy {
+  min-width: 0;
+}
+
+.ff-platformMeta,
+.ff-platformDrawerLabel {
+  margin: 0.15rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ff-text-muted);
+  line-height: 1.25;
+}
+
+.ff-platformNav {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.ff-platformNav .ff-btn {
+  min-height: 2.2rem;
+}
+
+.ff-platformTopbar__mobile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.ff-platformDrawer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgb(2 6 23 / 0.56);
+}
+
+.ff-platformDrawer .ff-drawer__panel {
+  width: min(92vw, 24rem);
+}
+
+.ff-platformDrawer__head {
+  justify-content: space-between;
+}
+
+.ff-platformDrawer__nav {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ff-platformDrawer__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ff-platformSection {
+  padding-top: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+}
+
+.ff-platformHeroGrid,
+.ff-platformRouteGrid,
+.ff-platformSystemGrid,
+.ff-platformStoryGrid,
+.ff-platformIncludeGrid,
+.ff-platformPricingGrid,
+.ff-platformLaneGrid,
+.ff-platformFooterGrid,
+.ff-platformSignalGrid,
+.ff-platformMiniGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.ff-platformHeroGrid {
+  align-items: start;
+}
+
+.ff-platformHeroCard,
+.ff-platformControlCard,
+.ff-platformSectionCard,
+.ff-platformTier,
+.ff-platformLane,
+.ff-platformFooterCard,
+.ff-platformStoryCard,
+.ff-platformIncludeCard,
+.ff-platformMiniCard,
+.ff-platformSignal,
+.ff-platformProofCard,
+.ff-platformStatsCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.ff-platformHeroCard::before,
+.ff-platformControlCard::before,
+.ff-platformFooterCard::before,
+.ff-platformTier--featured::before,
+.ff-platformLane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgb(249 115 22 / 0.08), transparent 34%, rgb(14 165 233 / 0.06) 78%, transparent 100%);
+}
+
+.ff-platformHeroCard {
+  padding: clamp(1.2rem, 1rem + 0.9vw, 1.8rem);
+  border-radius: 1.55rem;
+  box-shadow: var(--ff-shadow-md);
+}
+
+.ff-platformHeroCard .ff-display {
+  max-width: 10.5ch;
+}
+
+.ff-platformHeroLead {
+  max-width: 62ch;
+}
+
+.ff-platformHeroActions {
+  flex-wrap: wrap;
+  margin-top: 1.15rem;
+}
+
+.ff-platformHeroActions .ff-btn {
+  min-width: 0;
+}
+
+.ff-platformHeroPills,
+.ff-platformProofRow,
+.ff-platformSectionPills,
+.ff-platformLaneTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.ff-platformHeroPills {
+  margin-top: 1rem;
+}
+
+.ff-platformSignalGrid {
+  margin-top: 1.2rem;
+}
+
+.ff-platformSignal {
+  padding: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--ff-border);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformSignalValue {
+  margin: 0.35rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: var(--ff-text-strong);
+}
+
+.ff-platformSignalBody {
+  margin: 0.45rem 0 0;
+  color: var(--ff-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.ff-platformControlCard {
+  padding: clamp(1.1rem, 0.95rem + 0.8vw, 1.65rem);
+  border-radius: 1.45rem;
+  box-shadow: var(--ff-shadow-md);
+}
+
+.ff-platformControlHead,
+.ff-platformSectionHeader {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.ff-platformTitle,
+.ff-platformSectionTitle {
+  margin: 0;
+  max-width: 13ch;
+  font-size: clamp(1.85rem, 3vw, 2.75rem);
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: var(--ff-text-strong);
+  text-wrap: balance;
+}
+
+.ff-platformSectionTitle {
+  max-width: 12ch;
+}
+
+.ff-platformCopy,
+.ff-platformBody,
+.ff-platformLead {
+  margin: 0;
+  color: var(--ff-text-soft);
+  line-height: 1.68;
+  text-wrap: pretty;
+}
+
+.ff-platformLead {
+  font-size: 1.02rem;
+}
+
+.ff-platformBody--sm {
+  font-size: 0.95rem;
+}
+
+.ff-platformStatsCard {
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformMetric {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.ff-platformMetric__label {
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--ff-text-muted);
+}
+
+.ff-platformMetric__value {
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ff-text-strong);
+}
+
+.ff-platformChecklist,
+.ff-platformBulletList,
+.ff-platformMiniList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ff-platformChecklist li,
+.ff-platformBulletList li,
+.ff-platformMiniList li {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  color: var(--ff-text-soft);
+  line-height: 1.55;
+}
+
+.ff-platformCheck,
+.ff-platformMiniMark {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.35rem;
+  block-size: 1.35rem;
+  min-inline-size: 1.35rem;
+  min-block-size: 1.35rem;
+  margin-top: 0.08rem;
+  border-radius: 999px;
+  border: 1px solid rgb(249 115 22 / 0.22);
+  background: rgb(249 115 22 / 0.12);
+  color: var(--ff-brand-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.ff-platformProofRow {
+  margin-top: 1rem;
+}
+
+.ff-platformProofCard,
+.ff-platformMiniCard,
+.ff-platformStoryCard,
+.ff-platformIncludeCard,
+.ff-platformSectionCard {
+  padding: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--ff-border);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformProofCard {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.ff-platformProofTitle,
+.ff-platformMiniTitle,
+.ff-platformStoryTitle,
+.ff-platformIncludeTitle,
+.ff-platformLaneTitle,
+.ff-platformTierName {
+  margin: 0;
+  color: var(--ff-text-strong);
+  font-size: 1.02rem;
+  line-height: 1.16;
+  font-weight: 820;
+  letter-spacing: -0.03em;
+}
+
+.ff-platformRouteCard {
+  padding: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--ff-border);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformRouteCard--wide {
+  grid-column: 1 / -1;
+}
+
+.ff-platformRouteCard .ff-kicker,
+.ff-platformTierHead .ff-kicker,
+.ff-platformLaneHead .ff-kicker {
+  color: var(--ff-text-muted);
+}
+
+.ff-platformStepBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.45rem;
+  min-width: 2.45rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--ff-radius-pill);
+  border: 1px solid var(--ff-border);
+  background: var(--ff-panel-strong);
+  color: var(--ff-text-strong);
+  font-weight: 800;
+  box-shadow: var(--ff-shadow-xs);
+}
+
+.ff-platformPricingGrid,
+.ff-platformLaneGrid {
+  margin-top: 1.15rem;
+}
+
+.ff-platformTier {
+  padding: clamp(1.05rem, 0.95rem + 0.5vw, 1.45rem);
+  border-radius: 1.3rem;
+  border: 1px solid var(--ff-border-strong);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+  box-shadow: var(--ff-shadow-sm);
+}
+
+.ff-platformTier--featured {
+  border-color: rgb(249 115 22 / 0.28);
+  box-shadow: var(--ff-shadow-md), 0 0 0 1px rgb(249 115 22 / 0.10);
+}
+
+.ff-platformTierHead,
+.ff-platformLaneHead,
+.ff-platformFooterGrid,
+.ff-platformControlActions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.ff-platformTierPrice {
+  margin: 0.35rem 0 0;
+  font-size: clamp(2rem, 3vw, 2.9rem);
+  line-height: 0.98;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: var(--ff-text-strong);
+}
+
+.ff-platformTag {
+  border-color: var(--ff-border);
+  background: var(--ff-panel-strong);
+  color: var(--ff-text-soft);
+}
+
+.ff-platformTag--soft {
+  border-color: transparent;
+  background: var(--ff-brand-soft);
+  color: var(--ff-brand-strong);
+}
+
+.ff-platformTierActions,
+.ff-platformFooterActions {
+  margin-top: 1rem;
+}
+
+.ff-platformLaneWrap {
+  padding: clamp(1.15rem, 1rem + 0.7vw, 1.65rem);
+  border-radius: 1.4rem;
+}
+
+.ff-platformLane {
+  padding: 1rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--ff-border);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformLaneAmount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--ff-border);
+  background: var(--ff-panel-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ff-text-strong);
+}
+
+.ff-platformLaneTag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: var(--ff-brand-soft);
+  color: var(--ff-brand-strong);
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.ff-platformFooterCard {
+  padding: clamp(1.15rem, 1rem + 0.75vw, 1.75rem);
+  border-radius: 1.45rem;
+  box-shadow: var(--ff-shadow-md);
+}
+
+.ff-platformFooterGrid {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ff-platformFooterActions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ff-platformActionStack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+  .ff-appbar__inner {
+    padding: 0.95rem 1.05rem;
+  }
+
+  .ff-platformNav {
+    display: flex;
+  }
+
+  .ff-platformTopbar__mobile {
+    display: none;
+  }
+
+  .ff-platformSignalGrid,
+  .ff-platformRouteGrid,
+  .ff-platformMiniGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ff-platformStoryGrid,
+  .ff-platformPricingGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ff-platformIncludeGrid,
+  .ff-platformLaneGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ff-platformFooterGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  .ff-platformFooterActions {
+    min-width: 15rem;
+  }
+}
+
+@media (min-width: 72rem) {
+  .ff-platformHeroGrid {
+    grid-template-columns: minmax(0, 1.12fr) minmax(22rem, 0.88fr);
+  }
+
+  .ff-platformRouteGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ff-platformRouteCard--wide {
+    grid-column: auto;
+  }
+
+  .ff-platformIncludeGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ff-platformLaneGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-appbar {
+    padding-top: 0.6rem;
+  }
+
+  .ff-appbar__inner {
+    padding: 0.8rem 0.85rem;
+    border-radius: 1.2rem;
+  }
+
+  .ff-platformTopbar {
+    align-items: flex-start;
+  }
+
+  .ff-platformTopbar__brand {
+    gap: 0.65rem;
+  }
+
+  .ff-platformHeroCard,
+  .ff-platformControlCard,
+  .ff-platformFooterCard,
+  .ff-platformLaneWrap {
+    border-radius: 1.25rem;
+  }
+
+  .ff-platformHeroActions .ff-btn,
+  .ff-platformFooterActions .ff-btn,
+  .ff-platformActionStack .ff-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ff-platformTierHead,
+  .ff-platformLaneHead,
+  .ff-platformControlActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ff-platformTopbar__mobile .ff-btn--primary {
+    min-width: 0;
+  }
+}
+
+/* FF_PLATFORM_PRESTIGE_PASS_V2_START */
+.ff-platformAppbar {
+  box-shadow: var(--ff-shadow-md);
+}
+
+.ff-platformTopbar__brand .ff-pill {
+  margin-inline-start: 0.2rem;
+}
+
+.ff-platformHeroIntro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.ff-platformHeroCard,
+.ff-platformControlCard,
+.ff-platformFooterCard,
+.ff-platformLaneWrap {
+  border-color: var(--ff-border-strong);
+}
+
+.ff-platformHeroCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.14), transparent 28%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.12), transparent 30%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.10), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+html.ff-root[data-theme="dark"] .ff-platformHeroCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.16), transparent 30%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.14), transparent 32%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, rgb(12 22 38 / 0.98), rgb(9 17 31 / 0.95));
+}
+
+.ff-platformControlCard {
+  background:
+    radial-gradient(circle at top left, rgb(14 165 233 / 0.10), transparent 28%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformHeroStatRow {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.1rem;
+}
+
+.ff-platformHeroStat {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.9rem 0.95rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformHeroStat__label,
+.ff-platformControlRailItem__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--ff-text-muted);
+}
+
+.ff-platformHeroStat__value,
+.ff-platformControlRailItem__value {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ff-text-strong);
+  font-weight: 850;
+}
+
+.ff-platformControlRail {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.1rem;
+}
+
+.ff-platformControlRailItem {
+  display: grid;
+  gap: 0.24rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background: var(--ff-panel-solid);
+}
+
+.ff-platformRouteCard,
+.ff-platformSignal,
+.ff-platformStoryCard,
+.ff-platformIncludeCard,
+.ff-platformLane,
+.ff-platformTier,
+.ff-platformStatsCard {
+  box-shadow: var(--ff-shadow-xs);
+}
+
+.ff-platformRouteCard,
+.ff-platformSignal,
+.ff-platformStoryCard,
+.ff-platformIncludeCard {
+  transition:
+    transform var(--ff-ease),
+    box-shadow var(--ff-ease),
+    border-color var(--ff-ease),
+    background-color var(--ff-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ff-platformRouteCard:hover,
+  .ff-platformSignal:hover,
+  .ff-platformStoryCard:hover,
+  .ff-platformIncludeCard:hover,
+  .ff-platformTier:hover,
+  .ff-platformLane:hover,
+  .ff-platformFooterCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ff-shadow-md);
+  }
+}
+
+.ff-platformTier {
+  display: grid;
+  align-content: start;
+}
+
+.ff-platformTierNote {
+  margin-top: 1rem;
+  padding: 0.82rem 0.9rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 0.95rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+  color: var(--ff-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.ff-platformTierActions {
+  margin-top: 1rem;
+}
+
+.ff-platformTierActions .ff-btn,
+.ff-platformFooterActions .ff-btn,
+.ff-platformActionStack .ff-btn,
+.ff-platformDrawer__actions .ff-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 48rem) {
+  .ff-platformFooterActions .ff-btn,
+  .ff-platformActionStack .ff-btn,
+  .ff-platformDrawer__actions .ff-btn {
+    width: auto;
+  }
+
+  .ff-platformTierActions .ff-btn {
+    width: 100%;
+  }
+}
+
+.ff-platformLaneAmount {
+  min-width: 4.8rem;
+}
+
+.ff-platformLaneTag {
+  border: 1px solid rgb(249 115 22 / 0.18);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformLaneWrap {
+  box-shadow: var(--ff-shadow-md);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformTier,
+html.ff-root:not([data-theme="dark"]) .ff-platformLane,
+html.ff-root:not([data-theme="dark"]) .ff-platformSignal,
+html.ff-root:not([data-theme="dark"]) .ff-platformStoryCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformIncludeCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformRouteCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformStatsCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroStat,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlRailItem,
+html.ff-root:not([data-theme="dark"]) .ff-platformTierNote {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.10), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(245 249 253 / 0.95));
+}
+
+html.ff-root[data-theme="dark"] .ff-platformTier,
+html.ff-root[data-theme="dark"] .ff-platformLane,
+html.ff-root[data-theme="dark"] .ff-platformSignal,
+html.ff-root[data-theme="dark"] .ff-platformStoryCard,
+html.ff-root[data-theme="dark"] .ff-platformIncludeCard,
+html.ff-root[data-theme="dark"] .ff-platformRouteCard,
+html.ff-root[data-theme="dark"] .ff-platformStatsCard,
+html.ff-root[data-theme="dark"] .ff-platformHeroStat,
+html.ff-root[data-theme="dark"] .ff-platformControlRailItem,
+html.ff-root[data-theme="dark"] .ff-platformTierNote {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, rgb(13 24 40 / 0.98), rgb(10 18 31 / 0.95));
+}
+
+@media (max-width: 47.99rem) {
+  .ff-platformTopbar__brand .ff-pill {
+    display: none;
+  }
+
+  .ff-platformHeroStatRow,
+  .ff-platformControlRail {
+    grid-template-columns: 1fr;
+  }
+
+  .ff-platformHeroIntro {
+    gap: 0.45rem;
+  }
+
+  .ff-platformHeroActions {
+    margin-top: 1rem;
+  }
+
+  .ff-platformHeroActions .ff-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ff-platformTierNote {
+    font-size: 0.89rem;
+  }
+}
+/* FF_PLATFORM_PRESTIGE_PASS_V2_END */
+
+/* FF_DASHBOARD_OPERATOR_PRESTIGE_V1_START */
+:root,
+html.ff-root {
+  --ff-dashboard-shell-shadow-light: 0 24px 64px rgb(15 23 42 / 0.08), 0 4px 14px rgb(15 23 42 / 0.05);
+  --ff-dashboard-shell-shadow-dark: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 30px 78px rgb(0 0 0 / 0.40);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-dashboardPage {
+  background:
+    radial-gradient(circle at 10% 0%, rgb(14 165 233 / 0.07), transparent 24rem),
+    radial-gradient(circle at 92% 4%, rgb(249 115 22 / 0.10), transparent 22rem),
+    linear-gradient(180deg, #f2f6fb 0%, #ebf1f8 100%);
+}
+
+html.ff-root[data-theme="dark"] .ff-dashboardPage {
+  background:
+    radial-gradient(circle at 10% 0%, rgb(14 165 233 / 0.10), transparent 24rem),
+    radial-gradient(circle at 92% 4%, rgb(249 115 22 / 0.12), transparent 22rem),
+    linear-gradient(180deg, #05101d 0%, #061121 100%);
+}
+
+.ff-dashboardPage {
+  position: relative;
+  min-height: 100dvh;
+}
+
+.ff-dashboardAppbar {
+  min-height: 3.9rem;
+  padding: 0.72rem 0.92rem;
+  border-radius: 1.25rem;
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-dashboardAppbar {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.96), rgb(248 251 255 / 0.92)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.20), rgb(255 255 255 / 0));
+  box-shadow: var(--ff-dashboard-shell-shadow-light);
+}
+
+html.ff-root[data-theme="dark"] .ff-dashboardAppbar {
+  background:
+    linear-gradient(180deg, rgb(12 20 36 / 0.96), rgb(8 18 33 / 0.94)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0));
+  box-shadow: var(--ff-dashboard-shell-shadow-dark);
+}
+
+.ff-dashboardTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.ff-dashboardNav,
+.ff-dashboardMobileActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ff-dashboardMobileActions .ff-btn {
+  min-height: 2.2rem;
+}
+
+.ff-dashboardDesktopPill {
+  display: inline-flex;
+}
+
+.ff-dashboardMeta,
+.ff-dashboardDrawerLabel {
+  color: var(--ff-text-muted);
+  font-size: 0.82rem;
+}
+
+.ff-dashboardShellGrid,
+.ff-dashboardLowerGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 74rem) {
+  .ff-dashboardShellGrid {
+    grid-template-columns: minmax(0, 1.18fr) minmax(22rem, 0.82fr);
+    align-items: start;
+  }
+
+  .ff-dashboardLowerGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.82fr);
+    align-items: start;
+  }
+}
+
+.ff-dashboardHeroDeck,
+.ff-dashboardRailDeck,
+.ff-dashboardSectionBlock,
+.ff-dashboardFooterBar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.35rem;
+}
+
+.ff-dashboardHeroDeck::before,
+.ff-dashboardRailDeck::before,
+.ff-dashboardSectionBlock::before,
+.ff-dashboardFooterBar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.10), transparent 28%),
+    radial-gradient(circle at left center, rgb(14 165 233 / 0.08), transparent 24%);
+  opacity: 0.8;
+}
+
+.ff-dashboardHeroDeck > *,
+.ff-dashboardRailDeck > *,
+.ff-dashboardSectionBlock > *,
+.ff-dashboardFooterBar > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ff-dashboardHeroDeck {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.15rem, 1rem + 0.55vw, 1.6rem);
+}
+
+.ff-dashboardHeroHead {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 56rem) {
+  .ff-dashboardHeroHead {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+}
+
+.ff-dashboardHeroIntro {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 54rem;
+}
+
+.ff-dashboardTitle {
+  max-width: 8.2ch;
+  line-height: 0.9;
+}
+
+.ff-dashboardLead {
+  max-width: 56ch;
+}
+
+.ff-dashboardHeroStatus {
+  display: grid;
+  gap: 0.65rem;
+  justify-items: end;
+}
+
+.ff-dashboardStatusCard {
+  display: grid;
+  gap: 0.24rem;
+  min-width: min(100%, 15rem);
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-dashboardStatusCard__label,
+.ff-dashboardInlineStat__label,
+.ff-dashboardControlRailItem__label {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ff-text-muted);
+  font-weight: 800;
+}
+
+.ff-dashboardStatusCard__value,
+.ff-dashboardInlineStat__value,
+.ff-dashboardControlRailItem__value {
+  font-size: 0.98rem;
+  line-height: 1.2;
+  font-weight: 850;
+  color: var(--ff-text-strong);
+}
+
+.ff-dashboardStatusCard__meta,
+.ff-dashboardMetricNote,
+.ff-dashboardDiagMeta {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ff-text-muted);
+}
+
+.ff-dashboardMetricGrid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 68rem) {
+  .ff-dashboardMetricGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.ff-dashboardMetricCard,
+.ff-dashboardSponsorCard,
+.ff-dashboardInlineStat,
+.ff-dashboardDiagRow,
+.ff-dashboardActivityCard,
+.ff-dashboardActionCard {
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-dashboardMetricCard,
+.ff-dashboardSponsorCard,
+.ff-dashboardInlineStat {
+  padding: 0.95rem 1rem;
+  display: grid;
+  gap: 0.24rem;
+}
+
+.ff-dashboardMetricValue {
+  margin: 0.1rem 0 0;
+  font-size: clamp(1.4rem, 2vw, 1.95rem);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--ff-text-strong);
+}
+
+.ff-dashboardActionGrid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 56rem) {
+  .ff-dashboardActionGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ff-dashboardActionCard {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.ff-dashboardActionCard--accent {
+  border-color: rgb(249 115 22 / 0.22);
+  box-shadow: var(--ff-shadow-sm), 0 0 0 1px rgb(249 115 22 / 0.08);
+}
+
+.ff-dashboardActionCard__body {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ff-dashboardActionCard__cta .ff-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.ff-dashboardRailDeck {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 0.95rem + 0.45vw, 1.45rem);
+}
+
+@media (min-width: 74rem) {
+  .ff-dashboardRailDeck {
+    position: sticky;
+    top: 5.7rem;
+  }
+}
+
+.ff-dashboardRailHead,
+.ff-dashboardSectionHead,
+.ff-dashboardFooterBar__copy {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ff-dashboardDiagList,
+.ff-dashboardActivityList,
+.ff-dashboardControlStack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ff-dashboardDiagRow {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.95rem 1rem;
+}
+
+@media (min-width: 40rem) {
+  .ff-dashboardDiagRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+.ff-dashboardDiagMain {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.ff-dashboardDiagValue {
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 820;
+  color: var(--ff-text-strong);
+}
+
+.ff-dashboardPill--warn {
+  border-color: rgb(217 119 6 / 0.18);
+  background: var(--ff-warning-soft);
+  color: var(--ff-text-strong);
+}
+
+.ff-dashboardControlStack .ff-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.ff-dashboardControlStack--compact .ff-btn {
+  width: 100%;
+}
+
+.ff-dashboardSectionBlock {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 0.95rem + 0.45vw, 1.45rem);
+}
+
+.ff-dashboardSectionHead {
+  align-items: start;
+}
+
+@media (min-width: 40rem) {
+  .ff-dashboardSectionHead {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.ff-dashboardActivityCard {
+  padding: 1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.ff-dashboardActivityCard__head {
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (min-width: 40rem) {
+  .ff-dashboardActivityCard__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+.ff-dashboardSponsorGrid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ff-dashboardInlineStatRow {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ff-dashboardFooterBar {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 0.95rem + 0.45vw, 1.45rem);
+}
+
+.ff-dashboardFooterBar__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ff-dashboardFooterBar__actions .ff-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 56rem) {
+  .ff-dashboardFooterBar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .ff-dashboardFooterBar__actions {
+    min-width: 14rem;
+  }
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-dashboardHeroDeck,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardRailDeck,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardSectionBlock,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardFooterBar {
+  box-shadow: var(--ff-dashboard-shell-shadow-light);
+}
+
+html.ff-root[data-theme="dark"] .ff-dashboardHeroDeck,
+html.ff-root[data-theme="dark"] .ff-dashboardRailDeck,
+html.ff-root[data-theme="dark"] .ff-dashboardSectionBlock,
+html.ff-root[data-theme="dark"] .ff-dashboardFooterBar {
+  box-shadow: var(--ff-dashboard-shell-shadow-dark);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-dashboardMetricCard,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardSponsorCard,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardInlineStat,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardDiagRow,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardActivityCard,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardActionCard,
+html.ff-root:not([data-theme="dark"]) .ff-dashboardStatusCard {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.10), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(245 249 253 / 0.95));
+}
+
+html.ff-root[data-theme="dark"] .ff-dashboardMetricCard,
+html.ff-root[data-theme="dark"] .ff-dashboardSponsorCard,
+html.ff-root[data-theme="dark"] .ff-dashboardInlineStat,
+html.ff-root[data-theme="dark"] .ff-dashboardDiagRow,
+html.ff-root[data-theme="dark"] .ff-dashboardActivityCard,
+html.ff-root[data-theme="dark"] .ff-dashboardActionCard,
+html.ff-root[data-theme="dark"] .ff-dashboardStatusCard {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, rgb(13 24 40 / 0.98), rgb(10 18 31 / 0.95));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ff-dashboardMetricCard:hover,
+  .ff-dashboardSponsorCard:hover,
+  .ff-dashboardDiagRow:hover,
+  .ff-dashboardActivityCard:hover,
+  .ff-dashboardActionCard:hover,
+  .ff-dashboardFooterBar:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ff-shadow-md);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-dashboardAppbar {
+    padding: 0.72rem 0.8rem;
+    border-radius: 1rem;
+  }
+
+  .ff-dashboardDesktopPill {
+    display: none;
+  }
+
+  .ff-dashboardHeroHead,
+  .ff-dashboardSectionHead,
+  .ff-dashboardActivityCard__head,
+  .ff-dashboardMetricGrid,
+  .ff-dashboardSponsorGrid,
+  .ff-dashboardInlineStatRow {
+    grid-template-columns: 1fr;
+  }
+
+  .ff-dashboardHeroStatus {
+    justify-items: start;
+  }
+
+  .ff-dashboardStatusCard {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .ff-dashboardTitle {
+    max-width: 7.6ch;
+  }
+
+  .ff-dashboardActionGrid,
+  .ff-dashboardControlStack,
+  .ff-dashboardControlStack--compact,
+  .ff-dashboardFooterBar__actions {
+    gap: 0.65rem;
+  }
+}
+/* FF_DASHBOARD_OPERATOR_PRESTIGE_V1_END */
+
+/* FF_PLATFORM_HOMEPAGE_QA_PASS_V1_START */
+.ff-platformSurface .ff-appbar__inner {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ff-platformSurface .ff-main {
+  padding-top: 1rem;
+  padding-bottom: 4.25rem;
+}
+
+.ff-platformHeroGrid,
+.ff-platformHeroCard,
+.ff-platformControlCard,
+.ff-platformRouteCard,
+.ff-platformIncludeCard,
+.ff-platformStoryCard,
+.ff-platformTier,
+.ff-platformLane,
+.ff-platformFooterCard {
+  min-width: 0;
+}
+
+.ff-platformHeroGrid {
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+.ff-platformHeroCard,
+.ff-platformControlCard {
+  border-radius: 1.45rem;
+}
+
+.ff-platformHeroCard {
+  padding: clamp(1.15rem, 1rem + 0.8vw, 1.7rem);
+}
+
+.ff-platformControlCard {
+  padding: clamp(1.05rem, 0.95rem + 0.7vw, 1.5rem);
+}
+
+.ff-platformHeroLead,
+.ff-platformCopy,
+.ff-platformBody,
+.ff-platformSignalBody {
+  max-width: 62ch;
+}
+
+.ff-platformSectionHeader {
+  max-width: 52rem;
+}
+
+.ff-platformTitle,
+.ff-platformSectionTitle {
+  max-width: 14ch;
+}
+
+.ff-platformHeroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ff-platformHeroActions .ff-btn {
+  flex: 1 1 14rem;
+}
+
+.ff-platformHeroPills,
+.ff-platformProofRow,
+.ff-platformFooterActions {
+  flex-wrap: wrap;
+}
+
+.ff-platformHeroStatRow,
+.ff-platformControlRail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.ff-platformHeroStat,
+.ff-platformControlRailItem {
+  min-width: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformHeroStat__label,
+.ff-platformControlRailItem__label {
+  display: block;
+  margin: 0 0 0.2rem;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: var(--ff-text-muted);
+}
+
+.ff-platformHeroStat__value,
+.ff-platformControlRailItem__value {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.15;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: var(--ff-text-strong);
+}
+
+.ff-platformSignalGrid,
+.ff-platformRouteGrid,
+.ff-platformStoryGrid,
+.ff-platformIncludeGrid,
+.ff-platformPricingGrid,
+.ff-platformLaneGrid {
+  grid-template-columns: 1fr;
+}
+
+.ff-platformTier,
+.ff-platformLane,
+.ff-platformStoryCard,
+.ff-platformIncludeCard,
+.ff-platformRouteCard {
+  box-shadow: var(--ff-shadow-sm);
+}
+
+.ff-platformTierHead,
+.ff-platformLaneHead,
+.ff-platformFooterGrid {
+  gap: 0.9rem;
+}
+
+.ff-platformLaneAmount,
+.ff-platformTierPrice {
+  white-space: nowrap;
+}
+
+.ff-platformFooterCard {
+  border-radius: 1.45rem;
+}
+
+.ff-platformFooterActions .ff-btn {
+  flex: 1 1 14rem;
+}
+
+@media (min-width: 48rem) {
+  .ff-platformSignalGrid,
+  .ff-platformRouteGrid,
+  .ff-platformStoryGrid,
+  .ff-platformIncludeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ff-platformHeroStatRow,
+  .ff-platformControlRail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .ff-platformNav {
+    display: flex;
+  }
+
+  .ff-platformTopbar__mobile {
+    display: none;
+  }
+
+  .ff-platformPricingGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .ff-platformLaneGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .ff-platformFooterGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .ff-platformFooterActions {
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 78rem) {
+  .ff-platformHeroGrid {
+    grid-template-columns: minmax(0, 1.12fr) minmax(22rem, 0.88fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .ff-platformNav {
+    display: none;
+  }
+
+  .ff-platformTopbar {
+    align-items: center;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-platformSurface .ff-main {
+    padding-top: 0.9rem;
+    padding-bottom: 3.75rem;
+  }
+
+  .ff-platformHeroCard,
+  .ff-platformControlCard,
+  .ff-platformFooterCard {
+    border-radius: 1.15rem;
+  }
+
+  .ff-platformHeroActions .ff-btn,
+  .ff-platformFooterActions .ff-btn,
+  .ff-platformProofRow .ff-btn {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .ff-platformSignalGrid,
+  .ff-platformRouteGrid,
+  .ff-platformStoryGrid,
+  .ff-platformIncludeGrid,
+  .ff-platformPricingGrid,
+  .ff-platformLaneGrid {
+    gap: 0.85rem;
+  }
+
+  .ff-platformTitle,
+  .ff-platformSectionTitle {
+    max-width: none;
+  }
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterCard {
+  box-shadow: var(--ff-shadow-md);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroStat,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlRailItem,
+html.ff-root:not([data-theme="dark"]) .ff-platformSignal,
+html.ff-root:not([data-theme="dark"]) .ff-platformRouteCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformIncludeCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformStoryCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformTier,
+html.ff-root:not([data-theme="dark"]) .ff-platformLane {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.08), transparent 34%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.07), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.96), rgb(248 251 255 / 0.92));
+}
+
+html.ff-root[data-theme="dark"] .ff-platformHeroStat,
+html.ff-root[data-theme="dark"] .ff-platformControlRailItem,
+html.ff-root[data-theme="dark"] .ff-platformSignal,
+html.ff-root[data-theme="dark"] .ff-platformRouteCard,
+html.ff-root[data-theme="dark"] .ff-platformIncludeCard,
+html.ff-root[data-theme="dark"] .ff-platformStoryCard,
+html.ff-root[data-theme="dark"] .ff-platformTier,
+html.ff-root[data-theme="dark"] .ff-platformLane {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, #10213a, #0d1728);
+}
+/* FF_PLATFORM_HOMEPAGE_QA_PASS_V1_END */
+
+/* FF_PLATFORM_HOMEPAGE_PRESTIGE_WAVE3_START */
+.ff-platformHeroPromise {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1.15rem;
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.08), transparent 36%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-surface-2), var(--ff-panel));
+}
+
+.ff-platformPromiseList,
+.ff-platformControlProof,
+.ff-platformPreviewOutcomes,
+.ff-platformRevenueRibbon {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ff-platformPromiseList,
+.ff-platformControlProof {
+  grid-template-columns: 1fr;
+}
+
+.ff-platformPromiseItem,
+.ff-platformControlProofItem,
+.ff-platformPreviewOutcome,
+.ff-platformRevenueBadge {
+  min-width: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ff-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformPromiseTitle,
+.ff-platformControlProofItem__value,
+.ff-platformPreviewOutcomeTitle,
+.ff-platformRevenueBadge__title {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  font-weight: 820;
+  color: var(--ff-text-strong);
+  letter-spacing: -0.02em;
+}
+
+.ff-platformPromiseBody,
+.ff-platformControlProofItem__label,
+.ff-platformRevenueBadge__body {
+  margin: 0.38rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ff-text-muted);
+}
+
+.ff-platformControlProof {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ff-platformControlProofItem__label {
+  display: block;
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.ff-platformRevenueRibbon {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ff-platformRevenueBadge {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+.ff-platformPreviewShell {
+  padding: 1rem;
+  border: 1px solid var(--ff-border-strong);
+  border-radius: 1.2rem;
+  background:
+    radial-gradient(circle at top right, rgb(14 165 233 / 0.08), transparent 32%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+  box-shadow: var(--ff-shadow-sm);
+}
+
+.ff-platformPreviewShell__head {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ff-platformPreviewOutcomes {
+  margin-top: 0.9rem;
+}
+
+.ff-platformSection--preview .ff-platformPreviewOutcomes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ff-platformSection--pricing .ff-platformTier {
+  min-height: 100%;
+}
+
+.ff-platformSection--pricing .ff-platformTier--featured {
+  position: relative;
+  isolation: isolate;
+}
+
+.ff-platformSection--pricing .ff-platformTier--featured::after {
+  content: "Best commercial default";
+  position: absolute;
+  inset: 1rem 1rem auto auto;
+  min-height: 1.9rem;
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  background: rgb(249 115 22 / 0.12);
+  color: var(--ff-brand-strong);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgb(249 115 22 / 0.16);
+}
+
+.ff-platformSection--pricing .ff-platformTierHead {
+  padding-right: 8.25rem;
+}
+
+.ff-platformFooterCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.10), transparent 30%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.08), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0)),
+    linear-gradient(180deg, var(--ff-panel-strong), var(--ff-panel));
+}
+
+@media (min-width: 64rem) {
+  .ff-platformPromiseList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .ff-platformControlProof,
+  .ff-platformRevenueRibbon,
+  .ff-platformSection--preview .ff-platformPreviewOutcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .ff-platformSection--pricing .ff-platformTierHead {
+    padding-right: 0;
+  }
+
+  .ff-platformSection--pricing .ff-platformTier--featured::after {
+    position: static;
+    justify-self: start;
+    margin-top: 0.65rem;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-platformHeroPromise,
+  .ff-platformPreviewShell {
+    padding: 0.92rem;
+  }
+
+  .ff-platformPromiseItem,
+  .ff-platformControlProofItem,
+  .ff-platformPreviewOutcome,
+  .ff-platformRevenueBadge {
+    padding: 0.9rem;
+  }
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroPromise,
+html.ff-root:not([data-theme="dark"]) .ff-platformPreviewShell,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.10), transparent 34%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.08), transparent 36%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(247 250 255 / 0.94));
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformTier--featured::after {
+  background: #fff7ed;
+  border-color: rgb(249 115 22 / 0.14);
+  color: #9a3412;
+}
+
+html.ff-root[data-theme="dark"] .ff-platformSection--pricing .ff-platformTier--featured::after {
+  color: #ffd5b3;
+}
+/* FF_PLATFORM_HOMEPAGE_PRESTIGE_WAVE3_END */
+
