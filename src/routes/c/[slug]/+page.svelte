@@ -613,7 +613,7 @@
 	<div class="ff-shellBg" aria-hidden="true"></div>
 
 	<header class="ff-chrome" data-ff-chrome="">
-		<nav class="ff-topbar ff-campaignHeader" id="ffTopbar" data-ff-topbar="" aria-label="Campaign header">
+		<nav class="ff-topbar" id="ffTopbar" data-ff-topbar="" aria-label="Campaign header">
 			<div class="ff-container">
 				<div class="ff-campaignHeader__shell ff-surface">
 					<div class="ff-campaignHeader__row ff-campaignHeader__row--top">
@@ -669,7 +669,7 @@
 								</button>
 
 								<a
-									class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-btn--topCta ff-donate-btn"
+									class="ff-btn ff-btn--sm ff-btn--primary ff-btn--pill ff-btn--topCta"
 									href="#checkout"
 									aria-controls="checkout"
 									data-ff-donate=""
@@ -709,7 +709,7 @@
 					</section>
 
 					<section
-						class="ff-topbarGoal ff-campaignHeader__goal ff-densityGoalbar"
+						class="ff-topbarGoal"
 						data-ff-goalbar=""
 						role="group"
 						aria-label="Fundraising progress"
@@ -841,7 +841,7 @@
 						</button>
 
 						<a
-							class="ff-btn ff-btn--primary ff-btn--pill ff-donate-btn"
+							class="ff-btn ff-btn--primary ff-btn--pill"
 							href="#checkout"
 							data-ff-donate=""
 							data-ff-open-checkout=""
@@ -866,15 +866,15 @@
 	<main id="content" class="ff-main" data-ff-main="" data-ff-page-root="" tabindex="-1">
 		<section
 			id="home"
-			class="ff-section ff-section--hero ff-hero ff-campaignHero"
+			class="ff-section ff-section--hero"
 			data-ff-section="hero"
 			aria-labelledby="heroTitle"
 			aria-describedby="heroLead"
 		>
-			<div class="ff-container ff-hero__shell">
+			<div class="ff-container">
 				<div class="ff-hero__grid">
 					<div class="ff-minw-0">
-						<article class="ff-hero__capsule ff-surface ff-campaignHero__story" data-ff-animate="rise">
+						<article class="ff-hero__capsule ff-surface" data-ff-animate="rise">
 							<div class="ff-hero__capsuleInner">
 								<header class="ff-heroHeader">
 									<div class="ff-heroMeta" role="list" aria-label="Campaign highlights">
@@ -962,9 +962,9 @@
 								</div>
 
 								<footer class="ff-heroFooter">
-									<nav class="ff-heroCtas ff-heroCtas--flagship" aria-label="Primary actions">
+									<nav class="ff-heroCtas" aria-label="Primary actions">
 										<a
-											class="ff-btn ff-btn--primary ff-btn--lg ff-btn--pill ff-donate-btn"
+											class="ff-btn ff-btn--primary ff-btn--lg ff-btn--pill"
 											href="#checkout"
 											data-ff-donate=""
 											data-ff-open-checkout=""
@@ -1000,7 +1000,7 @@
 						</article>
 					</div>
 
-					<aside class="ff-heroPanel ff-heroPanel--flagship" data-ff-hero-panel="" aria-labelledby="heroPanelTitle">
+					<aside class="ff-stack" data-ff-hero-panel="" aria-labelledby="heroPanelTitle">
 						<article
 							class="ff-card ff-card--premium ff-card--lift ff-pad ff-campaignHero__checkout"
 							data-ff-animate="rise"
@@ -1281,7 +1281,7 @@
 					</p>
 				</header>
 
-				<div class="ff-teamGrid ff-mt-3 ff-campaignTeamsGrid">
+				<div class="ff-teamGrid ff-mt-3">
 					{#each teams as team (team.id)}
 						<article class={`ff-teamCard ${team.featured ? 'ff-card--premium' : ''}`}>
 							<div class="ff-teamCard__inner ff-pad">
@@ -1481,7 +1481,7 @@
 					</article>
 				{/if}
 
-				<div class="ff-impactTierGrid ff-mt-3 ff-campaignSponsorGrid">
+				<div class="ff-impactTierGrid ff-mt-3">
 					{#each sponsorTiers as tier (tier.key)}
 						<article class={`ff-impactTier ${tier.primary ? 'ff-impactTier--premium' : ''}`}>
 							<div class="ff-impactTier__head">

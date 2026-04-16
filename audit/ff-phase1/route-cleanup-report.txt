@@ -1,0 +1,4 @@
+[patched] src/routes/c/[slug]/+page.svelte :: class attrs changed = 12 :: backup = +page.svelte.bak.20260416051950
+[unchanged] src/routes/(platform)/platform/+page.svelte :: backup = +page.svelte.bak.20260416051950
+[patched] src/routes/(platform)/platform/onboarding/+page.svelte :: class attrs changed = 6 :: backup = +page.svelte.bak.20260416051950
+[unchanged] src/routes/(platform)/platform/dashboard/+page.svelte :: backup = +page.svelte.bak.20260416051950

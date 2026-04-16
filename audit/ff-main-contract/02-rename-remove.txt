@@ -1,0 +1,9 @@
+ff-amount
+ff-amount-input
+ff-donor-name
+ff-email
+ff-goal
+ff-goalbar
+ff-hero-panel
+ff-message
+ff-meter

@@ -1,0 +1,34 @@
+{
+  "targets": [
+    "ff-badgeRow",
+    "ff-platformControlActions",
+    "ff-platformIncludeTitle",
+    "ff-platformLaneTags",
+    "ff-platformLead",
+    "ff-platformMetric",
+    "ff-platformMetric__label",
+    "ff-platformMetric__value",
+    "ff-platformMiniCard",
+    "ff-platformMiniGrid",
+    "ff-platformMiniList",
+    "ff-platformMiniTitle",
+    "ff-platformProofCard",
+    "ff-platformRouteCard--wide",
+    "ff-platformSectionCard",
+    "ff-platformSectionPills",
+    "ff-platformStatsCard",
+    "ff-platformTierName",
+    "ff-skeleton",
+    "ff-tableCard"
+  ],
+  "blocks_touched": 8,
+  "blocks_removed_entirely": 3,
+  "removed_selector_counts": {
+    "ff-tableCard": 2,
+    "ff-skeleton": 2,
+    "ff-badgeRow": 1,
+    "ff-platformMiniList": 1,
+    "ff-platformStatsCard": 2
+  },
+  "backup_file": "ff.css.bak.20260416054550"
+}

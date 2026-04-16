@@ -1,0 +1,10 @@
+ff-close-drawer
+ff-close-sponsor
+ff-donate
+ff-embedded-checkout
+ff-home
+ff-launch-state
+ff-live-sponsor-spotlight
+ff-open-checkout
+ff-open-drawer
+ff-open-sponsor

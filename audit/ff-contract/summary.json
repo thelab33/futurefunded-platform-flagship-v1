@@ -1,0 +1,52 @@
+{
+  "css_file": "src/lib/styles/ff.css",
+  "resolved_surfaces": {
+    "campaign": "src/routes/c/[slug]/+page.svelte",
+    "platform": "src/routes/(platform)/platform/+page.svelte",
+    "onboarding": "src/routes/(platform)/platform/onboarding/+page.svelte",
+    "dashboard": "src/routes/(platform)/platform/dashboard/+page.svelte"
+  },
+  "missing_surfaces": {},
+  "include_globs": [
+    "src/lib/components/**/*.svelte"
+  ],
+  "include_files_scanned": [
+    "src/lib/components/campaign/StripeCheckoutPanel.svelte",
+    "src/lib/components/platform/BrandControlSection.svelte",
+    "src/lib/components/platform/CloseBand.svelte",
+    "src/lib/components/platform/FaqSection.svelte",
+    "src/lib/components/platform/HowItWorksSection.svelte",
+    "src/lib/components/platform/PlatformChrome.svelte",
+    "src/lib/components/platform/PlatformFooter.svelte",
+    "src/lib/components/platform/PlatformHero.svelte",
+    "src/lib/components/platform/PlatformTopBar.svelte",
+    "src/lib/components/platform/ProductPreviewSection.svelte",
+    "src/lib/components/platform/RevenueLanesSection.svelte",
+    "src/lib/components/platform/SponsorCommerceSection.svelte",
+    "src/lib/components/platform/UseCasesSection.svelte",
+    "src/lib/components/ui/Button.svelte",
+    "src/lib/components/ui/Card.svelte",
+    "src/lib/components/ui/ProofStrip.svelte",
+    "src/lib/components/ui/SectionHeading.svelte"
+  ],
+  "used_selector_count": 511,
+  "defined_selector_count": 441,
+  "missing_in_css_count": 106,
+  "dead_candidate_count": 31,
+  "duplicate_marker_count": 0,
+  "used_selector_family_breakdown": {
+    "campaign": 119,
+    "dashboard": 58,
+    "onboarding": 38,
+    "platform": 118,
+    "shared": 178
+  },
+  "missing_selector_family_breakdown": {
+    "campaign": 25,
+    "dashboard": 5,
+    "onboarding": 3,
+    "platform": 9,
+    "shared": 64
+  },
+  "exit_nonzero": true
+}
