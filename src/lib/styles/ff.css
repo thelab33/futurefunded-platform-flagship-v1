@@ -4103,4 +4103,255 @@ html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformT
 }
 /* FF_PLATFORM_HOMEPAGE_COMMERCIAL_FINISH_END */
 
+/* FF_PLATFORM_HOMEPAGE_MICRO_PASS_START */
+html.ff-root:not([data-theme="dark"]) {
+  --ff-bg: #eef4fa;
+  --ff-bg-soft: #f8fbff;
+  --ff-panel: rgb(255 255 255 / 0.94);
+  --ff-panel-strong: rgb(255 255 255 / 0.995);
+  --ff-text: #0a1727;
+  --ff-text-strong: #06101e;
+  --ff-text-soft: #16273b;
+  --ff-text-muted: #52657b;
+  --ff-border: rgb(15 23 42 / 0.11);
+  --ff-border-strong: rgb(15 23 42 / 0.16);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.13), transparent 30%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.10), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 1), rgb(248 251 255 / 0.96));
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformControlCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterCard {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.09), transparent 32%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.08), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.99), rgb(247 250 255 / 0.95));
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformTier--featured {
+  background:
+    radial-gradient(circle at top right, rgb(249 115 22 / 0.14), transparent 32%),
+    radial-gradient(circle at bottom left, rgb(14 165 233 / 0.10), transparent 34%),
+    linear-gradient(180deg, rgb(255 255 255 / 1), rgb(248 251 255 / 0.97));
+  box-shadow: 0 24px 56px rgb(15 23 42 / 0.12), 0 0 0 1px rgb(249 115 22 / 0.10);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard .ff-display,
+html.ff-root:not([data-theme="dark"]) .ff-platformSectionTitle,
+html.ff-root:not([data-theme="dark"]) .ff-platformTitle {
+  color: #06101e;
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard .ff-display {
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.55);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroActions .ff-btn--primary,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterActions .ff-btn--primary,
+html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformTier--featured .ff-btn {
+  box-shadow: 0 18px 42px rgb(249 115 22 / 0.22);
+}
+
+@media (max-width: 63.99rem) {
+  .ff-platformSection--included .ff-platformIncludeGrid,
+  .ff-platformSection--segments .ff-platformIncludeGrid,
+  .ff-platformSection--preview .ff-platformRouteGrid {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .ff-main {
+    padding-bottom: 2.8rem;
+  }
+
+  .ff-section {
+    padding-block: 0.82rem;
+  }
+
+  .ff-platformSectionHeader {
+    gap: 0.28rem;
+    margin-bottom: 0.05rem;
+  }
+
+  .ff-platformHeroCard,
+  .ff-platformControlCard,
+  .ff-platformLaneWrap,
+  .ff-platformFooterCard,
+  .ff-platformTier {
+    border-radius: 1.1rem;
+  }
+
+  .ff-platformHeroPromise,
+  .ff-platformPreviewShell {
+    padding: 0.84rem;
+  }
+
+  .ff-platformPromiseItem,
+  .ff-platformControlProofItem,
+  .ff-platformRevenueBadge,
+  .ff-platformCompareItem,
+  .ff-platformPreviewOutcome,
+  .ff-platformStoryCard,
+  .ff-platformIncludeCard,
+  .ff-platformRouteCard {
+    padding: 0.78rem;
+  }
+
+  .ff-platformControlProof,
+  .ff-platformCompareBar {
+    display: none;
+  }
+
+  .ff-platformSection--included .ff-platformCopy,
+  .ff-platformSection--segments .ff-platformCopy,
+  .ff-platformSection--preview .ff-platformBody,
+  .ff-platformSection--flow .ff-platformCopy,
+  .ff-platformSection--pricing .ff-platformCopy,
+  .ff-platformFaqDisclosure .ff-platformCopy {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .ff-platformSection--segments .ff-platformIncludeCard .ff-platformCopy {
+    font-size: 0.88rem;
+  }
+
+  .ff-platformHeroActions,
+  .ff-platformProofRow--preview,
+  .ff-platformFooterActions {
+    gap: 0.65rem;
+  }
+
+  .ff-platformHeroActions .ff-btn,
+  .ff-platformProofRow--preview .ff-btn,
+  .ff-platformFooterActions .ff-btn {
+    min-height: 2.7rem;
+  }
+
+  .ff-platformSection--pricing .ff-platformPricingGrid,
+  .ff-platformFaqList {
+    gap: 0.75rem;
+  }
+}
+/* FF_PLATFORM_HOMEPAGE_MICRO_PASS_END */
+
+/* FF_PLATFORM_HOMEPAGE_EXECUTIVE_COMPRESSION_START */
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformControlCard,
+html.ff-root:not([data-theme="dark"]) .ff-platformFooterCard {
+  box-shadow: 0 24px 54px rgb(15 23 42 / 0.11);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformHeroCard .ff-display {
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.58);
+}
+
+html.ff-root:not([data-theme="dark"]) .ff-platformSection--pricing .ff-platformTier--featured {
+  box-shadow: 0 28px 64px rgb(15 23 42 / 0.14), 0 0 0 1px rgb(249 115 22 / 0.11);
+}
+
+.ff-platformHeroStatRow {
+  gap: 0.72rem;
+}
+
+.ff-platformHeroStat {
+  min-height: 0;
+}
+
+@media (max-width: 47.99rem) {
+  .ff-platformHeroCard {
+    padding: 1rem;
+  }
+
+  .ff-platformHeroCard .ff-display {
+    max-width: 8.2ch;
+    font-size: clamp(2.45rem, 11vw, 3.75rem);
+    line-height: 0.93;
+  }
+
+  .ff-platformHeroLead {
+    font-size: 0.98rem;
+    line-height: 1.56;
+  }
+
+  .ff-platformHeroPills {
+    gap: 0.45rem;
+  }
+
+  .ff-platformHeroPills .ff-pill {
+    min-height: 1.9rem;
+    padding: 0.4rem 0.68rem;
+    font-size: 0.76rem;
+  }
+
+  .ff-platformHeroStatRow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .ff-platformHeroStat {
+    padding: 0.72rem 0.78rem;
+    border-radius: 0.95rem;
+  }
+
+  .ff-platformHeroStat__label {
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+  }
+
+  .ff-platformHeroStat__value {
+    font-size: 0.96rem;
+    line-height: 1.15;
+  }
+
+  .ff-platformPromiseList,
+  .ff-platformRevenueRibbon,
+  .ff-platformSection--preview .ff-platformPreviewOutcomes {
+    gap: 0.65rem;
+  }
+
+  .ff-platformSection--flow .ff-platformStoryGrid,
+  .ff-platformSection--included .ff-platformIncludeGrid,
+  .ff-platformSection--segments .ff-platformIncludeGrid,
+  .ff-platformSection--preview .ff-platformRouteGrid {
+    gap: 0.65rem;
+  }
+
+  .ff-platformSection--pricing .ff-platformTier {
+    padding: 0.92rem;
+  }
+
+  .ff-platformSection--pricing .ff-platformTierHead {
+    gap: 0.7rem;
+  }
+
+  .ff-platformSection--pricing .ff-platformTierCallout {
+    font-size: 0.86rem;
+    line-height: 1.45;
+    padding: 0.72rem 0.8rem;
+  }
+
+  .ff-platformFaqDisclosure .ff-disclosure__sum {
+    padding: 0.88rem 0.95rem;
+    font-size: 0.93rem;
+  }
+
+  .ff-platformFaqDisclosure .ff-disclosure__panel {
+    padding: 0 0.95rem 0.88rem;
+  }
+
+  .ff-platformFooterCard {
+    padding: 0.95rem;
+  }
+}
+/* FF_PLATFORM_HOMEPAGE_EXECUTIVE_COMPRESSION_END */
+
+
+
 

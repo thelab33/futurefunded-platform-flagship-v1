@@ -99,15 +99,15 @@
 	const launchPromises: PromiseItem[] = [
 		{
 			title: 'Launch with your own brand',
-			body: 'Logo, colors, organization story, and a public page that feels credible immediately.'
+			body: 'Logo, colors, and a public page that feels credible immediately.'
 		},
 		{
 			title: 'Turn attention into revenue',
-			body: 'Donations, sponsor packages, and recurring support are built into the same launch motion.'
+			body: 'Donations, sponsor packages, and recurring support live in the same launch motion.'
 		},
 		{
 			title: 'Stay calm after publish',
-			body: 'Preview, dashboard, and operator controls stay inside the same product family after go-live.'
+			body: 'Preview, dashboard, and operator controls stay in the same product family after go-live.'
 		}
 	];
 
@@ -653,8 +653,7 @@
 						<p class="ff-kicker ff-mt-3">FutureFunded platform</p>
 						<h1 class="ff-display ff-mt-4">Launch premium fundraising without the sprawl.</h1>
 						<p class="ff-lead ff-mt-4 ff-platformHeroLead">
-							One branded public fundraiser, one sponsor-ready revenue model, and one calmer dashboard
-							for launch, updates, and operator confidence.
+							One branded public fundraiser, one sponsor-ready revenue model, and one calmer dashboard for launch and operator confidence.
 						</p>
 
 						<div class="ff-platformHeroActions">
@@ -834,8 +833,7 @@
 					<p class="ff-kicker">What’s included</p>
 					<h2 class="ff-platformSectionTitle">The launch system, not just the donate page.</h2>
 					<p class="ff-platformCopy">
-						Every lane is there to help the organization look more credible, raise more clearly, and launch
-						without surface clutter.
+						Every lane helps the organization look more credible, raise more clearly, and launch without clutter.
 					</p>
 				</div>
 
@@ -918,7 +916,7 @@
 						Organizations that need fundraising to look as serious as their mission.
 					</h2>
 					<p class="ff-platformCopy">
-						The same system can support youth teams, schools, nonprofits, and clubs without feeling generic.
+						The same system supports youth teams, schools, nonprofits, and clubs without feeling generic.
 					</p>
 				</div>
 
@@ -940,8 +938,7 @@
 					<p class="ff-kicker">Product preview</p>
 					<h2 class="ff-platformSectionTitle">One platform story from setup to launch.</h2>
 					<p class="ff-platformCopy">
-						The public fundraiser, sponsor offer, and operator controls all belong to the same product
-						surface.
+						The public fundraiser, sponsor offer, and operator controls belong to the same product surface.
 					</p>
 				</div>
 
@@ -1092,8 +1089,7 @@
 					<p class="ff-kicker">FAQ</p>
 					<h2 class="ff-platformSectionTitle">Everything a buyer usually asks first.</h2>
 					<p class="ff-platformCopy">
-						Keep the story simple, credible, and easy to understand before someone books a demo or starts
-						setup.
+						Keep the story simple and credible before someone books a demo or starts setup.
 					</p>
 				</div>
 
